@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thanh_toan);
+        setContentView(R.layout.activity_main);
         Anhxa();
-        //ActionBar();
-        //ActionViewFlipper();
+        ActionBar();
+        ActionViewFlipper();
     }
 
     private void ActionViewFlipper() {
