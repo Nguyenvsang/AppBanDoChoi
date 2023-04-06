@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         viewFlipper.setAutoStart(true);
         Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_right);
         Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_right);
+        viewFlipper.setInAnimation(slide_in);
+        viewFlipper.setOutAnimation(slide_out);
     }
 
     private void ActionBar() {
