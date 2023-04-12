@@ -14,6 +14,9 @@
         android:theme="@style/Theme.AppBanDoChoi"
         tools:targetApi="31">
         <activity
+            android:name=".ResetPassActivity"
+            android:exported="false" />
+        <activity
             android:name=".GioHangActivity"
             android:exported="false" />
         <activity
