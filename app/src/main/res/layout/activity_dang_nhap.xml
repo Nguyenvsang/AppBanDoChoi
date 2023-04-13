@@ -45,6 +45,7 @@
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
             android:hint="Mật khẩu"
+            android:id="@+id/pass"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:inputType="textPassword"
