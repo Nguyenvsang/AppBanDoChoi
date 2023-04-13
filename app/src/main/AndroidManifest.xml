@@ -14,6 +14,9 @@
         android:theme="@style/Theme.AppBanDoChoi"
         tools:targetApi="31">
         <activity
+            android:name=".XemDonActivity"
+            android:exported="false" />
+        <activity
             android:name=".ResetPassActivity"
             android:exported="false" />
         <activity
@@ -27,13 +30,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.DangNhapActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.DangKyActivity"
             android:exported="false" />
