@@ -120,7 +120,8 @@
             android:hint="Nhập địa chỉ giao hàng"
             android:textColorHint="@android:color/holo_red_light"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/botron_edittext">
         </com.google.android.material.textfield.TextInputEditText>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -132,7 +133,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/botron_button"
         android:text="Đặt hàng"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"

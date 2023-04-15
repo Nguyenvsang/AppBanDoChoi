@@ -35,6 +35,7 @@
             <TextView
                 android:id="@+id/itemdcg_gia"
                 android:textSize="16sp"
+                android:gravity="center"
                 android:text="150000vnd"
                 android:textColor="@android:color/holo_red_light"
                 android:layout_width="match_parent"

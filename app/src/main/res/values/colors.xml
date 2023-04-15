@@ -18,4 +18,8 @@
     <color name="background_color">#ecf0f3</color>
     <color name="highlight">#ffffff</color>
     <color name="shadow_color">#d9dbde</color>
+
+    <color name="green_color_light">#aedcab</color>
+    <color name="green_color">#60BA62</color>
+    <color name="green_color_dark">#FF218431</color>
 </resources>

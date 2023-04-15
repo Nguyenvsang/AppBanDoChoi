@@ -17,8 +17,14 @@
             android:name=".ThemSPActivity"
             android:exported="false" />
         <activity
-            android:name=".QuanLyActivity"
-            android:exported="false" />
+            android:name=".activity.QuanLyActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SearchActivity"
             android:exported="false" />

@@ -19,10 +19,14 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:padding="10dp"
         android:id="@+id/edtsearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/toobar"/>
+        app:layout_constraintTop_toBottomOf="@id/toobar"
+        android:drawableRight="@drawable/ic_search_24"
+        android:drawableTint="@color/green_color"
+        android:background="@drawable/botron_edittext"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleview_search"
         android:layout_marginTop="5dp"

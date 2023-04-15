@@ -26,10 +26,7 @@
             android:layout_width="100dp"
             android:id="@+id/neu_themsanpham"
             android:layout_height="100dp"
-            app:neomorph_view_type="rectangular"
-            app:neomorph_shadow_type="outer"
-            style="@style/neumorphirmcard"
-            app:neomorph_background_color="@color/background">
+            style="@style/neumorphirmcard">
             <LinearLayout
                 android:padding="5dp"
                 android:orientation="vertical"
@@ -58,11 +55,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:neomorph_view_type="rectangular"
-            app:neomorph_shadow_type="outer"
-            style="@style/neumorphirmcard"
-            app:neomorph_background_color="@color/background"
-            app:neomorph_shadow_color="@color/shadow_color">
+            style="@style/neumorphirmcard">
             <LinearLayout
                 android:padding="5dp"
                 android:orientation="vertical"
@@ -91,12 +84,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:neomorph_view_type="rectangular"
-            app:neomorph_shadow_type="outer"
-            style="@style/neumorphirmcard"
-            app:neomorph_background_color="@color/background"
-            app:neomorph_shadow_color="@color/shadow_color"
-            app:neomorph_highlight_color="@color/highlight">
+            style="@style/neumorphirmcard">
             <LinearLayout
                 android:padding="5dp"
                 android:orientation="vertical"
