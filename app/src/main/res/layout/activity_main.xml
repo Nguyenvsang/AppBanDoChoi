@@ -6,89 +6,256 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerlayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toobarmanhinhchinh"
-                app:title="Trang chính"
-                android:background="#ff00dfff"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
-                <LinearLayout
-                    android:layout_gravity="right"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="?attr/actionBarSize">
-                    <ImageView
-                        android:id="@+id/imgsearch"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/ic_search_24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="?attr/actionBarSize"/>
-                    <FrameLayout
-                        android:id="@+id/framegiohang"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="55dp"
-                        android:layout_height="?attr/actionBarSize">
-                        <com.nex3z.notificationbadge.NotificationBadge
-                            android:id="@+id/menu_sl"
-                            android:layout_gravity="top|right"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"/>
-                        <ImageView
-                            android:layout_marginTop="15dp"
-                            android:src="@drawable/ic_cart_24"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"/>
-                    </FrameLayout>
-                </LinearLayout>
-            </androidx.appcompat.widget.Toolbar>
-            <ViewFlipper
-                android:id="@+id/viewlipper"
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-            </ViewFlipper>
-            <LinearLayout
-                android:background="#5992d2"
-                android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
-                    android:textSize="20sp"
-                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tvhi"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="@dimen/_15ssp"
+                    android:text="Hi Van Thuan"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvhi"
+                    app:layout_constraintStart_toStartOf="@+id/tvhi"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="Chơi và sáng tạo"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/profile"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"/>
+                <EditText
+                    android:id="@+id/editsearch"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:hint="Bạn muốn tìm gì?"
+                    android:padding="@dimen/_5sdp"
+                    android:drawableLeft="@drawable/ic_search_24"
+                    android:drawableTint="@android:color/holo_red_light"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/botron_edittext"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container1"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/editsearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp">
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottie"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_repeatMode="reverse"
+                        app:lottie_rawRes="@raw/happyloader"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_92sdp"
+                        app:layout_constraintTop_toTopOf="@+id/lottie"
+                        app:layout_constraintEnd_toEndOf="@+id/lottie"
+                        android:textStyle="bold"
+                        android:text="Miễn Ship"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="@dimen/_16ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:layout_marginRight="@dimen/_87sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/lottie"
+                        app:layout_constraintEnd_toEndOf="@+id/lottie"
+                        android:textStyle="bold"
+                        android:text="Đặt hàng ngay"
+                        android:background="@drawable/back_oder"
+                        android:textColor="@color/white"
+                        android:padding="@dimen/_5sdp"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tvdanhmuc"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text="Danh mục"
+                    android:textSize="@dimen/_15ssp"
                     android:textColor="@android:color/holo_red_light"
                     android:textStyle="bold"
-                    android:text="Sản phẩm mới nhất"
+                    app:layout_constraintTop_toBottomOf="@id/container1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/_15sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleview"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
+                    android:id="@+id/rc_danhmuc"
+                    app:layout_constraintTop_toBottomOf="@id/tvdanhmuc"
+                    app:layout_constraintStart_toStartOf="@id/tvdanhmuc"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="@dimen/_120sdp"/>
 
-                </androidx.recyclerview.widget.RecyclerView>
-            </LinearLayout>
-        </LinearLayout>
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationview"
-            android:layout_gravity="start"
+                <TextView
+                    android:id="@+id/tvphobien"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text="Được mua nhiều"
+                    android:textSize="@dimen/_15ssp"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/rc_danhmuc"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_phobien"
+                    app:layout_constraintTop_toBottomOf="@id/tvphobien"
+                    app:layout_constraintStart_toStartOf="@id/tvdanhmuc"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/bottombar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:layout_marginTop="10dp"
-                android:id="@+id/listviewmanhinhchinh"
+            android:layout_height="@dimen/_80sdp">
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:fabCradleMargin="@dimen/_5sdp"
+                app:fabCradleRoundedCornerRadius="@dimen/_40sdp"
+                app:fabCradleVerticalOffset="@dimen/_2sdp">
+                <LinearLayout
+                    android:weightSum="10"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_home_24" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Trang chủ" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="2"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_category_24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            android:text="Sản phẩm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="2"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="2"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_order_24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            android:text="Đơn hàng"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="2"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_account_circle_24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            android:text="Tài khoản"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </com.google.android.material.bottomappbar.BottomAppBar>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:backgroundTint="#EC0707"
+                android:src="@drawable/ic_cart_24"
+                app:layout_anchor="@id/appbar"
+                android:elevation="@dimen/_5sdp"
+                app:elevation="@dimen/_3sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </com.google.android.material.navigation.NavigationView>
-    </androidx.drawerlayout.widget.DrawerLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
