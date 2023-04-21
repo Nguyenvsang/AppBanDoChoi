@@ -10,7 +10,7 @@
         android:id="@+id/toobar"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Thanh toán"
-        android:background="#36DD07"
+        android:background="#FAE107"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
     <androidx.cardview.widget.CardView
