@@ -25,16 +25,18 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:drawableLeft="@drawable/ic_email"
-            android:drawablePadding="5dp"
+            android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/botron_edittext"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/botron_edittext"
+            android:drawableLeft="@drawable/ic_email"
+            android:drawablePadding="5dp"
+            android:hint="Tên người dùng"
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,7 +49,7 @@
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
             android:hint="Mật khẩu"
-            android:id="@+id/pass"
+            android:id="@+id/editTextPassword"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:inputType="textPassword"
@@ -60,7 +62,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btndangnhap"
+        android:id="@+id/btnDangNhap"
         app:layout_constraintTop_toBottomOf="@+id/line2"
         android:background="@drawable/botron_button"
         android:layout_marginRight="35dp"
@@ -76,7 +78,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/btndangnhap"
+        app:layout_constraintTop_toBottomOf="@id/btnDangNhap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -84,14 +86,16 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
         <TextView
+            android:id="@+id/txtDangKy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="Đăng ký"
-            android:textSize="15sp"
-            android:textStyle="bold"
             android:textColor="@android:color/holo_red_light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
     <TextView
