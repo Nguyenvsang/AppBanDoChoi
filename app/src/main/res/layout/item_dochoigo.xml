@@ -30,16 +30,18 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:text="Tên sản phẩm"
+                android:textColor="@color/design_dark_default_color_shadow_dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
             <TextView
                 android:id="@+id/itemdcg_gia"
-                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="150000vnd"
-                android:textColor="@android:color/holo_red_light"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textColor="@color/black"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/itemdcg_mota"
                 android:textSize="14sp"

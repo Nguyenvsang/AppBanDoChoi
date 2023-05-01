@@ -22,4 +22,6 @@
     <color name="green_color_light">#aedcab</color>
     <color name="green_color">#60BA62</color>
     <color name="green_color_dark">#FF218431</color>
+
+    <color name="orange_color_dark">#f26703</color>
 </resources>

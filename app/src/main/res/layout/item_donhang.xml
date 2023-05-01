@@ -15,15 +15,16 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/iddonhang"
-                android:text="Đơn hàng: 123"
-                android:textColor="@android:color/holo_red_light"
-                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:text="Đơn hàng: 123"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"

@@ -12,13 +12,14 @@
         android:src="@drawable/ic_media_24"
         android:layout_width="55dp"
         android:layout_height="45dp"/>
+
     <TextView
         android:id="@+id/item_tensp"
-        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:text="Đồ chơi"
-        android:textColor="@android:color/holo_red_light"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
 </LinearLayout>

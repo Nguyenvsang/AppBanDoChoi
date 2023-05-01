@@ -9,15 +9,16 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobar"
-        android:background="#3AD541"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="#e7ee9f"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_baseline_arrow_back_24"
             android:layout_width="35dp"
-            android:layout_height="35dp"/>
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,6 +26,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Tài khoản"
+            android:textColor="@color/design_dark_default_color_shadow_dark"
             android:textSize="23dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="90dp"
@@ -33,18 +35,18 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_baseline_logout_24"
             android:layout_gravity="right"
-            android:layout_marginRight="15dp" />
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_baseline_logout_24" />
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_baseline_edit_24"
             android:layout_gravity="right"
-            android:layout_marginRight="15dp" />
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_baseline_edit_24" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -155,7 +157,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Mật khẩu:"
-                                android:textColor="#182693"
+                                android:textColor="#020202"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -165,7 +167,7 @@
                                 android:layout_weight="1"
                                 android:text="Đổi"
                                 android:textAlignment="viewEnd"
-                                android:textColor="#F44336"
+                                android:textColor="@color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -189,7 +191,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Giới tính:"
-                                android:textColor="#182693"
+                                android:textColor="#020202"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -221,7 +223,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Ngày sinh:"
-                                android:textColor="#182693"
+                                android:textColor="#020202"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -254,7 +256,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Địa chỉ:"
-                                android:textColor="#182693"
+                                android:textColor="#020202"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -480,13 +482,13 @@
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:backgroundTint="#EC0707"
-            android:src="@drawable/ic_cart_24"
-            app:layout_anchor="@id/appbar"
-            android:elevation="@dimen/_5sdp"
-            app:elevation="@dimen/_3sdp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="#f58e2a"
+            android:elevation="@dimen/_5sdp"
+            android:src="@drawable/ic_cart_24"
+            app:elevation="@dimen/_3sdp"
+            app:layout_anchor="@id/appbar" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

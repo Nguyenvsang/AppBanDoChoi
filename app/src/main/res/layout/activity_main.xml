@@ -22,22 +22,24 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@android:color/holo_red_light"
+                    android:textColor="#f26703"
                     android:textSize="@dimen/_15ssp"
                     android:text="Hi Van Thuan"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
                 <TextView
                     android:id="@+id/tv"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@+id/tvhi"
-                    app:layout_constraintStart_toStartOf="@+id/tvhi"
-                    android:textSize="@dimen/_14ssp"
-                    android:text="Chơi và sáng tạo"
-                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text="Chơi và sáng tạo"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/tvhi"
+                    app:layout_constraintTop_toBottomOf="@+id/tvhi" />
                 <ImageView
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -76,44 +78,45 @@
                         app:lottie_rawRes="@raw/happyloader"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
+
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginRight="@dimen/_92sdp"
-                        app:layout_constraintTop_toTopOf="@+id/lottie"
-                        app:layout_constraintEnd_toEndOf="@+id/lottie"
-                        android:textStyle="bold"
                         android:text="Miễn Ship"
-                        android:textColor="@android:color/holo_red_light"
+                        android:textColor="@android:color/black"
                         android:textSize="@dimen/_16ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/_25sdp"
-                        android:layout_marginRight="@dimen/_87sdp"
-                        app:layout_constraintBottom_toBottomOf="@+id/lottie"
-                        app:layout_constraintEnd_toEndOf="@+id/lottie"
                         android:textStyle="bold"
-                        android:text="Đặt hàng ngay"
-                        android:background="@drawable/back_oder"
-                        android:textColor="@color/white"
-                        android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/lottie"
+                        app:layout_constraintTop_toTopOf="@+id/lottie" />
+
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_87sdp"
+                        android:background="@drawable/botron_button"
+                        android:padding="@dimen/_5sdp"
+                        android:text="Đặt hàng ngay"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/lottie"
+                        app:layout_constraintEnd_toEndOf="@+id/lottie" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/tvdanhmuc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:text="Danh mục"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp"
-                    android:textColor="@color/green_color_dark"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/container1"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toBottomOf="@id/container1" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_danhmuc"
                     app:layout_constraintTop_toBottomOf="@id/tvdanhmuc"
@@ -125,16 +128,16 @@
 
                 <TextView
                     android:id="@+id/tvphobien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:text="Được mua nhiều"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp"
-                    android:textColor="@color/green_color_dark"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/rc_danhmuc"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toBottomOf="@id/rc_danhmuc" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_phobien"
                     app:layout_constraintTop_toBottomOf="@id/tvphobien"
@@ -247,13 +250,13 @@
             </com.google.android.material.bottomappbar.BottomAppBar>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:backgroundTint="#EC0707"
-                android:src="@drawable/ic_cart_24"
-                app:layout_anchor="@id/appbar"
-                android:elevation="@dimen/_5sdp"
-                app:elevation="@dimen/_3sdp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:backgroundTint="#f58e2a"
+                android:elevation="@dimen/_5sdp"
+                android:src="@drawable/ic_cart_24"
+                app:elevation="@dimen/_3sdp"
+                app:layout_anchor="@id/appbar" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,26 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ThemSPActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobar"
-        android:background="#FAE107"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="#e7ee9f"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_baseline_arrow_back_24"
             android:layout_width="35dp"
-            android:layout_height="35dp"/>
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
+
         <TextView
-            android:text="Thêm đồ chơi"
-            android:textSize="23dp"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"/>
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Thêm đồ chơi"
+            android:textColor="@color/design_dark_default_color_shadow_dark"
+            android:textSize="23dp"
+            android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/line1"
@@ -83,14 +87,15 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/botron_edittext"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <ImageView
             android:id="@+id/imgcamera"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_camera_alt_24"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            app:tint="#3BEF0A"/>
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            app:tint="#f58e2a" />
 
     </LinearLayout>
 
