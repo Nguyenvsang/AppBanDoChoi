@@ -14,13 +14,16 @@
         android:theme="@style/Theme.AppBanDoChoi"
         tools:targetApi="31">
         <activity
+            android:name=".activity.ProfileActivity"
+            android:exported="true" >
+
+        </activity>
+        <activity
             android:name=".activity.ThemSPActivity"
             android:exported="false" />
         <activity
             android:name=".activity.QuanLyActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.SearchActivity"
             android:exported="false" />
@@ -50,7 +53,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
