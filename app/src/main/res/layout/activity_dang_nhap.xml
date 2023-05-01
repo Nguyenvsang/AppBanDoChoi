@@ -21,7 +21,7 @@
     <com.google.android.material.textfield.TextInputLayout
         app:layout_constraintTop_toBottomOf="@id/txtdangnhap"
         android:layout_marginTop="5dp"
-        android:id="@+id/line1"
+        android:id="@+id/linedn1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -41,9 +41,9 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        app:layout_constraintTop_toBottomOf="@id/line1"
+        app:layout_constraintTop_toBottomOf="@id/linedn1"
         android:layout_marginTop="5dp"
-        android:id="@+id/line2"
+        android:id="@+id/linedn2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -63,7 +63,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDangNhap"
-        app:layout_constraintTop_toBottomOf="@+id/line2"
+        app:layout_constraintTop_toBottomOf="@+id/linedn2"
         android:background="@drawable/botron_button"
         android:layout_marginRight="35dp"
         android:layout_marginLeft="35dp"
@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <LinearLayout
-        android:id="@+id/line6"
+        android:id="@+id/linedn6"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -99,7 +99,7 @@
 
     </LinearLayout>
     <TextView
-        app:layout_constraintTop_toBottomOf="@id/line6"
+        app:layout_constraintTop_toBottomOf="@id/linedn6"
         android:layout_marginTop="15dp"
         android:text="Quên mật khẩu"
         android:textColor="#FAE107"

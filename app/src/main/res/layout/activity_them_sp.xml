@@ -61,7 +61,7 @@
             android:background="@drawable/botron_edittext"/>
     </com.google.android.material.textfield.TextInputLayout>
     <LinearLayout
-        android:id="@+id/line3"
+        android:id="@+id/line5"
         android:weightSum="5"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/line2"
@@ -96,7 +96,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/line4"
-        app:layout_constraintTop_toBottomOf="@+id/line3"
+        app:layout_constraintTop_toBottomOf="@+id/line5"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"

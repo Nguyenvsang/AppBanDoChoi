@@ -13,20 +13,24 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppBanDoChoi"
         tools:targetApi="31">
         <activity
             android:name=".activity.ProfileActivity"
-            android:exported="true" >
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.ThemSPActivity"
             android:exported="false" />
         <activity
             android:name=".activity.QuanLyActivity"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.SearchActivity"
             android:exported="false" />
@@ -47,16 +51,11 @@
             android:exported="false" />
         <activity
             android:name=".activity.DangNhapActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true">
         </activity>
         <activity
             android:name=".activity.DangKyActivity"
-            android:exported="false" />
+            android:exported="true"></activity>
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true" />

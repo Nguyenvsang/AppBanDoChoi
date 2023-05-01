@@ -7,15 +7,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.appbandochoi.MainActivity;
 import com.example.appbandochoi.R;
 import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
+import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
 import com.example.appbandochoi.utils.DateUtil;
 
 import org.json.JSONException;
@@ -37,6 +40,7 @@ public class DangNhapActivity extends AppCompatActivity {
     EditText eTUsername, eTPassword;
     Button btnLogin;
     TextView tVSignup;
+    ImageView imgProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,10 @@ public class DangNhapActivity extends AppCompatActivity {
         anhXa();
 
         // Login
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,10 +109,15 @@ public class DangNhapActivity extends AppCompatActivity {
                         // Lấy dữ liệu người dùng
                         JSONObject receivedUser = responseMessage.getJSONObject("data");
                         // Tạo người dùng
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH);
-                        Timestamp birthDay = new Timestamp(sdf.parse(receivedUser.getString("birthDay")).getTime());
-                        Timestamp createdAt = new Timestamp(sdf.parse(receivedUser.getString("createdAt")).getTime());
-                        Timestamp updatedAt = new Timestamp(sdf.parse(receivedUser.getString("updatedAt")).getTime());
+                        DateUtil du = new DateUtil();
+                        Timestamp birthDay = null, createdAt = null, updatedAt = null;
+                        if (!receivedUser.isNull("birthDay"))
+                            birthDay = du.parseDate(receivedUser.getString("birthDay"));
+                        if (!receivedUser.isNull("createdAt"))
+                            createdAt = du.parseDate(receivedUser.getString("createdAt"));
+                        if (!receivedUser.isNull("updatedAt"))
+                            updatedAt = du.parseDate(receivedUser.getString("updatedAt"));
+
                         User user = new User(receivedUser.getInt("userID"),
                                 receivedUser.getString("firstname"),
                                 receivedUser.getString("lastname"),
@@ -119,8 +132,11 @@ public class DangNhapActivity extends AppCompatActivity {
                                 receivedUser.getString("username"),
                                 createdAt,
                                 updatedAt);
+                        // Lưu người dùng
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+                        Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                         finish();
-                        startActivity(new Intent(DangNhapActivity.this, DangKyActivity.class));
+                        startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

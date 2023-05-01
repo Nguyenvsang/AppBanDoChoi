@@ -47,7 +47,8 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="562dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_80sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toobar">
@@ -78,10 +79,10 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageViewProfile"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:layout_marginTop="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +90,7 @@
                         app:srcCompat="@drawable/profile" />
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/textViewName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -97,20 +98,21 @@
                         android:textColor="#ffffff"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView"
-                        app:layout_constraintStart_toStartOf="@+id/imageView"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                        app:layout_constraintEnd_toEndOf="@+id/imageViewProfile"
+                        app:layout_constraintStart_toStartOf="@+id/imageViewProfile"
+                        app:layout_constraintTop_toBottomOf="@+id/imageViewProfile" />
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/textViewUsernameProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:text="nguyenvanthuan@gmail.com"
                         android:textColor="#ffffff"
                         android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="@+id/textView"
-                        app:layout_constraintStart_toStartOf="@+id/textView"
-                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+                        app:layout_constraintEnd_toEndOf="@+id/textViewName"
+                        app:layout_constraintStart_toStartOf="@+id/textViewName"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
                     <ImageView
                         android:id="@+id/imageView2"
@@ -124,8 +126,9 @@
                         app:srcCompat="@drawable/circles" />
 
                     <LinearLayout
+                        android:id="@+id/te"
                         android:layout_width="match_parent"
-                        android:layout_height="400dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="24dp"
@@ -134,7 +137,7 @@
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2">
+                        app:layout_constraintTop_toBottomOf="@+id/textViewUsernameProfile">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -158,12 +161,13 @@
                                 android:layout_weight="1"
                                 android:text="Đổi"
                                 android:textAlignment="viewEnd"
-                                android:textColor="#5b5b5b"
-                                android:textSize="18sp" />
+                                android:textColor="#F44336"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <View
-                            android:id="@+id/view"
+                            android:id="@+id/view1"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
@@ -180,16 +184,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Số điện thoại:"
+                                android:text="Giới tính:"
                                 android:textColor="#182693"
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/textView6"
+                                android:id="@+id/textViewGenderProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="0388156666"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
                                 android:textSize="18sp" />
@@ -213,23 +216,57 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Địa chỉ:"
+                                android:text="Ngày sinh:"
                                 android:textColor="#182693"
                                 android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/textViewBirthdayProfile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#5b5b5b"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+
+                        <View
+                            android:id="@+id/view3"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#d9d9d9" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/textView8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Số 1, Võ Văn Ngân"
+                                android:text="Địa chỉ:"
+                                android:textColor="#182693"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/textViewAdressProfile"
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text=""
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
+
                         <View
-                            android:id="@+id/view3"
+                            android:id="@+id/view4"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
@@ -246,23 +283,86 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Ngày sinh:"
+                                android:text="Email:"
                                 android:textColor="#182693"
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/textView10"
+                                android:id="@+id/textViewEmailProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="19/07/2002"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
                         <View
-                            android:id="@+id/view4"
+                            android:id="@+id/view5"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#d9d9d9" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Số điện thoại:"
+                                android:textColor="#182693"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/textViewPhoneProfile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#5b5b5b"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/view6"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="#d9d9d9" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Vai trò:"
+                                android:textColor="#182693"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/textViewRoleProfile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#5b5b5b"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/view7"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
