@@ -29,19 +29,23 @@
             android:textStyle="bold"
             tools:layout_editor_absoluteX="90dp"
             tools:layout_editor_absoluteY="11dp" />
-        <FrameLayout
-            android:id="@+id/framegiohang"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="right"
-            android:layout_width="55dp"
-            android:layout_height="?attr/actionBarSize">
 
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/ic_baseline_edit_24" />
-        </FrameLayout>
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_baseline_logout_24"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp" />
+
     </androidx.appcompat.widget.Toolbar>
 
 
