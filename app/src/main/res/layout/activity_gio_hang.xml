@@ -20,10 +20,24 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobar"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Giỏ hàng"
         android:background="#36DD07"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"/>
+        android:layout_height="?attr/actionBarSize">
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+        <TextView
+            android:text="Giỏ hàng"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"/>
+    </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleviewgiohang"
         android:layout_margin="5dp"
@@ -63,15 +77,125 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp"
         android:id="@+id/btmuahang"
-        android:text="Mua hàng"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/botron_button"/>
+        android:background="@drawable/botron_button"
+        android:text="Mua hàng"
+        app:layout_constraintBottom_toTopOf="@+id/bottombar"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp">
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabCradleMargin="@dimen/_5sdp"
+            app:fabCradleRoundedCornerRadius="@dimen/_40sdp"
+            app:fabCradleVerticalOffset="@dimen/_2sdp">
+            <LinearLayout
+                android:weightSum="10"
+                android:paddingRight="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_baseline_home_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Trang chủ" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_baseline_category_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="Sản phẩm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_order_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="Đơn hàng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_account_circle_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="Tài khoản"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:backgroundTint="#EC0707"
+            android:src="@drawable/ic_cart_24"
+            app:layout_anchor="@id/appbar"
+            android:elevation="@dimen/_5sdp"
+            app:elevation="@dimen/_3sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
