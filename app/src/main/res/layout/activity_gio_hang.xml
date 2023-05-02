@@ -90,6 +90,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/botron_button"
         android:text="Mua hàng"
+        android:textColor="@color/highlight"
         app:layout_constraintBottom_toTopOf="@+id/bottombar"
         tools:layout_editor_absoluteX="5dp" />
 

@@ -42,12 +42,14 @@
                 android:text="150000vnd"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/itemdcg_mota"
-                android:textSize="14sp"
-                android:text="Mô tả:"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="Mô tả:"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>

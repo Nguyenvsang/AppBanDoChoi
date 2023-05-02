@@ -290,7 +290,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Email:"
-                                android:textColor="#182693"
+                                android:textColor="@color/black"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -322,7 +322,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Số điện thoại:"
-                                android:textColor="#182693"
+                                android:textColor="@color/black"
                                 android:textSize="16sp" />
 
                             <TextView
