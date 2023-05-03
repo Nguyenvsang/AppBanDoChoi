@@ -47,7 +47,7 @@
             android:name=".activity.ChiTietActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DoChoiGoActivity"
+            android:name=".activity.DanhSachSPActivity"
             android:exported="false" />
         <activity
             android:name=".activity.DangNhapActivity"
