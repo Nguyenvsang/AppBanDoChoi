@@ -10,6 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface APIService {
@@ -28,4 +29,8 @@ public interface APIService {
     Call<ResponseBody> signup(@Field("username") String username, @Field("password") String password,
                               @Field("firstname") String firstname, @Field("lastname") String lastname,
                               @Field("email") String email, @Field("phone") String phone);
+
+    @FormUrlEncoded
+    @POST("cart/mycart")
+    Call<ResponseBody> displayCart(@Field("userID") int userID);
 }

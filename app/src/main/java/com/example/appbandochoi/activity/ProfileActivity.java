@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,14 +14,15 @@ import com.example.appbandochoi.R;
 import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView tvName, tvGender, tvBirthday, tvAddress, tvEmail, tvUsername, tvPhone, tvRole;
-    //Button btnLogout, btnHome;
     ImageView imgProfile;
 
+    FloatingActionButton btnCart;
     public void anhXa() {
         tvName = findViewById(R.id.textViewName);
         tvGender = findViewById(R.id.textViewGenderProfile);
@@ -30,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvRole = findViewById(R.id.textViewRoleProfile);
         tvPhone = findViewById(R.id.textViewPhoneProfile);
         imgProfile = findViewById(R.id.imageViewProfile);
+        btnCart = findViewById(R.id.btnCart);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,14 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(new Intent(ProfileActivity.this, DangNhapActivity.class));
             finish();
         }
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(ProfileActivity.this, GioHangActivity.class));
+            }
+        });
     }
 
 //    public void onClick(View view) {
