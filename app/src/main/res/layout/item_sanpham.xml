@@ -1,25 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_marginTop="15dp"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="8dp"
+    app:cardCornerRadius="4dp"
+    android:layout_margin="5dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="150dp">
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/itemdcg_image"
+            android:layout_weight="3"
+            android:src="@drawable/iconnew_h512"
+            android:layout_width="0dp"
+            android:layout_height="100dp"/>
+        
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/itemdcg_ten"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Tên sản phẩm"
+                android:textColor="@color/design_dark_default_color_shadow_dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    <ImageView
-        android:id="@+id/item_image"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_media_24"
-        android:layout_width="55dp"
-        android:layout_height="45dp"/>
+            <TextView
+                android:id="@+id/itemdcg_gia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="150000vnd"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/item_tensp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:text="Đồ chơi"
-        android:textColor="@android:color/black"
-        android:textSize="15sp" />
-</LinearLayout>
+            <TextView
+                android:id="@+id/itemdcg_mota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mô tả:"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

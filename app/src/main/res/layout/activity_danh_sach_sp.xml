@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.DoChoiGoActivity">
+    tools:context=".activity.DanhSachSPActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobar"
@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:text="Đồ chơi gỗ"
+            android:text="Danh sách sản phẩm"
             android:textColor="@color/design_dark_default_color_shadow_dark"
             android:textSize="23dp"
             android:textStyle="bold" />
