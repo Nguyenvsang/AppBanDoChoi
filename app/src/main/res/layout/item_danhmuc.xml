@@ -4,12 +4,14 @@
     android:orientation="horizontal"
     android:layout_marginTop="15dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_whitesmokehsl">
 
     <ImageView
         android:id="@+id/item_image"
         android:layout_marginLeft="10dp"
         android:src="@drawable/ic_media_24"
+        android:background="@drawable/background_white_light_1"
         android:layout_width="55dp"
         android:layout_height="45dp"/>
 

@@ -8,15 +8,18 @@
 
     <TextView
         android:id="@+id/txtdangnhap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="411dp"
+        android:layout_height="94dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/background_yelllow_light_1"
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/ng_nh_p"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <com.google.android.material.textfield.TextInputLayout
         app:layout_constraintTop_toBottomOf="@id/txtdangnhap"

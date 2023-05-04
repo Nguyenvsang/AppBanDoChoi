@@ -48,20 +48,23 @@
                     android:src="@drawable/profile"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"/>
+
                 <EditText
                     android:id="@+id/editsearch"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:hint="Bạn muốn tìm gì?"
-                    android:padding="@dimen/_5sdp"
-                    android:drawableLeft="@drawable/ic_search_24"
-                    android:drawableTint="@android:color/holo_red_light"
-                    android:drawablePadding="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/botron_edittext"/>
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="19dp"
+                    android:background="@drawable/botron_edittext"
+                    android:drawableLeft="@drawable/ic_search_24"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableTint="@color/black"
+                    android:hint="Bạn muốn tìm gì?"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv" />
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/container1"
                     android:layout_marginTop="@dimen/_2sdp"
@@ -77,7 +80,8 @@
                         app:lottie_repeatMode="reverse"
                         app:lottie_rawRes="@raw/happyloader"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:background=""/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -112,6 +116,7 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:text="Danh mục"
+                    android:background=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold"
@@ -124,6 +129,7 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_width="match_parent"
+                    android:background="@drawable/background_whitesmokehsl"
                     android:layout_height="@dimen/_120sdp"/>
 
                 <TextView
@@ -145,6 +151,7 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_width="match_parent"
+                    android:background="@drawable/background_whitesmokehsl"
                     android:layout_height="@dimen/_120sdp"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

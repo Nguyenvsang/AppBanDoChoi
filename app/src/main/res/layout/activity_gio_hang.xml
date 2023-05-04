@@ -28,15 +28,18 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toobar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_width="417dp"
+            android:layout_height="67dp"
             android:background="#e7ee9f"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
+                android:background="@drawable/background_white_light_1"
                 android:src="@drawable/ic_baseline_arrow_back_24" />
 
             <TextView
@@ -56,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="5dp"
+            android:background="@drawable/background_whitesmokehsl"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@id/layout1"
             app:layout_constraintTop_toBottomOf="@id/toobar" />
