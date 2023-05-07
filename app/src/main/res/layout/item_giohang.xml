@@ -18,13 +18,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/background_whitesmokehsl">
 
             <ImageView
                 android:id="@+id/item_giohang_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
+                android:background="@drawable/background_white_light_1"
                 android:src="@{viewHolder.images}" />
 
             <LinearLayout
