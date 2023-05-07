@@ -60,7 +60,7 @@
         <ImageView
             android:id="@+id/imgchitiet"
             android:src="@drawable/iconnew_h512"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="200dp"/>
         <LinearLayout
             android:orientation="vertical"

@@ -3,6 +3,8 @@ package com.example.appbandochoi.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,18 +34,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GioHangActivity extends AppCompatActivity {
+public class GioHangActivity extends AppCompatActivity implements CartItemAdapter.OnItemClickListener{
     private APIService apiService;
     private ActivityGioHangBinding binding;
     private CartItemAdapter cartItemAdapter;
     private List<CartItem> cartItemList = new ArrayList<>();
+    private TextView txttongtien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_gio_hang);
-        binding.setCart(this);
         // Get userID
         User user = new User();
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
@@ -53,15 +54,27 @@ public class GioHangActivity extends AppCompatActivity {
                 throw new RuntimeException(e);
             }
         }
+
+        cartItemAdapter = new CartItemAdapter(cartItemList, txttongtien);
+
         displayCart(user.getUserID());
-        // Set adapter
-        cartItemAdapter = new CartItemAdapter(cartItemList);
-        // binding
-        binding.recyclerviewgiohang.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerviewgiohang.setAdapter(cartItemAdapter);
-        cartItemAdapter.notifyDataSetChanged();
-        binding.executePendingBindings();
-        binding.invalidateAll();
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_gio_hang);
+        binding.setCart(this);
+        txttongtien = binding.txttongtien;
+        cartItemAdapter.setOnItemClickListener((CartItemAdapter.OnItemClickListener) this);
+        binding.btmuahang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(GioHangActivity.this, ThanhToanActivity.class);
+                // Lưu lại tổng giá trị và chuyển đi
+                String totalOrder = txttongtien.getText().toString();
+                totalOrder = totalOrder.substring(0, totalOrder.length() - 4);
+                intent.putExtra("totalOrder", Integer.parseInt(totalOrder));
+                startActivity(intent);
+            }
+        });
     }
 
     private void displayCart(int userID) {
@@ -92,7 +105,14 @@ public class GioHangActivity extends AppCompatActivity {
                                 product.getString("images"));
                         thisCartItem.setProduct(thisProduct);
                         cartItemList.add(thisCartItem);
-                        System.out.println(thisCartItem.getProduct().getProductName());
+
+                        // Set adapter
+                        cartItemAdapter = new CartItemAdapter(cartItemList, txttongtien);
+                        // binding
+                        binding.recyclerviewgiohang.setLayoutManager(new LinearLayoutManager(GioHangActivity.this));
+                        binding.recyclerviewgiohang.setAdapter(cartItemAdapter);
+                        cartItemAdapter.notifyDataSetChanged();
+                        cartItemAdapter.updateTotalPrice();
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -108,4 +128,10 @@ public class GioHangActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void itemClick(CartItem cartItem) {
+        Toast.makeText(this, "You've clicked!", Toast.LENGTH_SHORT).show();
+    }
+
 }

@@ -16,14 +16,14 @@
 
         <TextView
             android:id="@+id/txtgiohangtrong"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="457dp"
+            android:layout_height="30dp"
             android:gravity="center"
             android:text="Giỏ hàng trống"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.Toolbar
@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#e7ee9f"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -88,7 +89,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text="50.000"
+                android:text="0"
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp"
                 android:textStyle="bold" />

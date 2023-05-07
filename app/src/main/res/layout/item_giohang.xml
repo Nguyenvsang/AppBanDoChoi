@@ -60,7 +60,7 @@
                         android:textSize="15sp" />
 
                     <ImageView
-                        android:id="@+id/item_giohang_tru"
+                        android:id="@+id/btnDecrease"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -77,7 +77,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/item_giohang_cong"
+                        android:id="@+id/btnIncrease"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"

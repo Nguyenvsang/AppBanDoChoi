@@ -1,17 +1,27 @@
 package com.example.appbandochoi.retrofit2;
 
 import com.example.appbandochoi.constants.Constants;
+import com.example.appbandochoi.model.Order;
+import com.example.appbandochoi.model.Product;
+import com.example.appbandochoi.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy MM dd HH:mm:ss").create();
@@ -29,8 +39,19 @@ public interface APIService {
     Call<ResponseBody> signup(@Field("username") String username, @Field("password") String password,
                               @Field("firstname") String firstname, @Field("lastname") String lastname,
                               @Field("email") String email, @Field("phone") String phone);
-
     @FormUrlEncoded
     @POST("cart/mycart")
     Call<ResponseBody> displayCart(@Field("userID") int userID);
+
+    @PUT("cart/update")
+    Call<ResponseBody> updateCart(@Body RequestBody cartItemModel);
+
+    @GET("user/me/{userID}")
+    Call<User> getUser(@Path("userID") int userID);
+
+    @POST("order/placeOrder/{userID}")
+    Call<Order> placeOrder(@Path("userID") int userID, @Body RequestBody orderModel);
+
+    @GET("product/all")
+    Call<List<Product>> getProductList();
 }

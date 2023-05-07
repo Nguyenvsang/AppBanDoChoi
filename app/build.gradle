@@ -65,4 +65,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
     // Modelmapper
     implementation 'org.modelmapper:modelmapper:2.4.4'
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:2.5.1"
 }
