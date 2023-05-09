@@ -72,7 +72,7 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="10dp"
         android:text="Đăng nhập"
-        android:textColor="@android:color/white"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <LinearLayout
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="Đăng ký"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -111,7 +111,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="Quên mật khẩu"
-        android:textColor="@color/material_dynamic_neutral60"
+        android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/linedn6" />
