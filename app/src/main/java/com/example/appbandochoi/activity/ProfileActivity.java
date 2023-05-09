@@ -67,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
             tvEmail.setText(user.getEmail());
             tvPhone.setText(user.getPhone());
             tvRole.setText(user.isRole() == false ? "Quản lý" : "Khách hàng");
-            Glide.with(getApplicationContext()).load(user.getImage().equals("") ? R.drawable.profile : Constants.ROOT_URL.concat(user.getImage())).into(imgProfile);
+            Glide.with(getApplicationContext()).load(user.getImage().equals("") ? R.drawable.profile : user.getImage()).into(imgProfile);
             //bắt sự kiện nhấn nút đăng xuất
             //btnLogout.setOnClickListener(ProfileActivity.this);
         } else {

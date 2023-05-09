@@ -2,7 +2,9 @@ package com.example.appbandochoi.retrofit2;
 
 import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.model.Order;
+import com.example.appbandochoi.model.OrderItem;
 import com.example.appbandochoi.model.Product;
+import com.example.appbandochoi.model.Review;
 import com.example.appbandochoi.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,4 +56,18 @@ public interface APIService {
 
     @GET("product/all")
     Call<List<Product>> getProductList();
+
+    @FormUrlEncoded
+    @POST("review")
+    Call<List<Review>> getReviewListByProduct(@Field("productID") int productID);
+
+    @GET("user/review")
+    Call<User> getUserByReview(@Query("reviewID") int reviewID);
+
+    @GET("orderitem/review")
+    Call<OrderItem> getOrderItemByReview(@Query("reviewID") int reviewID);
+
+    @FormUrlEncoded
+    @POST
+    Call<ResponseBody> addToCart(@Field("productID") int productID, @Field("quantity") int quantity, @Field("userID") int userID);
 }

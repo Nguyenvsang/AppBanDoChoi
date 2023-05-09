@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.appbandochoi.R;
 import com.example.appbandochoi.adapter.ProductAdapter;
+import com.example.appbandochoi.asynctask.GetProductListTask;
 import com.example.appbandochoi.databinding.ActivityDanhSachSpBinding;
 import com.example.appbandochoi.databinding.ItemSanphamBinding;
 import com.example.appbandochoi.model.Product;
@@ -22,18 +25,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DanhSachSPActivity extends AppCompatActivity implements ProductAdapter.OnItemClickListener{
+public class DanhSachSPActivity extends AppCompatActivity implements ProductAdapter.OnItemClickListener {
     private APIService apiService;
     private ActivityDanhSachSpBinding binding;
     private ProductAdapter productAdapter;
     private List<Product> productList;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
 
         productAdapter = new ProductAdapter(productList);
 
+//        GetProductListTask task = new GetProductListTask(context, productAdapter, binding);
+//        task.execute();
         getProductList();
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_danh_sach_sp);
@@ -74,4 +81,5 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
         intent.putExtras(bundle);
         startActivity(intent);
     }
+
 }

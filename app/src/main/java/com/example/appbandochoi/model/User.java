@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User extends BaseObservable implements Serializable {
-
     private int userID;
     private String firstname;
     private String lastname;
@@ -165,5 +164,25 @@ public class User extends BaseObservable implements Serializable {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", gender=" + gender +
+                ", birthDay=" + birthDay +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", image='" + image + '\'' +
+                ", role=" + role +
+                ", status=" + status +
+                ", username='" + username + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

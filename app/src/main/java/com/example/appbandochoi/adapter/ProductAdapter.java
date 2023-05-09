@@ -74,7 +74,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             productName.set(product.getProductName());
             price.set(String.valueOf(product.getPrice()));
             quantity.set(String.valueOf(product.getQuantity()));
-            images.set(Constants.ROOT_URL.concat(product.getImages()));
+            images.set(product.getImages());
             description.set(product.getDescription());
         }
 

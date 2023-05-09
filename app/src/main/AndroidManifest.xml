@@ -39,7 +39,8 @@
             android:exported="true"></activity>
         <activity
             android:name=".activity.ChiTietActivity"
-            android:exported="false" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".activity.DanhSachSPActivity"
             android:exported="true">

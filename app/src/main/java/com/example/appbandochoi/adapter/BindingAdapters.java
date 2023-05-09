@@ -1,4 +1,4 @@
-package com.example.appbandochoi;
+package com.example.appbandochoi.adapter;
 
 import android.app.Application;
 import android.graphics.Bitmap;
@@ -13,6 +13,7 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.appbandochoi.activity.GioHangActivity;
+import com.example.appbandochoi.constants.Constants;
 
 import java.io.File;
 
@@ -31,20 +32,22 @@ public class BindingAdapters{
         RequestBuilder<Drawable> builder;
 
         if (obj instanceof String) {
-            builder = manager.load((String) obj);
-        } else if (obj instanceof Uri)
+            builder = manager.load(Constants.ROOT_URL + (String) obj);
+        } else if (obj instanceof Uri) {
             builder = manager.load((Uri) obj);
-        else if (obj instanceof Drawable)
+        } else if (obj instanceof Drawable) {
             builder = manager.load((Drawable) obj);
-        else if (obj instanceof Bitmap)
+        } else if (obj instanceof Bitmap) {
             builder = manager.load((Bitmap) obj);
-        else if (obj instanceof Integer)
+        } else if (obj instanceof Integer) {
             builder = manager.load((Integer) obj);
-        else if (obj instanceof File)
+        } else if (obj instanceof File) {
             builder = manager.load((File) obj);
-        else if (obj instanceof Byte[])
+        } else if (obj instanceof Byte[]) {
             builder = manager.load((Byte[]) obj);
-        else builder = manager.load(obj);
+        } else{
+            builder = manager.load(obj);
+        }
         builder.into(imageView);
     }
 }
