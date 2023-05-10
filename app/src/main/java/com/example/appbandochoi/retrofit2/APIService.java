@@ -1,6 +1,7 @@
 package com.example.appbandochoi.retrofit2;
 
 import com.example.appbandochoi.constants.Constants;
+import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.Order;
 import com.example.appbandochoi.model.OrderItem;
 import com.example.appbandochoi.model.Product;
@@ -68,6 +69,25 @@ public interface APIService {
     Call<OrderItem> getOrderItemByReview(@Query("reviewID") int reviewID);
 
     @FormUrlEncoded
-    @POST
+    @POST("cart/add")
     Call<ResponseBody> addToCart(@Field("productID") int productID, @Field("quantity") int quantity, @Field("userID") int userID);
+
+    @FormUrlEncoded
+    @POST("order/my")
+    Call<List<Order>> getMyOrder(@Field("userID") int userID);
+
+    @GET("review/orderitem")
+    Call<Review> getReviewByOrderItem(@Query("orderItemID") int orderItemID);
+
+    @GET("product/orderitem")
+    Call<Product> getProductByOrderItem(@Query("orderItemID") int orderItemID);
+
+    @GET("orderitem")
+    Call<List<OrderItem>> getOrderItemByOrder(@Query("orderID") int orderID);
+
+    @GET("category/forsale")
+    Call<List<Category>> getCategoryList();
+
+    @GET("product/category")
+    Call<List<Product>> getProductByCategory(@Query("categoryID") int categoryID);
 }

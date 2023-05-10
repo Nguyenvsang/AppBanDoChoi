@@ -115,9 +115,10 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         apiService.placeOrder(userID, requestBody).enqueue(new Callback<Order>() {
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful()) {
                     Toast.makeText(ThanhToanActivity.this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
-                else
+                    startActivity(new Intent(ThanhToanActivity.this, HomeActivity.class));
+                } else
                     Toast.makeText(ThanhToanActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }
 

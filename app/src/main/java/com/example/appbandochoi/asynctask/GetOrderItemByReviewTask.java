@@ -2,11 +2,10 @@ package com.example.appbandochoi.asynctask;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.databinding.ObservableField;
 
-import com.example.appbandochoi.model.User;
+import com.example.appbandochoi.model.OrderItem;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
 
@@ -15,26 +14,26 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class GetUserByReviewTask extends AsyncTask<Integer, Void, User> {
+public class GetOrderItemByReviewTask extends AsyncTask<Integer, Void, OrderItem> {
     private APIService apiService;
-    private ObservableField<String> reviewerName = new ObservableField<>();
+    private ObservableField<String> quantity = new ObservableField<>();
 
-    public GetUserByReviewTask(ObservableField<String> reviewerName) {
-        this.reviewerName = reviewerName;
+    public GetOrderItemByReviewTask(ObservableField<String> quantity) {
+        this.quantity = quantity;
     }
 
     @Override
-    protected User doInBackground(Integer... integers) {
+    protected OrderItem doInBackground(Integer... integers) {
         int reviewID = integers[0];
         apiService = RetrofitClient.getRetrofit().create(APIService.class);
-        Call<User> call = apiService.getUserByReview(reviewID);
+        Call<OrderItem> call = apiService.getOrderItemByReview(reviewID);
         try {
-            Response<User> response = call.execute();
+            Response<OrderItem> response = call.execute();
             if (response.isSuccessful()) {
                 return response.body();
             } else {
                 int statusCode = response.code();
-                System.out.println("Review" + String.valueOf(statusCode));
+                System.out.println(String.valueOf(statusCode));
                 return null;
             }
         } catch (IOException e) {
@@ -45,10 +44,9 @@ public class GetUserByReviewTask extends AsyncTask<Integer, Void, User> {
     }
 
     @Override
-    protected void onPostExecute(User user) {
-        if (user != null) {
-            System.out.println(user);
-            reviewerName.set(user.getFirstname() + "***");
+    protected void onPostExecute(OrderItem orderItem) {
+        if (orderItem != null) {
+            quantity.set(String.valueOf(orderItem.getQuantity()));
         }
     }
 }

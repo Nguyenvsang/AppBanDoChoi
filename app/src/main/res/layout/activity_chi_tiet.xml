@@ -76,6 +76,7 @@
                 android:id="@+id/imgchitiet"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                android:layout_marginLeft="10dp"
                 android:src="@{detail.images}" />
 
             <LinearLayout
@@ -118,6 +119,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:weightSum="9">
                     <ImageView
                         android:id="@+id/imgDecreaseQuantity"

@@ -18,50 +18,51 @@
         tools:targetApi="31">
         <activity
             android:name=".activity.ProfileActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.ThemSPActivity"
             android:exported="false" />
         <activity
             android:name=".activity.QuanLyActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".activity.XemDonActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activity.ChiTietDonHangActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ResetPassActivity"
             android:exported="false" />
         <activity
             android:name=".activity.GioHangActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.ChiTietActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activity.DanhSachSPActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activity.DangNhapActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.DangKyActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+            android:name=".activity.HomeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.ThanhToanActivity"
             android:exported="true" />

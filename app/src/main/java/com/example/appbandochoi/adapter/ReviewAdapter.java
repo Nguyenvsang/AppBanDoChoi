@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandochoi.R;
 import com.example.appbandochoi.activity.ThanhToanActivity;
+import com.example.appbandochoi.asynctask.GetOrderItemByReviewTask;
 import com.example.appbandochoi.asynctask.GetUserByReviewTask;
 import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.databinding.ItemDanhgiaBinding;
@@ -25,6 +26,7 @@ import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.example.appbandochoi.utils.DateUtil;
+import com.example.appbandochoi.utils.ShortDateUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,17 +109,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             //reviewerName.set(review.getUser().getLastname());
             Timestamp date = review.getUpdatedAt() == null ? review.getCreatedAt() : review.getUpdatedAt();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-            try {
-                Date parsedDate = sdf.parse(String.valueOf(date));
-                sdf.applyPattern("dd-MM-yyyy");
-                String formattedDate = sdf.format(parsedDate);
-                reviewDate.set(formattedDate);
-            } catch (ParseException e) {
-            }
+            reviewDate.set(new ShortDateUtil().parseShortDate(date));
             images.set(review.getImages());
             comment.set(review.getComment());
             star.set(String.valueOf(review.getStar()));
-            quantity.set(String.valueOf(review.getOrderItem().getQuantity()));
+
+            GetOrderItemByReviewTask task2 = new GetOrderItemByReviewTask(quantity);
+            task.execute(review.getReviewID());
         }
         public void onClick(View v) {
             this.onItemClickListener.itemClick(review);

@@ -20,14 +20,17 @@ import com.example.appbandochoi.databinding.ItemDanhgiaBinding;
 import com.example.appbandochoi.model.CartItem;
 import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.model.Review;
+import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
+import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -98,10 +101,21 @@ public class ChiTietActivity extends AppCompatActivity implements ReviewAdapter.
 
     @Override
     public void onClick(View view) {
+        User thisUser = new User();
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            try {
+                thisUser = SharedPrefManager.getInstance(this).getUser();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        // Total quantity
         int productQuantity = product.getQuantity();
+        // Quantity in textview
         int detailQuantity = Integer.parseInt(binding.txtSoluongDeThem.getText().toString());
-        if (view.equals(binding.btnthemvaogiohang)) {
 
+        if (view.equals(binding.btnthemvaogiohang)) {
+            addToCart(product.getProductID(), detailQuantity, thisUser.getUserID());
         }
         if (view.equals(binding.imgDecreaseQuantity)) {
             if (detailQuantity > 1)
@@ -111,24 +125,6 @@ public class ChiTietActivity extends AppCompatActivity implements ReviewAdapter.
             if (detailQuantity < productQuantity)
                 binding.txtSoluongDeThem.setText(String.valueOf(detailQuantity + 1));
         }
-//        if (view.equals(binding.imgDecreaseQuantity)) {
-//            binding.txtSoluongDeThem.setText(String.valueOf(detailQuantity - 1));
-//            binding.imgIncreaseQuantity.setEnabled(true);
-//            if (detailQuantity == 0) {
-//                binding.imgDecreaseQuantity.setEnabled(false);
-//                binding.btnthemvaogiohang.setEnabled(false);
-//            } else {
-//                binding.imgDecreaseQuantity.setEnabled(true);
-//                binding.btnthemvaogiohang.setEnabled(true);
-//            }
-//        }
-//        if (view.equals(binding.imgIncreaseQuantity)) {
-//            binding.txtSoluongDeThem.setText(String.valueOf(detailQuantity + 1));
-//            binding.imgDecreaseQuantity.setEnabled(true);
-//            binding.btnthemvaogiohang.setEnabled(true);
-//            if (detailQuantity == productQuantity)
-//                binding.imgIncreaseQuantity.setEnabled(false);
-//        }
     }
 
     public void addToCart(int productID, int quantity, int userID) {

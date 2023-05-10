@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.XemDonActivity">
+    tools:context=".activity.ChiTietDonHangActivity">
 
     <data>
         <variable
-            name="order"
-            type="com.example.appbandochoi.activity.XemDonActivity" />
+            name="orderitem"
+            type="com.example.appbandochoi.activity.ChiTietDonHangActivity" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,14 +33,14 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="Đơn hàng"
+                android:text="Chi tiết đơn hàng"
                 android:textColor="@color/design_dark_default_color_shadow_dark"
                 android:textSize="23dp"
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleview_donhang"
+            android:id="@+id/recycleview_mathang"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"

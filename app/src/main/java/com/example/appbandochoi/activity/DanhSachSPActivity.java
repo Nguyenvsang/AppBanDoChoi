@@ -15,6 +15,7 @@ import com.example.appbandochoi.adapter.ProductAdapter;
 import com.example.appbandochoi.asynctask.GetProductListTask;
 import com.example.appbandochoi.databinding.ActivityDanhSachSpBinding;
 import com.example.appbandochoi.databinding.ItemSanphamBinding;
+import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
@@ -31,17 +32,26 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
     private ProductAdapter productAdapter;
     private List<Product> productList;
     private Context context;
+    private Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        category = (Category) bundle.getSerializable("category");
+
         productAdapter = new ProductAdapter(productList);
 
 //        GetProductListTask task = new GetProductListTask(context, productAdapter, binding);
 //        task.execute();
-        getProductList();
+        if (category == null)
+            getProductList();
+        else
+            getProductListByCategory(category.getCategoryID());
+
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_danh_sach_sp);
         binding.setProduct(this);
@@ -60,6 +70,31 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
                     productAdapter.notifyDataSetChanged();
                     productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) DanhSachSPActivity.this);
                     System.out.println(productList.size());
+                }
+                else
+                    Toast.makeText(DanhSachSPActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Toast.makeText(DanhSachSPActivity.this, "Gọi API thất bại", Toast.LENGTH_SHORT).show();
+                System.out.println(t.toString());
+            }
+        });
+    }
+
+    public void getProductListByCategory(int categoryID) {
+        apiService = RetrofitClient.getRetrofit().create(APIService.class);
+        apiService.getProductByCategory(categoryID).enqueue(new Callback<List<Product>>() {
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                if (response.isSuccessful()) {
+                    productList = response.body();
+                    productAdapter = new ProductAdapter(productList);
+                    binding.recycleviewSp.setLayoutManager(new LinearLayoutManager(DanhSachSPActivity.this));
+                    binding.recycleviewSp.setAdapter(productAdapter);
+                    productAdapter.notifyDataSetChanged();
+                    productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) DanhSachSPActivity.this);
                 }
                 else
                     Toast.makeText(DanhSachSPActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();

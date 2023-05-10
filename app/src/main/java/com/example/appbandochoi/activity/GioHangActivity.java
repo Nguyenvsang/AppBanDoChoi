@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.appbandochoi.R;
 import com.example.appbandochoi.adapter.CartItemAdapter;
+import com.example.appbandochoi.adapter.OrderItemAdapter;
 import com.example.appbandochoi.databinding.ActivityGioHangBinding;
 import com.example.appbandochoi.model.CartItem;
 import com.example.appbandochoi.model.Product;
@@ -113,6 +114,7 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
                         binding.recyclerviewgiohang.setAdapter(cartItemAdapter);
                         cartItemAdapter.notifyDataSetChanged();
                         cartItemAdapter.updateTotalPrice();
+                        cartItemAdapter.setOnItemClickListener((CartItemAdapter.OnItemClickListener) GioHangActivity.this);
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
