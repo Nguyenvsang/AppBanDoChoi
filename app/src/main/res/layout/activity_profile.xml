@@ -9,7 +9,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobar"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="68dp"
         android:background="#e7ee9f"
         app:layout_constraintEnd_toEndOf="parent"
