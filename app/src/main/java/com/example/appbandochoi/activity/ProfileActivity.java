@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
     TextView tvName, tvGender, tvBirthday, tvAddress, tvEmail, tvUsername, tvPhone, tvRole;
     ImageView imgProfile;
     FloatingActionButton btnCart;
@@ -79,13 +78,8 @@ public class ProfileActivity extends AppCompatActivity {
             displayUser();
         }
 
-        btnCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(ProfileActivity.this, GioHangActivity.class));
-            }
-        });
+        btnCart.setOnClickListener(ProfileActivity.this);
+        imgProfile.setOnClickListener(ProfileActivity.this);
     }
 
     public User getUser(int userID) {
@@ -96,7 +90,6 @@ public class ProfileActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     user = response.body();
                     displayUser();
-
                 } else {
                     int statusCode = response.code();
                     Toast.makeText(ProfileActivity.this, String.valueOf(statusCode), Toast.LENGTH_SHORT).show();
@@ -130,14 +123,28 @@ public class ProfileActivity extends AppCompatActivity {
         tvEmail.setText(user.getEmail());
         tvPhone.setText(user.getPhone());
         tvRole.setText(user.isRole() == false ? "Quản lý" : "Khách hàng");
-        Glide.with(getApplicationContext()).load(user.getImage().equals("") ? R.drawable.profile : Constants.ROOT_URL.concat(user.getImage())).into(imgProfile);
+        String image;
+        if (user.getImage().contains("/images/profile"))
+            image = Constants.ROOT_URL.concat(user.getImage());
+        else
+            image = user.getImage();
+        Glide.with(getApplicationContext()).load(user.getImage().equals("") ? R.drawable.profile : image).into(imgProfile);
     }
 
-//    public void onClick(View view) {
-//        if (view.equals(btnLogout)) {
-//            SharedPrefManager.getInstance(getApplicationContext()).logOut();
-//            finish();
-//            startActivity(new Intent(this, LoginActivity.class));
+    @Override
+    public void onClick(View view) {
+        if (view.equals(imgProfile)) {
+            finish();
+            startActivity(new Intent(this, UpdateImageActivity.class));
+        }
+        if (view.equals(btnCart)) {
+            finish();
+            startActivity(new Intent(ProfileActivity.this, GioHangActivity.class));
+        }
+//            if (view.equals(imgProfile)) {
+//                SharedPrefManager.getInstance(getApplicationContext()).logOut();
+//                finish();
+//                startActivity(new Intent(this, LoginActivity.class));
 //        } else if (view.equals(btnHome)) {
 //            if (SharedPrefManager.getInstance(this).isLoggedIn()) {
 //                finish();
@@ -148,5 +155,5 @@ public class ProfileActivity extends AppCompatActivity {
 //            finish();
 //            startActivity(new Intent(this, UpdateImageActivity.class));
 //        }
-//    }
+    }
 }

@@ -76,6 +76,22 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
                 startActivity(intent);
             }
         });
+
+        displayButton();
+    }
+
+    public void displayButton() {
+        if(cartItemList.isEmpty() || cartItemList == null) {
+            // Disable the button
+            binding.btmuahang.setEnabled(false);
+            // Set the capacity (alpha value) of the button
+            binding.btmuahang.setAlpha(0.5f);
+        } else {
+            // Disable the button
+            binding.btmuahang.setEnabled(true);
+            // Set the capacity (alpha value) of the button
+            binding.btmuahang.setAlpha(1.0f);
+        }
     }
 
     private void displayCart(int userID) {
@@ -113,6 +129,7 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
                         binding.recyclerviewgiohang.setLayoutManager(new LinearLayoutManager(GioHangActivity.this));
                         binding.recyclerviewgiohang.setAdapter(cartItemAdapter);
                         cartItemAdapter.notifyDataSetChanged();
+                        displayButton();
                         cartItemAdapter.updateTotalPrice();
                         cartItemAdapter.setOnItemClickListener((CartItemAdapter.OnItemClickListener) GioHangActivity.this);
                     }

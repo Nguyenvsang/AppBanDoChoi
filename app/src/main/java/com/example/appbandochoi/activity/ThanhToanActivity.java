@@ -42,7 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ThanhToanActivity extends AppCompatActivity implements View.OnClickListener {
-    private User user;
+    private User user, thisUser;
     private ActivityThanhToanBinding binding;
     private APIService apiService;
 
@@ -50,20 +50,20 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Get userID
-        User thisUser = new User();
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             try {
                 thisUser = SharedPrefManager.getInstance(this).getUser();
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
+        } else {
+            startActivity(new Intent(ThanhToanActivity.this, DangNhapActivity.class));
+            finish();
         }
-        user = getUser(thisUser.getUserID());
-        //System.out.println(user.getFirstname());
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_thanh_toan);
-        binding.setUser(user);
+
+        getUser(thisUser.getUserID());
 
         // Set total price
         Intent intent = getIntent();
@@ -74,14 +74,14 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         binding.btnthanhtoansau.setOnClickListener(ThanhToanActivity.this);
     }
 
-    public User getUser(int userID) {
+    public void getUser(int userID) {
         apiService = RetrofitClient.getRetrofit().create(APIService.class);
         apiService.getUser(userID).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     user = response.body();
-                    System.out.println(user.getUserID());
+                    binding.setUser(user);
                 } else {
                     int statusCode = response.code();
                     Toast.makeText(ThanhToanActivity.this, String.valueOf(statusCode), Toast.LENGTH_SHORT).show();
@@ -94,22 +94,22 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(ThanhToanActivity.this, "Gọi API thất bại!", Toast.LENGTH_SHORT).show();
             }
         });
-        return user;
     }
 
     @Override
     public void onClick(View view) {
-        if(view.equals(binding.btndathang)) {
-            placeOrder(user.getUserID(), 1);
+        if (view.equals(binding.btndathang)) {
+            placeOrder(thisUser.getUserID(), 1);
 
         }
-        if(view.equals(binding.btnthanhtoansau)) {
-            placeOrder(user.getUserID(), 0);
+        if (view.equals(binding.btnthanhtoansau)) {
+            placeOrder(thisUser.getUserID(), 0);
         }
     }
 
     public void placeOrder(int userID, int status) {
         Map<String, Object> orderModel = new HashMap<>();
+        orderModel.put("userID", userID);
         orderModel.put("status", status);
         orderModel.put("receiverName", binding.edtten.getText().toString());
         orderModel.put("phone", binding.edtsodienthoai.getText().toString());
@@ -121,7 +121,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         apiService.placeOrder(userID, requestBody).enqueue(new Callback<Order>() {
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     Intent intent = new Intent(ThanhToanActivity.this, ThongBaoDatHangActivity.class);
                     intent.putExtra("status", status);
                     startActivity(intent);
@@ -137,9 +137,9 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
                             // Finish the current activity (optional)
                             finish();
                         }
-                    }, 3000); // Delay in milliseconds (5 seconds)
+                    }, 7000); // Delay in milliseconds (5 seconds)
                 } else
-                    Toast.makeText(ThanhToanActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ThanhToanActivity.this, "Lỗi " + response.code(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

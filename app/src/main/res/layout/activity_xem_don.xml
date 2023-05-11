@@ -2,12 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-<<<<<<< Updated upstream
-=======
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white_smokehsl"
->>>>>>> Stashed changes
     tools:context=".activity.XemDonActivity">
 
     <data>
@@ -19,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<<<<<<< Updated upstream
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toobar"
             android:layout_width="match_parent"
@@ -70,58 +63,6 @@
                 app:fabCradleMargin="@dimen/_5sdp"
                 app:fabCradleRoundedCornerRadius="@dimen/_40sdp"
                 app:fabCradleVerticalOffset="@dimen/_2sdp">
-=======
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/background_white_light_1"
-            android:src="@drawable/ic_baseline_arrow_back_24" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text="Đơn hàng"
-            android:textColor="@color/design_dark_default_color_shadow_dark"
-            android:textSize="23dp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleview_donhang"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/background_white_light_1"
-        app:layout_constraintBottom_toTopOf="@+id/bottombar"
-        app:layout_constraintTop_toBottomOf="@id/toobar"
-        tools:layout_editor_absoluteX="5dp" />
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/bottombar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_80sdp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:fabCradleMargin="@dimen/_5sdp"
-            app:fabCradleRoundedCornerRadius="@dimen/_40sdp"
-            app:fabCradleVerticalOffset="@dimen/_2sdp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="@dimen/_10sdp"
-                android:weightSum="10">
->>>>>>> Stashed changes
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -217,7 +158,6 @@
 
                 </LinearLayout>
 
-<<<<<<< Updated upstream
             </com.google.android.material.bottomappbar.BottomAppBar>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -228,72 +168,6 @@
                 android:src="@drawable/ic_cart_24"
                 app:elevation="@dimen/_3sdp"
                 app:layout_anchor="@id/appbar" />
-=======
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_baseline_category_24" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Sản phẩm" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_order_24" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Đơn hàng" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_account_circle_24" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Tài khoản" />
-                </LinearLayout>
->>>>>>> Stashed changes
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

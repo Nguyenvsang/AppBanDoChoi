@@ -161,7 +161,7 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="34dp"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:src="@drawable/ic_baseline_attach_money_24" />
 
@@ -170,7 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="45.000"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="25sp"
                         android:textStyle="bold" />
@@ -213,10 +213,10 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_weight="1"
                 android:background="@drawable/botron_button"
                 android:text="Thanh toán sau"
-                android:textColor="@android:color/white"
-                android:layout_weight="1"/>
+                android:textColor="@android:color/white" />
         </LinearLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -252,7 +252,7 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
                             // Update
                             displayUser();
 
-                            // Bắt đầu ProfileActivity
+                            // Toast message
                             Toast.makeText(UpdateProfileActivity.this, "Cập nhật thông tin thành công!", Toast.LENGTH_SHORT).show();
                             finish();
                             // Pass data to Profile

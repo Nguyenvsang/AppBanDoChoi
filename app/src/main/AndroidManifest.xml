@@ -17,14 +17,23 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.UpdateImageActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ThongBaoDatHangActivity"
             android:exported="false" />
         <activity
             android:name=".activity.UpdateProfileActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.ProfileActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.ThemSPActivity"
             android:exported="false" />
@@ -36,13 +45,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.XemDonActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.ChiTietDonHangActivity"
             android:exported="false" />

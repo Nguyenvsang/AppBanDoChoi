@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -22,8 +23,10 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -53,7 +56,7 @@ public interface APIService {
     @GET("user/me/{userID}")
     Call<User> getUser(@Path("userID") int userID);
 
-    @POST("order/placeOrder/{userID}")
+    @POST("order/place/{userID}")
     Call<Order> placeOrder(@Path("userID") int userID, @Body RequestBody orderModel);
 
     @GET("product/all")
@@ -100,4 +103,8 @@ public interface APIService {
 
     @PUT("order/update/status")
     Call<Order> updateOrderStatus(@Query("orderID") int orderID, @Query("status") int status);
+
+    @Multipart
+    @PUT("user/update/image")
+    Call<User> updateProfileImage(@Part("userID") RequestBody userID, @Part MultipartBody.Part image);
 }

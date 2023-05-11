@@ -130,7 +130,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
             productName.set(cartItem.getProduct().getProductName());
             price.set(String.valueOf(cartItem.getProduct().getPrice()));
             quantity.set(String.valueOf(cartItem.getQuantity()));
-            images.set(Constants.ROOT_URL.concat(cartItem.getProduct().getImages()));
+            images.set(cartItem.getProduct().getImages());
             total.set(String.valueOf(cartItem.getProduct().getPrice() * cartItem.getQuantity()));
         }
 
