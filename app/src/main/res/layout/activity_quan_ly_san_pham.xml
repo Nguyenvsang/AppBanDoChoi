@@ -25,21 +25,14 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
             android:gravity="center"
-            android:text="Quản lý"
+            android:text="Sản phẩm"
             android:textColor="@color/design_dark_default_color_shadow_dark"
             android:textSize="23dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="167dp"
+            tools:layout_editor_absoluteY="10dp" />
 
-        <ImageView
-            android:id="@+id/img_them"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/background_white_light_1"
-            android:src="@drawable/ic_baseline_add_24" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
