@@ -3,6 +3,9 @@ package com.example.appbandochoi.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeActivity extends AppCompatActivity implements CategoryAdapter.OnItemClickListener {
+public class HomeActivity extends AppCompatActivity implements CategoryAdapter.OnItemClickListener, View.OnClickListener, View.OnTouchListener {
         private APIService apiService;
         private ActivityHomeBinding binding;
         private CategoryAdapter categoryAdapter;
@@ -44,6 +47,9 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
 
             binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
             binding.setHome(this);
+
+            binding.editTextSearch.setOnClickListener(this);
+            binding.editTextSearch.setOnTouchListener(this);
         }
 
         public void getCategoryList() {
@@ -80,4 +86,23 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
             startActivity(intent);
         }
 
+    @Override
+    public void onClick(View v) {
+        if (v.equals(binding.editTextSearch)) {
+            finish();
+            Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
+        }
     }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (v.equals(binding.editTextSearch)) {
+            finish();
+            Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
+    }
+}

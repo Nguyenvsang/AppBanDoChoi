@@ -86,7 +86,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                 // The quantity is 1
                 if (cartItem.getQuantity() == 1) {
                     //delete
-                    updateCart(cartItem, -1);
+                    updateCart(cartItem, 0);
                 } else {
                     updateCart(cartItem, -1);
                 }

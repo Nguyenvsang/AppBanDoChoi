@@ -39,14 +39,35 @@
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sortbar"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toobar">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteSort"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_autocomplete_border"
+                android:inputType="none"
+                android:text="Sắp xếp theo" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview_sp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="104dp"
             app:layout_constraintBottom_toBottomOf="@id/bottombar"
-            app:layout_constraintTop_toBottomOf="@id/toobar"
+            app:layout_constraintTop_toBottomOf="@id/sortbar"
             app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="9dp" />
 

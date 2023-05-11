@@ -62,6 +62,24 @@ public interface APIService {
     @GET("product/all")
     Call<List<Product>> getProductList();
 
+    @GET("product/forsale")
+    Call<List<Product>> getProductListForSale();
+
+    @GET("product/forsale/sort")
+    Call<List<Product>> getProductAndSort(@Query("sort") int sort);
+
+    @GET("product/forsale/category")
+    Call<List<Product>> getProductByCategory(@Query("categoryID") int categoryID);
+
+    @GET("product/forsale/category/sort")
+    Call<List<Product>> getProductByCategoryAndSort(@Query("categoryID") int categoryID, @Query("sort") int sort);
+
+    @GET("product/search")
+    Call<List<Product>> searchProduct(@Query("q") String searchString);
+
+    @GET("product/search/sort")
+    Call<List<Product>> searchProductAndSort(@Query("q") String searchString, @Query("sort") int sort);
+
     @FormUrlEncoded
     @POST("review")
     Call<List<Review>> getReviewListByProduct(@Field("productID") int productID);
@@ -94,9 +112,6 @@ public interface APIService {
 
     @GET("category/forsale")
     Call<List<Category>> getCategoryList();
-
-    @GET("product/category")
-    Call<List<Product>> getProductByCategory(@Query("categoryID") int categoryID);
 
     @PUT("user/update/profile")
     Call<ResponseBody> updateProfile(@Body RequestBody userModel);

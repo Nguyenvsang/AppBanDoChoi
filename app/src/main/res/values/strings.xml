@@ -3,4 +3,10 @@
     <string name="ng_nh_p">Đăng nhập</string>
     <string name="_150000vnd">150000vnd</string>
     <string name="th_m_v_o_gi_h_ng">Thêm vào giỏ hàng</string>
+    <string-array name="sort">
+        <item>Tên A-Z</item>
+        <item>Tên Z-A</item>
+        <item>Giá thấp - cao</item>
+        <item>Giá cao - thấp</item>
+    </string-array>
 </resources>

@@ -33,7 +33,7 @@ public class GetProductListTask extends AsyncTask<Void, Void, List<Product>> {
     protected List<Product> doInBackground(Void... voids) {
         apiService = RetrofitClient.getRetrofit().create(APIService.class);
         try {
-            Response<List<Product>> response = apiService.getProductList().execute();
+            Response<List<Product>> response = apiService.getProductListForSale().execute();
             if (response.isSuccessful()) {
                 return response.body();
             } else {
