@@ -25,13 +25,16 @@ public class GetReviewByOrderItemTask extends AsyncTask<Integer, Void, Review> {
     public ObservableField<String> reviewDate = new ObservableField<>();
     public ObservableField<String> comment = new ObservableField<>();
     public int reviewID;
+    public boolean isNull = true;
 
-    public GetReviewByOrderItemTask(ObservableField<String> reviewImages, ObservableField<String> star, ObservableField<String> reviewDate, ObservableField<String> comment, int reviewID) {
+    public GetReviewByOrderItemTask(ObservableField<String> reviewImages, ObservableField<String> star,
+                                    ObservableField<String> reviewDate, ObservableField<String> comment, int reviewID, boolean isNull) {
         this.reviewImages = reviewImages;
         this.star = star;
         this.reviewDate = reviewDate;
         this.comment = comment;
         this.reviewID = reviewID;
+        this.isNull = isNull;
     }
 
     @Override
@@ -66,6 +69,7 @@ public class GetReviewByOrderItemTask extends AsyncTask<Integer, Void, Review> {
             comment.set(review.getComment());
             star.set(String.valueOf(review.getStar()));
             reviewID = review.getReviewID();
+            isNull = false;
         }
     }
 }

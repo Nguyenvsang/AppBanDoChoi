@@ -59,14 +59,14 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/_80sdp"
+        android:paddingBottom="140dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toobar">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Nguyễn Văn Thuận"
+                        android:text=""
                         android:textColor="#ffffff"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -118,7 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="nguyenvanthuan@gmail.com"
+                        android:text=""
                         android:textColor="#ffffff"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="@+id/textViewName"
@@ -172,9 +172,9 @@
                                 android:layout_weight="1"
                                 android:text="Đổi"
                                 android:textAlignment="viewEnd"
-                                android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                                android:textColor="@color/red"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"/>
                         </LinearLayout>
 
                         <View
@@ -206,7 +206,8 @@
                                 android:layout_weight="1"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
-                                android:textSize="18sp" />
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
                         </LinearLayout>
 
                         <View
@@ -238,7 +239,8 @@
                                 android:layout_weight="1"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
-                                android:textSize="18sp" />
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
                         </LinearLayout>
 
 
@@ -272,7 +274,8 @@
                                 android:text=""
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
-                                android:textSize="18sp" />
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
                         </LinearLayout>
 
 
@@ -305,7 +308,8 @@
                                 android:layout_weight="1"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
-                                android:textSize="18sp" />
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
                         </LinearLayout>
 
                         <View
@@ -337,7 +341,8 @@
                                 android:layout_weight="1"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
-                                android:textSize="18sp" />
+                                android:textSize="16sp"
+                                android:textStyle="italic"/>
                         </LinearLayout>
 
                         <View
@@ -359,7 +364,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="Vai trò:"
-                                android:textColor="#182693"
+                                android:textColor="@color/black"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -369,7 +374,8 @@
                                 android:layout_weight="1"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
-                                android:textSize="18sp" />
+                                android:textSize="16sp"
+                                android:textStyle="italic"/>
                         </LinearLayout>
 
                         <View

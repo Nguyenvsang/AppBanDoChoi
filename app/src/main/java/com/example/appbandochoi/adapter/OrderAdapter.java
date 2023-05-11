@@ -1,33 +1,44 @@
 package com.example.appbandochoi.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ObservableField;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandochoi.R;
+import com.example.appbandochoi.activity.XemDonActivity;
 import com.example.appbandochoi.databinding.ItemDonhangBinding;
 import com.example.appbandochoi.model.Order;
 import com.example.appbandochoi.retrofit2.APIService;
+import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.example.appbandochoi.utils.ShortDateUtil;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
     private List<Order> orderList;
     private OrderAdapter.OnItemClickListener onItemClickListener;
     private APIService apiService;
-
-    public OrderAdapter(List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
+    private Context context;
     Button btnthanhtoanlai, btnhuybodon;
+    LinearLayout linearLayoutDonhang;
+    public OrderAdapter(List<Order> orderList, Context context) {
+        this.orderList = orderList;
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -70,9 +81,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             this.onItemClickListener = onItemClickListener;
             itemView.getRoot().setOnClickListener(this);
 
-            // Initialize button
+            // Initialize component
             btnthanhtoanlai = itemView.getRoot().findViewById(R.id.btnthanhtoanlai);
             btnhuybodon = itemView.getRoot().findViewById(R.id.btnhuybodon);
+            linearLayoutDonhang = itemView.getRoot().findViewById(R.id.linearLayoutDonhang);
         }
 
         public void setBinding(Order order, int position) {
@@ -114,7 +126,25 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             if (order.getStatus() != 0) {
                 btnhuybodon.setVisibility(View.GONE);
                 btnthanhtoanlai.setVisibility(View.GONE);
+                linearLayoutDonhang.setVisibility(View.GONE);
             }
+
+            // Click event
+            btnthanhtoanlai.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    updateOrderStatus(order.getOrderID(), 1, position);
+                    Toast.makeText(context, "Thanh toán thành công! Cảm ơn quý khách!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            btnhuybodon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    updateOrderStatus(order.getOrderID(), 3, position);
+                    Toast.makeText(context, "Đã huỷ đơn hàng. Mong được phục vụ quý khách lần sau!", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         public void onClick(View v) {
@@ -128,5 +158,27 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
     public interface OnItemClickListener {
         void itemClick(Order order);
+    }
+
+    public void updateOrderStatus(int orderID, int status, int position) {
+        apiService = RetrofitClient.getRetrofit().create(APIService.class);
+        apiService.updateOrderStatus(orderID, status).enqueue(new Callback<Order>() {
+            @Override
+            public void onResponse(Call<Order> call, Response<Order> response) {
+                if (response.isSuccessful()) {
+                    Order order = response.body();
+                    orderList.set(position, order);
+                    notifyItemChanged(position);
+                }
+                else
+                    Toast.makeText(context, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Order> call, Throwable t) {
+                Toast.makeText(context, "Gọi API thất bại", Toast.LENGTH_SHORT).show();
+                System.out.println(t.toString());
+            }
+        });
     }
 }

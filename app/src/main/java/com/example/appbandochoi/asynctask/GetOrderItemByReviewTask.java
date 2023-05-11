@@ -17,7 +17,6 @@ import retrofit2.Response;
 public class GetOrderItemByReviewTask extends AsyncTask<Integer, Void, OrderItem> {
     private APIService apiService;
     private ObservableField<String> quantity = new ObservableField<>();
-
     public GetOrderItemByReviewTask(ObservableField<String> quantity) {
         this.quantity = quantity;
     }

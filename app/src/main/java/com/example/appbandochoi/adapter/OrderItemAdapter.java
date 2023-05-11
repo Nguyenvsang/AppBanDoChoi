@@ -16,6 +16,7 @@ import com.example.appbandochoi.asynctask.GetProductByOrderItemTask;
 import com.example.appbandochoi.asynctask.GetReviewByOrderItemTask;
 import com.example.appbandochoi.asynctask.GetUserByReviewTask;
 import com.example.appbandochoi.databinding.ItemChitietDonhangBinding;
+import com.example.appbandochoi.model.FullOrderItem;
 import com.example.appbandochoi.model.Order;
 import com.example.appbandochoi.model.OrderItem;
 import com.example.appbandochoi.model.Product;
@@ -23,14 +24,15 @@ import com.example.appbandochoi.model.Review;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.utils.ShortDateUtil;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyViewHolder> {
-    private List<OrderItem> orderItemList;
+    private List<FullOrderItem> orderItemList;
     private OrderItemAdapter.OnItemClickListener onItemClickListener;
     private CardView cardViewReview;
 
-    public OrderItemAdapter(List<OrderItem> orderItemList) {
+    public OrderItemAdapter(List<FullOrderItem> orderItemList) {
         this.orderItemList = orderItemList;
     }
 
@@ -68,9 +70,10 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
         public ObservableField<String> price = new ObservableField<>();
         public ObservableField<String> productName = new ObservableField<>();
         public int reviewID;
+        public boolean isNull;
         public ItemChitietDonhangBinding itemChitietDonhangBinding;
         private OnItemClickListener onItemClickListener;
-        private OrderItem orderItem;
+        private FullOrderItem orderItem;
 
         public MyViewHolder(ItemChitietDonhangBinding itemView, OnItemClickListener onItemClickListener) {
             super(itemView.getRoot());
@@ -81,31 +84,41 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
             cardViewReview = itemView.getRoot().findViewById(R.id.cardViewReview);
         }
 
-        public void setBinding(OrderItem orderItem, int position) {
+        public void setBinding(FullOrderItem orderItem, int position) {
             if (itemChitietDonhangBinding.getViewHolder() == null) {
                 itemChitietDonhangBinding.setViewHolder(this);
             }
 
             this.orderItem = orderItem;
 
-            GetProductByOrderItemTask productTask = new GetProductByOrderItemTask(productImages, productName);
-            productTask.execute(orderItem.getOrderItemID());
+//            GetProductByOrderItemTask productTask = new GetProductByOrderItemTask(productImages, productName);
+//            productTask.execute(orderItem.getOrderItemID());
+//
+//            GetReviewByOrderItemTask reviewTask = new GetReviewByOrderItemTask(reviewImages, star, reviewDate, comment, reviewID, isNull);
+//            reviewTask.execute(orderItem.getOrderItemID());
+//            System.out.println(reviewID);
 
-            GetReviewByOrderItemTask reviewTask = new GetReviewByOrderItemTask(reviewImages, star, reviewDate, comment, reviewID);
-            reviewTask.execute(orderItem.getOrderItemID());
-
-            if (reviewDate != null) {
-                GetUserByReviewTask userTask = new GetUserByReviewTask(reviewerName);
-                userTask.execute(reviewID);
-            } else {
+            price.set(orderItem.getQuantity() + "   X   " + orderItem.getPrice() + " VNĐ");
+            productImages.set(orderItem.getProductImage());
+            productName.set(orderItem.getProductName());
+            if (orderItem.getCreatedAt() == null)
                 cardViewReview.setVisibility(View.GONE);
+            else {
+                Timestamp date = orderItem.getUpdatedAt() == null ? orderItem.getCreatedAt() : orderItem.getUpdatedAt();
+                reviewDate.set(new ShortDateUtil().parseShortDate(date));
+                reviewImages.set(orderItem.getReviewImage());
+                comment.set(orderItem.getComment() == null ? "Không có đánh giá!" : orderItem.getComment());
+                star.set(String.valueOf(orderItem.getStar()));
+                reviewerName.set(orderItem.getFirstname() + "***");
             }
 
-            price.set(String.valueOf(orderItem.getPrice()) + " VNĐ   x   " + String.valueOf(orderItem.getQuantity()));
+//                GetUserByReviewTask userTask = new GetUserByReviewTask(reviewerName);
+//                userTask.execute(reviewID);
 
         }
 
-        public void onClick (View v){
+
+        public void onClick(View v) {
             this.onItemClickListener.itemClick(orderItem);
         }
     }
@@ -115,6 +128,6 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
     }
 
     public interface OnItemClickListener {
-        void itemClick(OrderItem orderItem);
+        void itemClick(FullOrderItem orderItem);
     }
 }

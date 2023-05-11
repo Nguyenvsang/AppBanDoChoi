@@ -27,8 +27,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -63,8 +61,8 @@ public class DangNhapActivity extends AppCompatActivity {
     }
 
     public void anhXa() {
-        eTUsername = (EditText) findViewById(R.id.editTextUsername);
-        eTPassword = (EditText) findViewById(R.id.editTextPassword);
+        eTUsername = (EditText) findViewById(R.id.editTextBirthday);
+        eTPassword = (EditText) findViewById(R.id.editTextAddress);
         btnLogin = (Button) findViewById(R.id.btnDangNhap);
         tVSignup = (TextView) findViewById(R.id.txtDangKy);
     }
@@ -136,7 +134,7 @@ public class DangNhapActivity extends AppCompatActivity {
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                         finish();
-                        startActivity(new Intent(DangNhapActivity.this, MainActivity.class));
+                        startActivity(new Intent(DangNhapActivity.this, ProfileActivity.class));
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

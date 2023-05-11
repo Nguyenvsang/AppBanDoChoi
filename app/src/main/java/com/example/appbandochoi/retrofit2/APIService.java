@@ -2,6 +2,7 @@ package com.example.appbandochoi.retrofit2;
 
 import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.model.Category;
+import com.example.appbandochoi.model.FullOrderItem;
 import com.example.appbandochoi.model.Order;
 import com.example.appbandochoi.model.OrderItem;
 import com.example.appbandochoi.model.Product;
@@ -85,9 +86,18 @@ public interface APIService {
     @GET("orderitem")
     Call<List<OrderItem>> getOrderItemByOrder(@Query("orderID") int orderID);
 
+    @GET("orderitem/full")
+    Call<List<FullOrderItem>> getFullOrderItemByOrder(@Query("orderID") int orderID);
+
     @GET("category/forsale")
     Call<List<Category>> getCategoryList();
 
     @GET("product/category")
     Call<List<Product>> getProductByCategory(@Query("categoryID") int categoryID);
+
+    @PUT("user/update/profile")
+    Call<ResponseBody> updateProfile(@Body RequestBody userModel);
+
+    @PUT("order/update/status")
+    Call<Order> updateOrderStatus(@Query("orderID") int orderID, @Query("status") int status);
 }

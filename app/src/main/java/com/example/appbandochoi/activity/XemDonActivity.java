@@ -41,7 +41,7 @@ public class XemDonActivity extends AppCompatActivity implements OrderAdapter.On
         super.onCreate(savedInstanceState);
         context = this;
 
-        orderAdapter = new OrderAdapter(orderList);
+        orderAdapter = new OrderAdapter(orderList, context);
 
         getMyOrders();
 
@@ -64,7 +64,7 @@ public class XemDonActivity extends AppCompatActivity implements OrderAdapter.On
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 if (response.isSuccessful()) {
                     orderList = response.body();
-                    orderAdapter = new OrderAdapter(orderList);
+                    orderAdapter = new OrderAdapter(orderList, context);
                     binding.recycleviewDonhang.setLayoutManager(new LinearLayoutManager(XemDonActivity.this));
                     binding.recycleviewDonhang.setAdapter(orderAdapter);
                     orderAdapter.notifyDataSetChanged();

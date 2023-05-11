@@ -21,7 +21,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     private List<Product> productList;
     private OnItemClickListener onItemClickListener;
     private APIService apiService;
-
     public ProductAdapter(List<Product> productList) {
         this.productList = productList;
     }

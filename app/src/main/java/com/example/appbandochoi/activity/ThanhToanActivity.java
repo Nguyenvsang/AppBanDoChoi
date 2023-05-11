@@ -2,6 +2,7 @@ package com.example.appbandochoi.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -70,6 +71,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         binding.txttongtien.setText(String.valueOf(totalOrder).concat(" VNĐ"));
         // Click event
         binding.btndathang.setOnClickListener(ThanhToanActivity.this);
+        binding.btnthanhtoansau.setOnClickListener(ThanhToanActivity.this);
     }
 
     public User getUser(int userID) {
@@ -99,6 +101,10 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         if(view.equals(binding.btndathang)) {
             placeOrder(user.getUserID(), 1);
+
+        }
+        if(view.equals(binding.btnthanhtoansau)) {
+            placeOrder(user.getUserID(), 0);
         }
     }
 
@@ -116,8 +122,22 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
                 if(response.isSuccessful()) {
-                    Toast.makeText(ThanhToanActivity.this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ThanhToanActivity.this, HomeActivity.class));
+                    Intent intent = new Intent(ThanhToanActivity.this, ThongBaoDatHangActivity.class);
+                    intent.putExtra("status", status);
+                    startActivity(intent);
+
+                    // Use Handler to post a delayed action
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Navigate to the third activity
+                            Intent thirdIntent = new Intent(ThanhToanActivity.this, HomeActivity.class);
+                            startActivity(thirdIntent);
+
+                            // Finish the current activity (optional)
+                            finish();
+                        }
+                    }, 3000); // Delay in milliseconds (5 seconds)
                 } else
                     Toast.makeText(ThanhToanActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
             }

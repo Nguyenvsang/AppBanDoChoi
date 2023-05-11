@@ -5,9 +5,10 @@
     tools:context=".activity.ThanhToanActivity">
 
     <data>
-       <variable
-           name="user"
-           type="com.example.appbandochoi.model.User" />
+
+        <variable
+            name="user"
+            type="com.example.appbandochoi.model.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -133,8 +134,8 @@
                 android:drawableLeft="@drawable/ic_baseline_add_location_24"
                 android:drawablePadding="5dp"
                 android:hint="@{user.address.isEmpty() ? `Nhập địa chỉ giao hàng` : ``}"
-                android:textColorHint="@android:color/holo_red_light"
-                android:text="@{user.address}"/>
+                android:text="@{user.address}"
+                android:textColorHint="@android:color/holo_red_light" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,18 +185,39 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btndathang"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/botron_button"
-            android:text="Đặt hàng"
-            android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/cardview2" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/cardview2"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btndathang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_yellow_light"
+                android:text="Thanh toán ngay"
+                android:textColor="@android:color/white"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnthanhtoansau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/botron_button"
+                android:text="Thanh toán sau"
+                android:textColor="@android:color/white"
+                android:layout_weight="1"/>
+        </LinearLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/bottombar"

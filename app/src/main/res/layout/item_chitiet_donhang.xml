@@ -108,7 +108,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="@{viewHolder.reviewerName == null ? `Ẩn danh` : viewHolder.reviewerName}"
+                            android:text="@{viewHolder.reviewerName}"
                             android:textAlignment="viewStart"
                             android:textColor="@color/cardview_dark_background"
                             android:textSize="16sp" />
