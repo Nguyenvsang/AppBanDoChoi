@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -55,13 +57,24 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
     private RadioGroup radioGroupGender;
     private Button btnUpdate, btnDatePicker;
     private SimpleDateFormat dateFormatter;
+    private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
+    private Button btnCart;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
+        // Mapping
         anhXa();
+        // Click action
+        linearTrangchu.setOnClickListener(this);
+        linearSanpham.setOnClickListener(this);
+        linearDonhang.setOnClickListener(this);
+        linearTaikhoan.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
 
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             storedUser = null;
@@ -99,6 +112,12 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
         radioGroupGender = findViewById(R.id.radioGroupGender);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDatePicker = findViewById(R.id.btnDatePicker);
+        linearTrangchu = findViewById(R.id.linearTrangchu);
+        linearSanpham = findViewById(R.id.linearSanpham);
+        linearDonhang = findViewById(R.id.linearDonhang);
+        linearTaikhoan = findViewById(R.id.linearTaikhoan);
+        btnCart = findViewById(R.id.btnCart);
+        imgBack = findViewById(R.id.imgBack);
     }
 
     public User getUser(int userID) {
@@ -281,8 +300,32 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         if (view.equals(btnUpdate)) {
             updateProfile();
-        } else if (view.equals(btnDatePicker)) {
+        } if (view.equals(btnDatePicker)) {
             showDatePicker();
+        }
+        if (view.equals(linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
         }
     }
 

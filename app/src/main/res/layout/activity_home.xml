@@ -21,6 +21,7 @@
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_80sdp"
                 android:fillViewport="true">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,6 +54,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tvhi" />
 
                     <ImageView
+                        android:id="@+id/imgProfileHome"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -100,29 +102,17 @@
                             app:lottie_repeatMode="reverse" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="369dp"
+                            android:layout_height="30dp"
                             android:layout_marginTop="16dp"
-                            android:layout_marginEnd="136dp"
-                            android:text="Miễn Ship"
+                            android:text="Miễn phí vận chuyển cho mọi đơn hàng"
                             android:textColor="@android:color/black"
-                            android:textSize="@dimen/_16ssp"
+                            android:textSize="@dimen/_15ssp"
                             android:textStyle="bold"
+                            android:gravity="center"
                             app:layout_constraintEnd_toEndOf="@+id/lottie"
                             app:layout_constraintTop_toTopOf="@+id/lottie" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/_87sdp"
-                            android:background="@drawable/botron_button"
-                            android:padding="@dimen/_5sdp"
-                            android:text="Đặt hàng ngay"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_12ssp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/lottie"
-                            app:layout_constraintEnd_toEndOf="@+id/lottie" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
@@ -133,7 +123,7 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:text="Danh mục"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_20ssp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/container1" />
@@ -141,7 +131,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rc_danhmuc"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp"
+                        android:layout_height="250dp"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginRight="@dimen/_10sdp"
                         android:background="@drawable/background_whitesmokehsl"
@@ -156,7 +146,7 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:text="Được mua nhiều"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_20ssp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/rc_danhmuc" />
@@ -164,9 +154,10 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rc_phobien"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_120sdp"
+                        android:layout_height="330dp"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_marginBottom="104dp"
                         android:background="@drawable/background_whitesmokehsl"
                         app:layout_constraintStart_toStartOf="@id/tvdanhmuc"
                         app:layout_constraintTop_toBottomOf="@id/tvphobien" />
@@ -198,6 +189,7 @@
                         android:weightSum="10">
 
                         <LinearLayout
+                            android:id="@+id/linearTrangchu"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -217,6 +209,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearSanpham"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -244,6 +237,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearDonhang"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -263,6 +257,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/linearTaikhoan"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -287,6 +282,7 @@
                 </com.google.android.material.bottomappbar.BottomAppBar>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnCart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#f58e2a"

@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.appbandochoi.R;
@@ -24,6 +27,7 @@ import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
@@ -33,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DanhSachSPActivity extends AppCompatActivity implements ProductAdapter.OnItemClickListener {
+public class DanhSachSPActivity extends AppCompatActivity implements ProductAdapter.OnItemClickListener, View.OnClickListener {
     private APIService apiService;
     private ActivityDanhSachSpBinding binding;
     private ProductAdapter productAdapter;
@@ -41,6 +45,9 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
     private Context context;
     private Category category;
     private AutoCompleteTextView autoCompleteSort;
+    private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
+    private FloatingActionButton btnCart;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +59,6 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
 
         productAdapter = new ProductAdapter(productList);
 
-//        GetProductListTask task = new GetProductListTask(context, productAdapter, binding);
-//        task.execute();
         if (bundle == null)
             getProductList();
         else {
@@ -63,6 +68,16 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_danh_sach_sp);
         binding.setProduct(this);
+
+        // Mapping
+        anhXa();
+        // Click action
+        linearTrangchu.setOnClickListener(this);
+        linearSanpham.setOnClickListener(this);
+        linearDonhang.setOnClickListener(this);
+        linearTaikhoan.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
 
         // Sort list options
         String[] sorts = getResources().getStringArray(R.array.sort);
@@ -106,6 +121,15 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
                 }
             }
         });
+    }
+
+    public void anhXa() {
+        linearTrangchu = binding.linearTrangchu;
+        linearSanpham = binding.linearSanpham;
+        linearDonhang = binding.linearDonhang;
+        linearTaikhoan = binding.linearTaikhoan;
+        btnCart = binding.btnCart;
+        imgBack = binding.imgBack;
     }
 
     public void getProductList() {
@@ -229,5 +253,33 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
         bundle.putSerializable("product", product);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.equals(linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
     }
 }

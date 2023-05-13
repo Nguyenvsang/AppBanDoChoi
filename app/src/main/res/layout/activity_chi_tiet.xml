@@ -27,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/imgBack"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
@@ -48,20 +49,7 @@
                 android:layout_width="55dp"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="right"
-                android:layout_marginRight="10dp">
-
-                <com.nex3z.notificationbadge.NotificationBadge
-                    android:id="@+id/menu_sl"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_gravity="top|right" />
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_cart_24" />
-            </FrameLayout>
+                android:layout_marginRight="10dp"/>
         </androidx.appcompat.widget.Toolbar>
 
         <ScrollView
@@ -178,18 +166,22 @@
                                 android:src="@drawable/ic_baseline_add_24" />
                         </LinearLayout>
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnthemvaogiohang"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="50dp"
+                            android:layout_marginStart="95dp"
                             android:layout_marginTop="5dp"
-                            android:layout_marginEnd="50dp"
+                            android:layout_marginEnd="95dp"
                             android:background="@drawable/botron_button"
                             android:enabled="@{detail.quantity != 0 ? true : false}"
                             android:text="@string/th_m_v_o_gi_h_ng"
                             android:textColor="@android:color/white"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            app:backgroundTint="@color/orange_color_dark"
+                            app:iconGravity="textStart"
+                            android:elevation="4dp"
+                            app:icon="@drawable/baseline_add_shopping_cart_24" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -266,6 +258,7 @@
                     android:weightSum="10">
 
                     <LinearLayout
+                        android:id="@+id/linearTrangchu"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -285,6 +278,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearSanpham"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -312,6 +306,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearDonhang"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -331,6 +326,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearTaikhoan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -355,6 +351,7 @@
             </com.google.android.material.bottomappbar.BottomAppBar>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#f58e2a"

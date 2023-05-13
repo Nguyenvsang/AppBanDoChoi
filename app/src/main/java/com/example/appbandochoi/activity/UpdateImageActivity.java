@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.appbandochoi.R;
@@ -43,10 +44,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UpdateImageActivity extends AppCompatActivity {
-
-    Button btnChoose, btnUpload;
-    ImageView imageViewChoose;
+public class UpdateImageActivity extends AppCompatActivity implements View.OnClickListener {
+    Button btnChoose, btnUpload, btnCart;
+    ImageView imageViewChoose, imgBack;
+    private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
     private Uri mUri;
     private User storedUser;
     private ProgressDialog mProgressDialog;
@@ -74,10 +75,16 @@ public class UpdateImageActivity extends AppCompatActivity {
         return p;
     }
 
-    private void AnhXa() {
+    private void anhXa() {
         btnChoose = findViewById(R.id.btnChooseImage);
         btnUpload = findViewById(R.id.btnUpdateImage);
         imageViewChoose = findViewById(R.id.imageProfileUpdate);
+        linearTrangchu = findViewById(R.id.linearTrangchu);
+        linearSanpham = findViewById(R.id.linearSanpham);
+        linearDonhang = findViewById(R.id.linearDonhang);
+        linearTaikhoan = findViewById(R.id.linearTaikhoan);
+        btnCart = findViewById(R.id.btnCart);
+        imgBack = findViewById(R.id.imgBack);
     }
 
     private void CheckPermission() {
@@ -190,8 +197,17 @@ public class UpdateImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_image);
-        //ánh xạ
-        AnhXa();
+
+        // Mapping
+        anhXa();
+        // Click action
+        linearTrangchu.setOnClickListener(this);
+        linearSanpham.setOnClickListener(this);
+        linearDonhang.setOnClickListener(this);
+        linearTaikhoan.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
+
         //khởi tạo Progressbar
         mProgressDialog = new ProgressDialog(UpdateImageActivity.this); //bắt sự kiện nút chọn ảnh
         mProgressDialog.setMessage("Đang tải ảnh lên, vui lòng đợi...");
@@ -212,5 +228,33 @@ public class UpdateImageActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.equals(linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
     }
 }

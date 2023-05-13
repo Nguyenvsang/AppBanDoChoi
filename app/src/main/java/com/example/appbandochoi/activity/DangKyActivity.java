@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,11 +29,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DangKyActivity extends AppCompatActivity {
+public class DangKyActivity extends AppCompatActivity implements View.OnClickListener {
     APIService apiService;
     EditText etFirstname, etLastname, etUserName, etPassword, etEmail, etRepeatPassword, etPhone;
     //TextView textViewLogin;
     Button btnSignup;
+    ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +43,8 @@ public class DangKyActivity extends AppCompatActivity {
 
         anhXa();
         // Gọi userSignup()
-        btnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userSignup();
-            }
-        });
+        btnSignup.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
 
     }
 
@@ -59,6 +57,7 @@ public class DangKyActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.editTextEmail);
         etPhone = findViewById(R.id.editTextPhone);
         btnSignup = findViewById(R.id.btndangky);
+        imgBack = findViewById(R.id.imgBack);
     }
 
     public void userSignup() {
@@ -167,5 +166,16 @@ public class DangKyActivity extends AppCompatActivity {
                 Toast.makeText(DangKyActivity.this, "Gọi API thất bại!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.equals(btnSignup)) {
+            userSignup();
+        }
+        if (v.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, DangNhapActivity.class));
+        }
     }
 }

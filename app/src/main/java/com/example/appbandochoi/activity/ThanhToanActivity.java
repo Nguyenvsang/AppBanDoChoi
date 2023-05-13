@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -45,6 +49,9 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     private User user, thisUser;
     private ActivityThanhToanBinding binding;
     private APIService apiService;
+    private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
+    private FloatingActionButton btnCart;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +70,16 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_thanh_toan);
 
+        // Mapping
+        anhXa();
+        // Click action
+        linearTrangchu.setOnClickListener(this);
+        linearSanpham.setOnClickListener(this);
+        linearDonhang.setOnClickListener(this);
+        linearTaikhoan.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
+
         getUser(thisUser.getUserID());
 
         // Set total price
@@ -72,6 +89,15 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         // Click event
         binding.btndathang.setOnClickListener(ThanhToanActivity.this);
         binding.btnthanhtoansau.setOnClickListener(ThanhToanActivity.this);
+    }
+
+    public void anhXa() {
+        linearTrangchu = binding.linearTrangchu;
+        linearSanpham = binding.linearSanpham;
+        linearDonhang = binding.linearDonhang;
+        linearTaikhoan = binding.linearTaikhoan;
+        btnCart = binding.btnCart;
+        imgBack = binding.imgBack;
     }
 
     public void getUser(int userID) {
@@ -105,6 +131,30 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         if (view.equals(binding.btnthanhtoansau)) {
             placeOrder(thisUser.getUserID(), 0);
         }
+        if (view.equals(linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
     }
 
     public void placeOrder(int userID, int status) {
@@ -122,22 +172,10 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
                 if (response.isSuccessful()) {
+                    finish();
                     Intent intent = new Intent(ThanhToanActivity.this, ThongBaoDatHangActivity.class);
                     intent.putExtra("status", status);
                     startActivity(intent);
-
-                    // Use Handler to post a delayed action
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Navigate to the third activity
-                            Intent thirdIntent = new Intent(ThanhToanActivity.this, HomeActivity.class);
-                            startActivity(thirdIntent);
-
-                            // Finish the current activity (optional)
-                            finish();
-                        }
-                    }, 7000); // Delay in milliseconds (5 seconds)
                 } else
                     Toast.makeText(ThanhToanActivity.this, "Lỗi " + response.code(), Toast.LENGTH_SHORT).show();
             }

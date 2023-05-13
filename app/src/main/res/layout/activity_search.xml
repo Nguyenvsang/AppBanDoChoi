@@ -24,6 +24,7 @@
             tools:layout_editor_absoluteX="0dp">
 
             <ImageView
+                android:id="@+id/imgBack"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
@@ -84,15 +85,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/sortbar"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="100dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
                 android:layout_marginLeft="10dp"
+                android:layout_weight="5"
                 app:layout_constraintTop_toBottomOf="@id/toobar">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteSort"
-                    android:layout_width="match_parent"
+                    android:layout_width="231dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_autocomplete_border"
                     android:inputType="none"
@@ -133,6 +134,7 @@
                     android:weightSum="10">
 
                     <LinearLayout
+                        android:id="@+id/linearTrangchu"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -152,6 +154,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearSanpham"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -179,6 +182,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearDonhang"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -198,6 +202,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearTaikhoan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -222,6 +227,7 @@
             </com.google.android.material.bottomappbar.BottomAppBar>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#f58e2a"

@@ -92,7 +92,14 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                 }
             }
         });
-
+        // Delete
+        holder.itemCartItemBinding.btnXoaMatHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CartItem cartItem = (CartItem) cartItemList.get(holder.getAdapterPosition());
+                updateCart(cartItem, 0);
+            }
+        });
     }
 
 

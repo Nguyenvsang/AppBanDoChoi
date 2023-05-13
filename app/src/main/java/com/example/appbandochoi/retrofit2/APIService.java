@@ -81,6 +81,9 @@ public interface APIService {
     @GET("product/search")
     Call<List<Product>> searchProduct(@Query("q") String searchString);
 
+    @GET("product/mostpopular")
+    Call<List<Product>> getMostPopular();
+
     @GET("product/search/sort")
     Call<List<Product>> searchProductAndSort(@Query("q") String searchString, @Query("sort") int sort);
 

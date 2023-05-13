@@ -2,11 +2,15 @@ package com.example.appbandochoi.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +36,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     FloatingActionButton btnCart;
     private User user;
     private APIService apiService;
+    private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
+    private ImageView imgBack, imgUpdateProfile, imgLogout;
     public void anhXa() {
         tvName = findViewById(R.id.textViewName);
         tvGender = findViewById(R.id.textViewGenderProfile);
@@ -42,8 +48,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tvRole = findViewById(R.id.textViewRoleProfile);
         tvPhone = findViewById(R.id.textViewPhoneProfile);
         imgProfile = findViewById(R.id.imageViewProfile);
+        linearTrangchu = findViewById(R.id.linearTrangchu);
+        linearSanpham = findViewById(R.id.linearSanpham);
+        linearDonhang = findViewById(R.id.linearDonhang);
+        linearTaikhoan = findViewById(R.id.linearTaikhoan);
         btnCart = findViewById(R.id.btnCart);
+        imgBack = findViewById(R.id.imgBack);
+        imgUpdateProfile = findViewById(R.id.imgUpdateProfile);
+        imgLogout = findViewById(R.id.imgLogout);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +92,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             displayUser();
         }
 
-        btnCart.setOnClickListener(ProfileActivity.this);
+        // Click action
+        linearTrangchu.setOnClickListener(this);
+        linearSanpham.setOnClickListener(this);
+        linearDonhang.setOnClickListener(this);
+        linearTaikhoan.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
         imgProfile.setOnClickListener(ProfileActivity.this);
+        imgUpdateProfile.setOnClickListener(ProfileActivity.this);
+        imgLogout.setOnClickListener(ProfileActivity.this);
     }
 
     public User getUser(int userID) {
@@ -141,19 +163,50 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             finish();
             startActivity(new Intent(ProfileActivity.this, GioHangActivity.class));
         }
-//            if (view.equals(imgProfile)) {
-//                SharedPrefManager.getInstance(getApplicationContext()).logOut();
-//                finish();
-//                startActivity(new Intent(this, LoginActivity.class));
-//        } else if (view.equals(btnHome)) {
-//            if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-//                finish();
-//                startActivity(new Intent(this, HomeActivity.class));
-//            }
-//        }
-//        else if (view.equals(eAvatar)) {
-//            finish();
-//            startActivity(new Intent(this, UpdateImageActivity.class));
-//        }
+        if (view.equals(linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(imgUpdateProfile)) {
+            finish();
+            startActivity(new Intent(this, UpdateProfileActivity.class));
+        }
+        if (view.equals(imgLogout)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Thông báo");
+            builder.setMessage("Bạn có chắc chắn muốn đăng xuất?");
+            builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    SharedPrefManager.getInstance(getApplicationContext()).logOut();
+                    finish();
+                    startActivity(new Intent(ProfileActivity.this, DangNhapActivity.class));
+                }
+            });
+            builder.setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 }

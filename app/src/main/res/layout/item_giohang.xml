@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -103,12 +104,25 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <CheckBox
-                    android:id="@+id/item_giohang_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:padding="5dp" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnXoaMatHang"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_autocomplete_border_manager"
+                    android:elevation="4dp"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:textSize="12sp"
+                    app:backgroundTint="#FFFFFF"
+                    app:icon="@drawable/baseline_delete_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconTint="@color/shadow_color"
+                    app:layout_constraintTop_toBottomOf="@+id/linedn2"
+                    tools:layout_editor_absoluteX="-16dp" />
             </LinearLayout>
         </LinearLayout>
 

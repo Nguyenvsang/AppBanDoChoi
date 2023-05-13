@@ -14,7 +14,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -33,13 +37,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchActivity extends AppCompatActivity implements ProductAdapter.OnItemClickListener {
+public class SearchActivity extends AppCompatActivity implements ProductAdapter.OnItemClickListener, View.OnClickListener {
     private APIService apiService;
     private ActivitySearchBinding binding;
     private ProductAdapter productAdapter;
     private List<Product> productList;
     private Context context;
     private AutoCompleteTextView autoCompleteSort;
+    private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
+    private FloatingActionButton btnCart;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,16 @@ public class SearchActivity extends AppCompatActivity implements ProductAdapter.
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
         binding.setSearch(this);
+
+        // Mapping
+        anhXa();
+        // Click action
+        linearTrangchu.setOnClickListener(this);
+        linearSanpham.setOnClickListener(this);
+        linearDonhang.setOnClickListener(this);
+        linearTaikhoan.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
 
         // Search
         binding.edtsearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -98,6 +115,15 @@ public class SearchActivity extends AppCompatActivity implements ProductAdapter.
                 }
             }
         });
+    }
+
+    public void anhXa() {
+        linearTrangchu = binding.linearTrangchu;
+        linearSanpham = binding.linearSanpham;
+        linearDonhang = binding.linearDonhang;
+        linearTaikhoan = binding.linearTaikhoan;
+        btnCart = binding.btnCart;
+        imgBack = binding.imgBack;
     }
 
     public void searchForProduct(String searchString) {
@@ -143,7 +169,7 @@ public class SearchActivity extends AppCompatActivity implements ProductAdapter.
                     binding.recycleviewSearch.setLayoutManager(new GridLayoutManager(SearchActivity.this, 2));
                     binding.recycleviewSearch.setAdapter(productAdapter);
                     productAdapter.notifyDataSetChanged();
-                    productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) SearchActivity.this);
+                    productAdapter.setOnItemClickListener(SearchActivity.this);
                 } else
                     Toast.makeText(SearchActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
             }
@@ -163,5 +189,33 @@ public class SearchActivity extends AppCompatActivity implements ProductAdapter.
         bundle.putSerializable("product", product);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.equals(linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
     }
 }

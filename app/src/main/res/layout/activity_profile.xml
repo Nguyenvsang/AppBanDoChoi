@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/imgBack"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginTop="15dp"
@@ -36,6 +37,7 @@
             tools:layout_editor_absoluteY="11dp" />
 
         <ImageView
+            android:id="@+id/imgLogout"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="right"
@@ -45,6 +47,7 @@
             android:src="@drawable/ic_baseline_logout_24" />
 
         <ImageView
+            android:id="@+id/imgUpdateProfile"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="right"
@@ -147,6 +150,7 @@
                         android:elevation="3dp"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewUsernameProfile">
 
@@ -174,7 +178,7 @@
                                 android:textAlignment="viewEnd"
                                 android:textColor="@color/red"
                                 android:textSize="16sp"
-                                android:textStyle="bold|italic"/>
+                                android:textStyle="bold|italic" />
                         </LinearLayout>
 
                         <View
@@ -342,7 +346,7 @@
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
                                 android:textSize="16sp"
-                                android:textStyle="italic"/>
+                                android:textStyle="italic" />
                         </LinearLayout>
 
                         <View
@@ -375,7 +379,7 @@
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5b5b5b"
                                 android:textSize="16sp"
-                                android:textStyle="italic"/>
+                                android:textStyle="italic" />
                         </LinearLayout>
 
                         <View
@@ -413,6 +417,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/linearTrangchu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -432,6 +437,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearSanpham"
                     android:layout_weight="2"
                     android:orientation="vertical"
                     android:layout_width="0dp"
@@ -455,6 +461,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/linearDonhang"
                     android:layout_weight="2"
                     android:orientation="vertical"
                     android:layout_width="0dp"
@@ -471,6 +478,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/linearTaikhoan"
                     android:layout_weight="2"
                     android:orientation="vertical"
                     android:layout_width="0dp"

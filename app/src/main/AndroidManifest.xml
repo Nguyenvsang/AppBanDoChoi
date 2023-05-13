@@ -12,7 +12,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/ic_toys_24"
+        android:icon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppBanDoChoi"
         android:usesCleartextTraffic="true"
@@ -65,13 +65,7 @@
             android:exported="true" />
         <activity
             android:name=".activity.DanhSachSPActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.DangNhapActivity"
             android:exported="true" />
@@ -79,8 +73,14 @@
             android:name=".activity.DangKyActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SplashActivity"
-            android:exported="true" />
+            android:name=".activity.IntroActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.HomeActivity"
             android:exported="true"></activity>

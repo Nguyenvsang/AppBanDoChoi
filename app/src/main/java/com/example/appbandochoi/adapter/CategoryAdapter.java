@@ -1,5 +1,6 @@
 package com.example.appbandochoi.adapter;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import androidx.databinding.ObservableField;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandochoi.R;
+import com.example.appbandochoi.asynctask.ConvertImageFromURLTask;
+import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.databinding.ItemDanhmucBinding;
 import com.example.appbandochoi.databinding.ItemSanphamBinding;
 import com.example.appbandochoi.model.Category;
@@ -51,7 +54,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     // Tạo class MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ObservableField<String> categoryName = new ObservableField<>();
-        public ObservableField<String> image = new ObservableField<>();
+        public ObservableField<Bitmap> image = new ObservableField<>();
         public ItemDanhmucBinding itemDanhmucBinding;
         private CategoryAdapter.OnItemClickListener onItemClickListener;
         private Category category;
@@ -70,7 +73,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
             this.category = category;
             categoryName.set(category.getCategoryName());
-            image.set(category.getImage());
+
+            ConvertImageFromURLTask task = new ConvertImageFromURLTask(image);
+            task.execute(Constants.ROOT_URL + category.getImage());
         }
 
         public void onClick(View v) {

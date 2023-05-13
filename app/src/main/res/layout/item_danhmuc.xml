@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
 
     <data>
+
         <variable
             name="viewHolder"
             type="com.example.appbandochoi.adapter.CategoryAdapter.MyViewHolder" />
     </data>
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/background_whitesmokehsl"
-        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/item_anhdanhmuc"
-            android:layout_width="55dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/background_white_light_1"
-            android:src="@{viewHolder.image}}" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="170dp"
+        android:layout_height="250dp"
+        android:elevation="8dp"
+        android:foregroundGravity="center"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="4dp">
 
-        <TextView
-            android:id="@+id/item_tendanhmuc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:text="@{viewHolder.categoryName}"
-            android:textColor="@android:color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/item_anhdanhmuc"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/background_white_light_1"
+                android:bitmapSrc="@{viewHolder.image}" />
+
+            <TextView
+                android:id="@+id/item_tendanhmuc"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewHolder.categoryName}"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -29,8 +29,8 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textViewThongBao"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="248dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:background="@drawable/background_whitesmokehsl"
         android:drawableLeft="@drawable/baseline_pick_outgoing_24"
         android:gravity="center"
@@ -39,6 +39,52 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toobar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/bottombar"
+        app:layout_constraintTop_toBottomOf="@+id/textViewThongBao"
+        app:layout_constraintVertical_bias="0.104"
+        tools:layout_editor_absoluteX="0dp"
+        android:weightSum="2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReturnHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:background="@drawable/border_button"
+            android:elevation="4dp"
+            android:text="Trang chủ"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:backgroundTint="@color/orange_color_dark"
+            app:icon="@drawable/baseline_other_houses_24"
+            app:iconGravity="textStart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGoToOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_weight="1"
+            android:background="@drawable/botron_button"
+            android:elevation="4dp"
+            android:text="Đơn hàng"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:backgroundTint="@color/green_color_dark"
+            app:icon="@drawable/baseline_money_24"
+            app:iconGravity="textStart"
+            app:layout_constraintTop_toBottomOf="@+id/linedn2"
+            tools:layout_editor_absoluteX="-16dp" />
+
+    </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/bottombar"

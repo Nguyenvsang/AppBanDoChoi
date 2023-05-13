@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,7 @@ import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +39,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GioHangActivity extends AppCompatActivity implements CartItemAdapter.OnItemClickListener{
+public class GioHangActivity extends AppCompatActivity implements CartItemAdapter.OnItemClickListener, View.OnClickListener {
     private APIService apiService;
     private ActivityGioHangBinding binding;
     private CartItemAdapter cartItemAdapter;
     private List<CartItem> cartItemList = new ArrayList<>();
     private TextView txttongtien;
+    private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
+    private FloatingActionButton btnCart;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,22 +69,31 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_gio_hang);
         binding.setCart(this);
+
+        // Mapping
+        anhXa();
+        // Click action
+        linearTrangchu.setOnClickListener(this);
+        linearSanpham.setOnClickListener(this);
+        linearDonhang.setOnClickListener(this);
+        linearTaikhoan.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
+
         txttongtien = binding.txttongtien;
         cartItemAdapter.setOnItemClickListener((CartItemAdapter.OnItemClickListener) this);
-        binding.btmuahang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                Intent intent = new Intent(GioHangActivity.this, ThanhToanActivity.class);
-                // Lưu lại tổng giá trị và chuyển đi
-                String totalOrder = txttongtien.getText().toString();
-                totalOrder = totalOrder.substring(0, totalOrder.length() - 4);
-                intent.putExtra("totalOrder", Integer.parseInt(totalOrder));
-                startActivity(intent);
-            }
-        });
+        binding.btmuahang.setOnClickListener(this);
 
         displayButton();
+    }
+
+    public void anhXa() {
+        linearTrangchu = binding.linearTrangchu;
+        linearSanpham = binding.linearSanpham;
+        linearDonhang = binding.linearDonhang;
+        linearTaikhoan = binding.linearTaikhoan;
+        btnCart = binding.btnCart;
+        imgBack = binding.imgBack;
     }
 
     public void displayButton() {
@@ -133,6 +149,10 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
                         cartItemAdapter.updateTotalPrice();
                         cartItemAdapter.setOnItemClickListener((CartItemAdapter.OnItemClickListener) GioHangActivity.this);
                     }
+                    if (cartItemList == null || cartItemList.size() == 0)
+                        binding.txtgiohangtrong.setVisibility(View.VISIBLE);
+                    else
+                        binding.txtgiohangtrong.setVisibility(View.GONE);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 } catch (Exception e) {
@@ -153,4 +173,32 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
         Toast.makeText(this, "You've clicked!", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.equals(binding.btmuahang))
+        if (view.equals(linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+    }
 }

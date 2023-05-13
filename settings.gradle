@@ -15,5 +15,5 @@ dependencyResolutionManagement {
         jcenter()
     }
 }
-rootProject.name = "AppBanDoChoi"
+rootProject.name = "Toy Kingdom"
 include ':app'

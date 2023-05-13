@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.appbandochoi.R;
@@ -20,6 +24,7 @@ import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
 import java.util.List;
@@ -28,13 +33,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class XemDonActivity extends AppCompatActivity implements OrderAdapter.OnItemClickListener{
-
+public class XemDonActivity extends AppCompatActivity implements OrderAdapter.OnItemClickListener, View.OnClickListener {
     private APIService apiService;
     private ActivityXemDonBinding binding;
     private OrderAdapter orderAdapter;
     private List<Order> orderList;
     private Context context;
+    private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
+    private FloatingActionButton btnCart;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,25 @@ public class XemDonActivity extends AppCompatActivity implements OrderAdapter.On
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_xem_don);
         binding.setOrder(this);
+
+        // Mapping
+        anhXa();
+        // Click action
+        linearTrangchu.setOnClickListener(this);
+        linearSanpham.setOnClickListener(this);
+        linearDonhang.setOnClickListener(this);
+        linearTaikhoan.setOnClickListener(this);
+        btnCart.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
+    }
+
+    public void anhXa() {
+        linearTrangchu = binding.linearTrangchu;
+        linearSanpham = binding.linearSanpham;
+        linearDonhang = binding.linearDonhang;
+        linearTaikhoan = binding.linearTaikhoan;
+        btnCart = binding.btnCart;
+        imgBack = binding.imgBack;
     }
 
     public void getMyOrders() {
@@ -91,4 +117,31 @@ public class XemDonActivity extends AppCompatActivity implements OrderAdapter.On
         startActivity(intent);
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.equals(linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(imgBack)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+    }
 }
