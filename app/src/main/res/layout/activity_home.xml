@@ -77,7 +77,9 @@
                         android:padding="@dimen/_5sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv"
+                        android:imeOptions="actionSearch"
+                        android:windowSoftInputMode="adjustPan"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/container1"
@@ -100,8 +102,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_marginRight="@dimen/_92sdp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="136dp"
                             android:text="Miễn Ship"
                             android:textColor="@android:color/black"
                             android:textSize="@dimen/_16ssp"

@@ -47,15 +47,18 @@
                         android:textColor="@color/cardview_dark_background"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/txtsao"
-                        android:layout_width="match_parent"
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_marginTop="5dip"
+                        android:layout_marginBottom="5dip"
+                        android:layout_marginLeft="5dip"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="@{viewHolder.star + `/5`}"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/red"
-                        android:textSize="16sp" />
+                        android:numStars="5"
+                        android:stepSize="1"
+                        android:rating="@{Integer.parseInt(viewHolder.star)}" />
 
                     <TextView
                         android:id="@+id/txtsoluong"
@@ -102,7 +105,7 @@
                     android:layout_weight="2"
                     android:text="@{viewHolder.comment}"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

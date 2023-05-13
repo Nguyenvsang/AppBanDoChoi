@@ -50,4 +50,12 @@ public class BindingAdapters{
         }
         builder.into(imageView);
     }
+
+    @BindingAdapter("android:bitmapSrc")
+    public static void setBitmapSrc(ImageView imageView, Bitmap bitmap) {
+        Glide.with(imageView.getContext())
+                .asBitmap()
+                .load(bitmap)
+                .into(imageView);
+    }
 }

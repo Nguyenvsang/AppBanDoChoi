@@ -196,12 +196,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/botron_edittext"
                     android:drawableLeft="@drawable/baseline_edit_calendar_24"
                     android:gravity="center"
                     android:paddingStart="@dimen/_17sdp"
-                    android:layout_marginRight="10dp"
                     android:textColor="@android:color/white"
                     tools:layout_editor_absoluteX="-16dp" />
 

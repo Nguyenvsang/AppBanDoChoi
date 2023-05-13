@@ -1,5 +1,6 @@
 package com.example.appbandochoi.adapter;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,14 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ObservableField;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.appbandochoi.R;
+import com.example.appbandochoi.asynctask.ConvertImageFromURLTask;
 import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.databinding.ItemSanphamBinding;
 import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.retrofit2.APIService;
+import com.example.appbandochoi.utils.ImageConverter;
 
 import java.util.List;
 
@@ -51,7 +55,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         public ObservableField<String> productName = new ObservableField<>();
         public ObservableField<String> price = new ObservableField<>();
         public ObservableField<String> quantity = new ObservableField<>();
-        public ObservableField<String> images = new ObservableField<>();
+        public ObservableField<Bitmap> images = new ObservableField<>();
         public ObservableField<String> description = new ObservableField<>();
         public ItemSanphamBinding itemSanphamBinding;
         private OnItemClickListener onItemClickListener;
@@ -73,7 +77,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             productName.set(product.getProductName());
             price.set(String.valueOf(product.getPrice()));
             quantity.set(String.valueOf(product.getQuantity()));
-            images.set(product.getImages());
+
+            ConvertImageFromURLTask task = new ConvertImageFromURLTask(images);
+            task.execute(Constants.ROOT_URL + product.getImages());
+
+            //images.set(product.getImages());
+
             description.set(product.getDescription());
         }
 

@@ -17,6 +17,7 @@
             <ImageView
                 android:id="@+id/item_imgchitiet"
                 android:src="@drawable/ic_person_24"
+                android:background="@drawable/rounded_corner"
                 android:layout_width="50dp"
                 android:layout_height="50dp"/>
             <LinearLayout

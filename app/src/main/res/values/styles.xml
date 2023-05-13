@@ -1,0 +1,6 @@
+<resources>
+    <style name="CustomRatingBar" parent="@style/Widget.AppCompat.RatingBar">
+        <item name="android:minHeight">32dp</item> <!-- Adjust the height as desired -->
+        <item name="android:maxHeight">32dp</item> <!-- Adjust the height as desired -->
+    </style>
+</resources>

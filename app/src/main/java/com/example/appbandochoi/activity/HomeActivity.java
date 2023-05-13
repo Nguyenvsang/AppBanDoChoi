@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,8 +50,22 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
             binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
             binding.setHome(this);
 
+            //binding.editTextSearch.setOnTouchListener(this);
+
             binding.editTextSearch.setOnClickListener(this);
-            binding.editTextSearch.setOnTouchListener(this);
+            binding.editTextSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if(actionId == EditorInfo.IME_ACTION_SEARCH || event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                        finish();
+                        Intent intent = new Intent();
+                        intent.putExtra("searchString", binding.editTextSearch.getText().toString());
+                        startActivity(new Intent(HomeActivity.this, SearchActivity.class));
+                        return true;
+                    }
+                    return false;
+                }
+            });
         }
 
         public void getCategoryList() {

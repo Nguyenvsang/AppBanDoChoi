@@ -2,6 +2,7 @@ package com.example.appbandochoi.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
@@ -23,6 +24,8 @@ import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -85,7 +88,7 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
                         getProductListAndSort(3);
                     } else if (selectedItem.equals("Giá cao - thấp")) {
                         getProductListAndSort(4);
-                    } else {
+                    } else if (selectedItem.equals("Tất cả")) {
                         getProductListAndSort(0);
                     }
                 } else {
@@ -117,7 +120,7 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
                         Toast.makeText(DanhSachSPActivity.this, "Không tìm thấy kết quả!", Toast.LENGTH_SHORT).show();
 
                     productAdapter = new ProductAdapter(productList);
-                    binding.recycleviewSp.setLayoutManager(new LinearLayoutManager(DanhSachSPActivity.this));
+                    binding.recycleviewSp.setLayoutManager(new GridLayoutManager(DanhSachSPActivity.this, 2));
                     binding.recycleviewSp.setAdapter(productAdapter);
                     productAdapter.notifyDataSetChanged();
                     productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) DanhSachSPActivity.this);
@@ -146,7 +149,7 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
                         Toast.makeText(DanhSachSPActivity.this, "Không tìm thấy kết quả!", Toast.LENGTH_SHORT).show();
 
                     productAdapter = new ProductAdapter(productList);
-                    binding.recycleviewSp.setLayoutManager(new LinearLayoutManager(DanhSachSPActivity.this));
+                    binding.recycleviewSp.setLayoutManager(new GridLayoutManager(DanhSachSPActivity.this, 2));
                     binding.recycleviewSp.setAdapter(productAdapter);
                     productAdapter.notifyDataSetChanged();
                     productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) DanhSachSPActivity.this);
@@ -174,12 +177,13 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
                         Toast.makeText(DanhSachSPActivity.this, "Không tìm thấy kết quả!", Toast.LENGTH_SHORT).show();
 
                     productAdapter = new ProductAdapter(productList);
-                    binding.recycleviewSp.setLayoutManager(new LinearLayoutManager(DanhSachSPActivity.this));
+                    binding.recycleviewSp.setLayoutManager(new GridLayoutManager(DanhSachSPActivity.this, 2));
                     binding.recycleviewSp.setAdapter(productAdapter);
                     productAdapter.notifyDataSetChanged();
                     productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) DanhSachSPActivity.this);
                 } else
                     Toast.makeText(DanhSachSPActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -200,9 +204,9 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
 
                     if (productList.size() == 0 || productList == null)
                         Toast.makeText(DanhSachSPActivity.this, "Không tìm thấy kết quả!", Toast.LENGTH_SHORT).show();
-                    
+
                     productAdapter = new ProductAdapter(productList);
-                    binding.recycleviewSp.setLayoutManager(new LinearLayoutManager(DanhSachSPActivity.this));
+                    binding.recycleviewSp.setLayoutManager(new GridLayoutManager(DanhSachSPActivity.this, 2));
                     binding.recycleviewSp.setAdapter(productAdapter);
                     productAdapter.notifyDataSetChanged();
                     productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) DanhSachSPActivity.this);

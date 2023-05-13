@@ -69,4 +69,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:2.5.1"
+    // Slider
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 }

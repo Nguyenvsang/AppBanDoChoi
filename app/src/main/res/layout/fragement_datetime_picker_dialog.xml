@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_weight="2"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <NumberPicker
+        android:id="@+id/picker_month_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+    </NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/picker_year_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+    </NumberPicker>
+
+</LinearLayout>

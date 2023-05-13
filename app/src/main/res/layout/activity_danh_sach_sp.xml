@@ -66,10 +66,12 @@
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="104dp"
+            android:foregroundGravity="center"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="@id/bottombar"
             app:layout_constraintTop_toBottomOf="@id/sortbar"
             app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="9dp" />
+            app:spanCount="2" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/bottombar"

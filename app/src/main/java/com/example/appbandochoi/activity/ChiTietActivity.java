@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,9 +16,11 @@ import com.example.appbandochoi.R;
 import com.example.appbandochoi.adapter.CartItemAdapter;
 import com.example.appbandochoi.adapter.ProductAdapter;
 import com.example.appbandochoi.adapter.ReviewAdapter;
+import com.example.appbandochoi.adapter.SliderAdapter;
 import com.example.appbandochoi.databinding.ActivityChiTietBinding;
 import com.example.appbandochoi.databinding.ItemDanhgiaBinding;
 import com.example.appbandochoi.model.CartItem;
+import com.example.appbandochoi.model.Image;
 import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.model.Review;
 import com.example.appbandochoi.model.User;
@@ -25,12 +28,15 @@ import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
 import com.google.gson.Gson;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -45,10 +51,15 @@ public class ChiTietActivity extends AppCompatActivity implements ReviewAdapter.
     private Product product;
     private ReviewAdapter reviewAdapter;
     private List<Review> reviewList;
+    private SliderAdapter sliderAdapter;
+    private SliderView sliderView;
+    private List<Image> imageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        imageList = new ArrayList<>();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -57,11 +68,20 @@ public class ChiTietActivity extends AppCompatActivity implements ReviewAdapter.
         reviewAdapter = new ReviewAdapter(reviewList);
 
         getReviewList(product.getProductID());
-        //getReviewList(1);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chi_tiet);
         binding.setReview(this);
         binding.setDetail(product);
+
+        if (product.getQuantity() == 0) {
+            // Disable the button
+            binding.btnthemvaogiohang.setEnabled(false);
+            // Set the capacity (alpha value) of the button
+            binding.btnthemvaogiohang.setAlpha(0.5f);
+        }
+
+        sliderView = binding.imageSlider;
+        getImageList(product.getProductID());
 
         binding.imgDecreaseQuantity.setOnClickListener(ChiTietActivity.this);
         binding.imgIncreaseQuantity.setOnClickListener(ChiTietActivity.this);
@@ -76,7 +96,9 @@ public class ChiTietActivity extends AppCompatActivity implements ReviewAdapter.
                 System.out.println(response.body().toString());
                 if (response.isSuccessful()) {
                     reviewList = response.body();
-                    System.out.println(reviewList.size());
+                    if (reviewList == null || reviewList.size() == 0) {
+                        binding.recycleviewDanhgia.setVisibility(View.GONE);
+                    }
                     reviewAdapter = new ReviewAdapter(reviewList);
                     binding.recycleviewDanhgia.setLayoutManager(new LinearLayoutManager(ChiTietActivity.this));
                     binding.recycleviewDanhgia.setAdapter(reviewAdapter);
@@ -88,6 +110,34 @@ public class ChiTietActivity extends AppCompatActivity implements ReviewAdapter.
 
             @Override
             public void onFailure(Call<List<Review>> call, Throwable t) {
+                Toast.makeText(ChiTietActivity.this, "Gọi API R thất bại", Toast.LENGTH_SHORT).show();
+                System.out.println(t.toString());
+            }
+        });
+    }
+
+    public void getImageList(int productID) {
+        apiService = RetrofitClient.getRetrofit().create(APIService.class);
+        apiService.getImagesForProduct(productID).enqueue(new Callback<List<Image>>() {
+            @Override
+            public void onResponse(Call<List<Image>> call, Response<List<Image>> response) {
+                System.out.println(response.body().toString());
+                if (response.isSuccessful()) {
+                    imageList = response.body();
+                    sliderAdapter = new SliderAdapter(getApplicationContext(), imageList);
+                    sliderView.setSliderAdapter(sliderAdapter);
+                    sliderView.setIndicatorAnimation (IndicatorAnimationType.WORM);
+                    sliderView.setAutoCycleDirection (SliderView.AUTO_CYCLE_DIRECTION_RIGHT);
+                    sliderView.setIndicatorSelectedColor(getResources().getColor(R.color.red));
+                    sliderView.setIndicatorUnselectedColor(Color.GRAY);
+                    sliderView.startAutoCycle();
+                    sliderView.setScrollTimeInSec(5);
+                } else
+                    Toast.makeText(ChiTietActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<Image>> call, Throwable t) {
                 Toast.makeText(ChiTietActivity.this, "Gọi API R thất bại", Toast.LENGTH_SHORT).show();
                 System.out.println(t.toString());
             }

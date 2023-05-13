@@ -2,6 +2,7 @@ package com.example.appbandochoi.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
@@ -45,7 +46,13 @@ public class SearchActivity extends AppCompatActivity implements ProductAdapter.
         super.onCreate(savedInstanceState);
         context = this;
 
+        Intent intent = getIntent();
+        String searchString = intent.getStringExtra("searchString");
+
         productAdapter = new ProductAdapter(productList);
+
+        searchForProduct(searchString);
+        binding.edtsearch.setText(searchString);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
         binding.setSearch(this);
@@ -105,7 +112,7 @@ public class SearchActivity extends AppCompatActivity implements ProductAdapter.
                         Toast.makeText(SearchActivity.this, "Không tìm thấy kết quả!", Toast.LENGTH_SHORT).show();
 
                     productAdapter = new ProductAdapter(productList);
-                    binding.recycleviewSearch.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+                    binding.recycleviewSearch.setLayoutManager(new GridLayoutManager(SearchActivity.this, 2));
                     binding.recycleviewSearch.setAdapter(productAdapter);
                     productAdapter.notifyDataSetChanged();
                     productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) SearchActivity.this);
@@ -133,7 +140,7 @@ public class SearchActivity extends AppCompatActivity implements ProductAdapter.
                         Toast.makeText(SearchActivity.this, "Không tìm thấy kết quả!", Toast.LENGTH_SHORT).show();
 
                     productAdapter = new ProductAdapter(productList);
-                    binding.recycleviewSearch.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+                    binding.recycleviewSearch.setLayoutManager(new GridLayoutManager(SearchActivity.this, 2));
                     binding.recycleviewSearch.setAdapter(productAdapter);
                     productAdapter.notifyDataSetChanged();
                     productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) SearchActivity.this);

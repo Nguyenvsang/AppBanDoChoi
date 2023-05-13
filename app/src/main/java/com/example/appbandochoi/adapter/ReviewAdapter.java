@@ -115,7 +115,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             star.set(String.valueOf(review.getStar()));
 
             GetOrderItemByReviewTask task2 = new GetOrderItemByReviewTask(quantity);
-            task.execute(review.getReviewID());
+            task2.execute(review.getReviewID());
         }
         public void onClick(View v) {
             this.onItemClickListener.itemClick(review);

@@ -3,6 +3,7 @@ package com.example.appbandochoi.retrofit2;
 import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.FullOrderItem;
+import com.example.appbandochoi.model.Image;
 import com.example.appbandochoi.model.Order;
 import com.example.appbandochoi.model.OrderItem;
 import com.example.appbandochoi.model.Product;
@@ -65,6 +66,9 @@ public interface APIService {
     @GET("product/forsale")
     Call<List<Product>> getProductListForSale();
 
+    @GET("product/image")
+    Call<List<Image>> getImagesForProduct(@Query("productID") int productID);
+
     @GET("product/forsale/sort")
     Call<List<Product>> getProductAndSort(@Query("sort") int sort);
 
@@ -122,4 +126,13 @@ public interface APIService {
     @Multipart
     @PUT("user/update/image")
     Call<User> updateProfileImage(@Part("userID") RequestBody userID, @Part MultipartBody.Part image);
+
+    @GET("order/desc")
+    Call<List<Order>> getOrderDesc();
+
+    @GET("order/status")
+    Call<List<Order>> getOrderByStatus(@Query("status") int status);
+
+    @GET("order/status/date")
+    Call<List<Order>> getOrderByStatusAndDate(@Query("status") int status, @Query("month") int month, @Query("year") int year);
 }
