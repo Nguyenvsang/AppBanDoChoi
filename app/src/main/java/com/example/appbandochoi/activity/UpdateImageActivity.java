@@ -30,6 +30,7 @@ import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
 import com.example.appbandochoi.utils.RealPathUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
@@ -45,7 +46,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UpdateImageActivity extends AppCompatActivity implements View.OnClickListener {
-    Button btnChoose, btnUpload, btnCart;
+    Button btnChoose, btnUpload;
+    FloatingActionButton btnCart;
     ImageView imageViewChoose, imgBack;
     private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
     private Uri mUri;

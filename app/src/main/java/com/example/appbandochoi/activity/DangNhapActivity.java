@@ -141,7 +141,7 @@ public class DangNhapActivity extends AppCompatActivity {
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                         finish();
-                        startActivity(new Intent(DangNhapActivity.this, ProfileActivity.class));
+                        startActivity(new Intent(DangNhapActivity.this, HomeActivity.class));
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

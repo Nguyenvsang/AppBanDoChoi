@@ -170,7 +170,11 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
 
     @Override
     public void itemClick(CartItem cartItem) {
-        Toast.makeText(this, "You've clicked!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ChiTietActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("product", cartItem.getProduct());
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override
