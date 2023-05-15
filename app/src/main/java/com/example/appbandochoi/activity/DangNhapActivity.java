@@ -58,6 +58,13 @@ public class DangNhapActivity extends AppCompatActivity {
                 login();
             }
         });
+        tVSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(DangNhapActivity.this, DangKyActivity.class));
+            }
+        });
     }
 
     public void anhXa() {

@@ -84,6 +84,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:orientation="horizontal"
+        android:weightSum="10"
         app:layout_constraintTop_toBottomOf="@id/btnDangNhap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -93,7 +94,9 @@
             android:layout_height="wrap_content"
             android:text="Bạn chưa có tài khoản?"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:gravity="right"
+            android:layout_weight="5"/>
 
         <TextView
             android:id="@+id/txtDangKy"
@@ -103,7 +106,9 @@
             android:text="Đăng ký"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_weight="5"
+            android:gravity="left"/>
 
     </LinearLayout>
 

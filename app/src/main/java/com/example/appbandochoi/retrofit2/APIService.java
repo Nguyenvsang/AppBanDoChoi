@@ -21,6 +21,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -53,6 +54,9 @@ public interface APIService {
 
     @PUT("cart/update")
     Call<ResponseBody> updateCart(@Body RequestBody cartItemModel);
+
+    @DELETE("cart/delete")
+    Call<ResponseBody> deleteCartItem(@Query("cartItemID") int cartItemID);
 
     @GET("user/me/{userID}")
     Call<User> getUser(@Path("userID") int userID);

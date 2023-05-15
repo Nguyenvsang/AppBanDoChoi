@@ -27,6 +27,7 @@ import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
 import com.example.appbandochoi.utils.DateUtil;
 import com.example.appbandochoi.utils.ShortDateUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
@@ -58,7 +59,7 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
     private Button btnUpdate, btnDatePicker;
     private SimpleDateFormat dateFormatter;
     private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
-    private Button btnCart;
+    private FloatingActionButton btnCart;
     private ImageView imgBack;
 
     @Override

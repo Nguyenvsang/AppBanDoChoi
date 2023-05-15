@@ -47,7 +47,7 @@ public class SharedPrefManager {
         editor.putString(KEY_FIRSTNAME, user.getFirstname());
         editor.putString(KEY_LASTNAME, user.getLastname());
         editor.putInt(KEY_GENDER, user.getGender());
-        editor.putString(KEY_BIRTHDAY, user.getBirthDay().toString());
+        editor.putString(KEY_BIRTHDAY, user.getBirthDay() == null ? null : user.getBirthDay().toString());
         editor.putString(KEY_EMAIL, user.getEmail());
         editor.putString(KEY_ADDRESS, user.getAddress());
         editor.putString(KEY_PHONE, user.getPhone());

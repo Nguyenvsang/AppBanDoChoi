@@ -145,12 +145,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tvEmail.setText(user.getEmail());
         tvPhone.setText(user.getPhone());
         tvRole.setText(user.isRole() == false ? "Quản lý" : "Khách hàng");
-        String image;
-        if (user.getImage().contains("/images/profile"))
-            image = Constants.ROOT_URL.concat(user.getImage());
-        else
-            image = user.getImage();
-        Glide.with(getApplicationContext()).load(user.getImage().equals("") ? R.drawable.profile : image).into(imgProfile);
+        String image = "";
+        if (user.getImage() != null) {
+            if (user.getImage().contains("/images/profile"))
+                image = Constants.ROOT_URL.concat(user.getImage());
+            else
+                image = user.getImage();
+        }
+        Glide.with(getApplicationContext()).load(user.getImage() == null ? R.drawable.profile : image).into(imgProfile);
     }
 
     @Override

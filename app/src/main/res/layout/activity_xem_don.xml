@@ -40,6 +40,22 @@
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
 
+        <TextView
+            android:id="@+id/txtdonhangtrong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Bạn chưa có đơn hàng nào. Mua ngay thôi!"
+            android:visibility="gone"
+            android:textColor="#A19F9F"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="83dp"
+            app:layout_constraintTop_toBottomOf="@id/toobar"
+            app:layout_constraintBottom_toTopOf="@id/recycleview_donhang"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview_donhang"
             android:layout_width="match_parent"
@@ -47,7 +63,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/background_whitesmokehsl"
             app:layout_constraintBottom_toTopOf="@+id/bottombar"
-            app:layout_constraintTop_toBottomOf="@id/toobar"
+            app:layout_constraintTop_toBottomOf="@id/txtdonhangtrong"
             tools:layout_editor_absoluteX="5dp" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout

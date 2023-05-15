@@ -86,7 +86,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                 // The quantity is 1
                 if (cartItem.getQuantity() == 1) {
                     //delete
-                    updateCart(cartItem, 0);
+                    deleteCartItem(cartItem.getCartItemID());
                 } else {
                     updateCart(cartItem, -1);
                 }
@@ -97,7 +97,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
             @Override
             public void onClick(View v) {
                 CartItem cartItem = (CartItem) cartItemList.get(holder.getAdapterPosition());
-                updateCart(cartItem, 0);
+                //delete
+                deleteCartItem(cartItem.getCartItemID());
             }
         });
     }
@@ -173,6 +174,55 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                     JSONArray cartItems = cart.getJSONArray("cartItems");
                     // Reset cartItemList
                      cartItemList.clear();
+                    // Lấy danh sách cart
+                    for (int i = 0; i < cartItems.length(); i++) {
+                        JSONObject cartItem = cartItems.getJSONObject(i);
+                        CartItem thisCartItem = new CartItem(
+                                cartItem.getInt("cartItemID"),
+                                cartItem.getInt("quantity"),
+                                null
+                        );
+                        JSONObject product = cartItem.getJSONObject("product");
+                        Product thisProduct = new Product(
+                                product.getInt("productID"),
+                                product.getString("productName"),
+                                product.getString("description"),
+                                product.getInt("quantity"),
+                                product.getLong("price"),
+                                product.getString("images"));
+                        thisCartItem.setProduct(thisProduct);
+                        cartItemList.add(thisCartItem);
+                        notifyDataSetChanged();
+                        updateTotalPrice();
+                    }
+                    notifyDataSetChanged();
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("ERROR", t.toString());
+                //Toast.makeText(context, "Gọi API thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void deleteCartItem (int cartItemID) {
+        apiService = RetrofitClient.getRetrofit().create(APIService.class);
+        apiService.deleteCartItem(cartItemID).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                JSONObject cart;
+                try {
+                    String responseBody = response.body().string();
+                    cart = new JSONObject(responseBody);
+                    JSONArray cartItems = cart.getJSONArray("cartItems");
+                    // Reset cartItemList
+                    cartItemList.clear();
                     // Lấy danh sách cart
                     for (int i = 0; i < cartItems.length(); i++) {
                         JSONObject cartItem = cartItems.getJSONObject(i);

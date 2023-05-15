@@ -32,26 +32,14 @@
                         android:id="@+id/tvhi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_15sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
                         android:text="Hi Van Thuan"
                         android:textColor="#f26703"
                         android:textSize="@dimen/_15ssp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:text="Chơi và sáng tạo"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/tvhi"
-                        app:layout_constraintTop_toBottomOf="@+id/tvhi" />
 
                     <ImageView
                         android:id="@+id/imgProfileHome"
@@ -68,20 +56,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="19dp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="24dp"
                         android:layout_marginEnd="19dp"
                         android:background="@drawable/botron_edittext"
                         android:drawableLeft="@drawable/ic_search_24"
                         android:drawablePadding="@dimen/_5sdp"
                         android:drawableTint="@color/black"
                         android:hint="Bạn muốn tìm gì?"
+                        android:imeOptions="actionSearch"
                         android:inputType="text"
                         android:padding="@dimen/_5sdp"
+                        android:windowSoftInputMode="adjustPan"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv"
-                        android:imeOptions="actionSearch"
-                        android:windowSoftInputMode="adjustPan"/>
+                        app:layout_constraintTop_toBottomOf="@id/tvhi" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/container1"

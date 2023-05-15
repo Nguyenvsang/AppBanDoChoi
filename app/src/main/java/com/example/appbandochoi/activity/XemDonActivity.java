@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appbandochoi.R;
@@ -42,6 +43,7 @@ public class XemDonActivity extends AppCompatActivity implements OrderAdapter.On
     private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
     private FloatingActionButton btnCart;
     private ImageView imgBack;
+    private TextView txtdonhangtrong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class XemDonActivity extends AppCompatActivity implements OrderAdapter.On
         linearTaikhoan = binding.linearTaikhoan;
         btnCart = binding.btnCart;
         imgBack = binding.imgBack;
+        txtdonhangtrong = binding.txtdonhangtrong;
     }
 
     public void getMyOrders() {
@@ -95,6 +98,10 @@ public class XemDonActivity extends AppCompatActivity implements OrderAdapter.On
                     binding.recycleviewDonhang.setAdapter(orderAdapter);
                     orderAdapter.notifyDataSetChanged();
                     orderAdapter.setOnItemClickListener((OrderAdapter.OnItemClickListener) XemDonActivity.this);
+                    if (orderList == null || orderList.size() == 0)
+                        binding.txtdonhangtrong.setVisibility(View.VISIBLE);
+                    else
+                        binding.txtdonhangtrong.setVisibility(View.GONE);
                 }
                 else
                     Toast.makeText(XemDonActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();

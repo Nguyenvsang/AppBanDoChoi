@@ -175,7 +175,13 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
 
     @Override
     public void onClick(View view) {
-        if (view.equals(binding.btmuahang))
+        if (view.equals(binding.btmuahang)) {
+            String total = txttongtien.getText().toString();
+            finish();
+            Intent intent = new Intent(this, ThanhToanActivity.class);
+            intent.putExtra("totalOrder", Integer.parseInt(total.substring(0, total.length() - 4)));
+            startActivity(intent);
+        }
         if (view.equals(linearTrangchu)) {
             finish();
             startActivity(new Intent(this, HomeActivity.class));

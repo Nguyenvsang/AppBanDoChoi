@@ -3,6 +3,7 @@ package com.example.appbandochoi.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,13 +19,16 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.Glide;
 import com.example.appbandochoi.R;
 import com.example.appbandochoi.adapter.CategoryAdapter;
 import com.example.appbandochoi.adapter.ProductAdapter;
+import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.databinding.ActivityDanhSachSpBinding;
 import com.example.appbandochoi.databinding.ActivityHomeBinding;
 import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.Product;
+import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.example.appbandochoi.sharedpreferences.SharedPrefManager;
@@ -47,6 +51,9 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
     private Context context;
     private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
     private FloatingActionButton btnCart;
+    private ImageView imgProfileHome;
+    private TextView tvhi;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +82,7 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
         linearDonhang.setOnClickListener(this);
         linearTaikhoan.setOnClickListener(this);
         btnCart.setOnClickListener(this);
-
+        imgProfileHome.setOnClickListener(this);
         binding.editTextSearch.setOnClickListener(this);
         binding.editTextSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -90,9 +97,29 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
                 return false;
             }
         });
+
+        User storedUser = null;
+        // Display info
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            try {
+                storedUser = SharedPrefManager.getInstance(this).getUser();
+            } catch (ParseException e) {
+                startActivity(new Intent(HomeActivity.this, DangNhapActivity.class));
+                finish();
+            }
+        }
+        if (storedUser != null) {
+            getUser(storedUser.getUserID());
+        } else {
+            Glide.with(getApplicationContext()).load(R.drawable.profile).into(imgProfileHome);
+            tvhi.setText("Xin chào");
+        }
+
     }
 
     public void anhXa() {
+        imgProfileHome = binding.imgProfileHome;
+        tvhi = binding.tvhi;
         linearTrangchu = binding.linearTrangchu;
         linearSanpham = binding.linearSanpham;
         linearDonhang = binding.linearDonhang;
@@ -162,6 +189,36 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
         });
     }
 
+    public void getUser(int userID) {
+        apiService = RetrofitClient.getRetrofit().create(APIService.class);
+        apiService.getUser(userID).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    user = response.body();
+                    String image = "";
+                    if (user.getImage() != null) {
+                        if (user.getImage().contains("/images/profile"))
+                            image = Constants.ROOT_URL.concat(user.getImage());
+                        else
+                            image = user.getImage();
+                    }
+                    Glide.with(getApplicationContext()).load(user.getImage() == null ? R.drawable.profile : image).into(imgProfileHome);
+                    tvhi.setText("Xin chào " + user.getFirstname());
+                } else {
+                    int statusCode = response.code();
+                    Toast.makeText(HomeActivity.this, String.valueOf(statusCode), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e("ERROR", t.toString());
+                Toast.makeText(HomeActivity.this, "Gọi API thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         if (view.equals(binding.editTextSearch)) {
@@ -188,6 +245,10 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
         if (view.equals(btnCart)) {
             finish();
             startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(imgProfileHome)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
         }
     }
 
