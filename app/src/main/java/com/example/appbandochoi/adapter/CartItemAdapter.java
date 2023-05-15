@@ -99,6 +99,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                 CartItem cartItem = (CartItem) cartItemList.get(holder.getAdapterPosition());
                 //delete
                 deleteCartItem(cartItem.getCartItemID());
+                updateTotalPrice();
             }
         });
     }

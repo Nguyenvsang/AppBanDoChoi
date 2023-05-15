@@ -88,10 +88,10 @@ public class HomeActivity extends AppCompatActivity implements CategoryAdapter.O
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH  || event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                    finish();
-                    Intent intent = new Intent();
+                    Intent intent =new Intent(HomeActivity.this, SearchActivity.class);
                     intent.putExtra("searchString", binding.editTextSearch.getText().toString());
-                    startActivity(new Intent(HomeActivity.this, SearchActivity.class));
+                    startActivity(intent);
+                    finish();
                     return true;
                 }
                 return false;

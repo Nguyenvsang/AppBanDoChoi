@@ -234,8 +234,14 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
             editTextAddress.requestFocus();
             return;
         }
+
+        User storedUser = null;
+        try {
+            storedUser = SharedPrefManager.getInstance(this).getUser();
+        } catch (ParseException e) {}
+
         Map<String, Object> userModel = new HashMap<>();
-        userModel.put("userID", 11);
+        userModel.put("userID", storedUser.getUserID());
         userModel.put("lastname", lastname);
         userModel.put("firstname", firstname);
         userModel.put("gender", gender);

@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight="18"
+                    android:weightSum="20"
                     android:orientation="horizontal">
 
                     <TextView
@@ -96,7 +97,7 @@
                         android:id="@+id/item_giohang_giasp2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="7"
                         android:gravity="center|center_vertical"
                         android:text="@{viewHolder.total}"
                         android:textColor="@android:color/black"

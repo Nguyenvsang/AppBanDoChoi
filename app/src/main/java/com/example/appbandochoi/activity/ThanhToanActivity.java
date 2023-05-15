@@ -126,7 +126,6 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         if (view.equals(binding.btndathang)) {
             placeOrder(thisUser.getUserID(), 1);
-
         }
         if (view.equals(binding.btnthanhtoansau)) {
             placeOrder(thisUser.getUserID(), 0);
@@ -164,6 +163,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         orderModel.put("receiverName", binding.edtten.getText().toString());
         orderModel.put("phone", binding.edtsodienthoai.getText().toString());
         orderModel.put("address", binding.edtdiachi.getText().toString());
+        System.out.println(binding.edtdiachi.getText().toString());
         Gson gson = new Gson();
         String json = gson.toJson(gson);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
@@ -172,10 +172,10 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onResponse(Call<Order> call, Response<Order> response) {
                 if (response.isSuccessful()) {
-                    finish();
                     Intent intent = new Intent(ThanhToanActivity.this, ThongBaoDatHangActivity.class);
                     intent.putExtra("status", status);
                     startActivity(intent);
+                    finish();
                 } else
                     Toast.makeText(ThanhToanActivity.this, "Lỗi " + response.code(), Toast.LENGTH_SHORT).show();
             }

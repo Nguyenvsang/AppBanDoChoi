@@ -55,14 +55,16 @@ public class SearchActivity extends AppCompatActivity implements ProductAdapter.
 
         Intent intent = getIntent();
         String searchString = intent.getStringExtra("searchString");
+        System.out.println(searchString);
 
         productAdapter = new ProductAdapter(productList);
 
         searchForProduct(searchString);
-        binding.edtsearch.setText(searchString);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
         binding.setSearch(this);
+
+        binding.edtsearch.setText(searchString);
 
         // Mapping
         anhXa();
