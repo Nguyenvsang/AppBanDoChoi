@@ -23,6 +23,15 @@
         <item>Đã nhận</item>
         <item>Đã huỷ</item>
     </string-array>
+
+    <string-array name="review">
+        <item>Tất cả</item>
+        <item>1 sao</item>
+        <item>2 sao</item>
+        <item>3 sao</item>
+        <item>4 sao</item>
+        <item>5 sao</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

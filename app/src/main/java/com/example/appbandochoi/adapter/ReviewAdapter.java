@@ -101,21 +101,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
                 itemDanhgiaBinding.setViewHolder(this);
             }
             this.review = review;
-            //getOrderItemByReview(review.getReviewID());
 
-            GetUserByReviewTask task = new GetUserByReviewTask(reviewerName);
-            task.execute(review.getReviewID());
-
-            //reviewerName.set(review.getUser().getLastname());
+            reviewerName.set(review.getUser().getFirstname() + "***");
             Timestamp date = review.getUpdatedAt() == null ? review.getCreatedAt() : review.getUpdatedAt();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
             reviewDate.set(new ShortDateUtil().parseShortDate(date));
             images.set(review.getImages());
             comment.set(review.getComment());
             star.set(String.valueOf(review.getStar()));
-
-            GetOrderItemByReviewTask task2 = new GetOrderItemByReviewTask(quantity);
-            task2.execute(review.getReviewID());
+            quantity.set(String.valueOf(orderItem.getQuantity()));
         }
         public void onClick(View v) {
             this.onItemClickListener.itemClick(review);

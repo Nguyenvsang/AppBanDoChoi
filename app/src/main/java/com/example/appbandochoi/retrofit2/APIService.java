@@ -152,4 +152,13 @@ public interface APIService {
 
     @GET("orderitem/revenue/byproduct")
     Call<List<ItemProduct>> getRevenueByProduct(@Query("month") int month, @Query("year") int year);
+
+    @GET("review/bystar")
+    Call<List<Review>> getReviewByStar(@Query("star") int star);
+
+    @GET("review/all/desc")
+    Call<List<Review>> getReviewDesc();
+
+    @GET("order/byorderitem")
+    Call<Order> getOrderByOrderItem(@Query("orderItemID") int orderItemID);
 }

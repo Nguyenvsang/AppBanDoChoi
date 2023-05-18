@@ -23,6 +23,7 @@ public class Review implements Serializable {
     private Timestamp createdAt;
 
     private Timestamp updatedAt;
+    private Product product;
 
     private OrderItem orderItem;
 

@@ -12,16 +12,8 @@ import androidx.databinding.ObservableField;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandochoi.R;
-import com.example.appbandochoi.asynctask.GetProductByOrderItemTask;
-import com.example.appbandochoi.asynctask.GetReviewByOrderItemTask;
-import com.example.appbandochoi.asynctask.GetUserByReviewTask;
 import com.example.appbandochoi.databinding.ItemChitietDonhangBinding;
 import com.example.appbandochoi.model.FullOrderItem;
-import com.example.appbandochoi.model.Order;
-import com.example.appbandochoi.model.OrderItem;
-import com.example.appbandochoi.model.Product;
-import com.example.appbandochoi.model.Review;
-import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.utils.ShortDateUtil;
 
 import java.sql.Timestamp;
