@@ -4,6 +4,7 @@ import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.FullOrderItem;
 import com.example.appbandochoi.model.Image;
+import com.example.appbandochoi.model.ItemProduct;
 import com.example.appbandochoi.model.Order;
 import com.example.appbandochoi.model.OrderItem;
 import com.example.appbandochoi.model.Product;
@@ -148,4 +149,7 @@ public interface APIService {
 
     @POST("product/update/quantity")
     Call<Product> updateQuantity(@Query("productID") int productID, @Query("quantity") int quantity);
+
+    @GET("orderitem/revenue/byproduct")
+    Call<List<ItemProduct>> getRevenueByProduct(@Query("month") int month, @Query("year") int year);
 }

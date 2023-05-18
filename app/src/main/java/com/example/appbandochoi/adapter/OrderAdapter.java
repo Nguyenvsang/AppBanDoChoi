@@ -131,7 +131,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             address.set(order.getAddress());
             total.set(String.valueOf(order.getTotal()));
             // Set button visibility
-            if (order.getStatus() != 0) {
+            if (order.getStatus() == 0) {
+                btnhuybodon.setVisibility(View.VISIBLE);
+                btnthanhtoanlai.setVisibility(View.VISIBLE);
+                linearLayoutDonhang.setVisibility(View.VISIBLE);
+            } else if (order.getStatus() == 1 || order.getStatus() == 2) {
+                btnhuybodon.setVisibility(View.GONE);
+                btnthanhtoanlai.setVisibility(View.VISIBLE);
+                linearLayoutDonhang.setVisibility(View.VISIBLE);
+            } else {
                 btnhuybodon.setVisibility(View.GONE);
                 btnthanhtoanlai.setVisibility(View.GONE);
                 linearLayoutDonhang.setVisibility(View.GONE);
