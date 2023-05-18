@@ -213,17 +213,7 @@ public class UpdateProfileActivity extends AppCompatActivity implements View.OnC
             e.printStackTrace();
         }
 
-        // Check input
-        if (TextUtils.isEmpty(firstname)) {
-            editTextFirstname.setError("Vui lòng nhập tên!");
-            editTextFirstname.requestFocus();
-            return;
-        }
-        if (TextUtils.isEmpty(phone)) {
-            editTextPhone.setError("Vui lòng nhập số điện thoại!");
-            editTextPhone.requestFocus();
-            return;
-        }
+
         if (phone.length() != 10) {
             editTextPhone.setError("Vui lòng nhập số điện thoại 10 số!");
             editTextPhone.requestFocus();

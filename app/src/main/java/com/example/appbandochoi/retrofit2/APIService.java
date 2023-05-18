@@ -142,4 +142,10 @@ public interface APIService {
 
     @GET("order/status/date")
     Call<List<Order>> getOrderByStatusAndDate(@Query("status") int status, @Query("month") int month, @Query("year") int year);
+
+    @POST("product/update/status")
+    Call<Product> updateStatus(@Query("productID") int productID, @Query("status") boolean status);
+
+    @POST("product/update/quantity")
+    Call<Product> updateQuantity(@Query("productID") int productID, @Query("quantity") int quantity);
 }

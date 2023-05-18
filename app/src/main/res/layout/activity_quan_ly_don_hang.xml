@@ -73,59 +73,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:layout_weight="2"
-                android:weightSum="2">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/picker_month"
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="-10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_autocomplete_border_manager"
-                    android:gravity="center">
-
-                </androidx.appcompat.widget.AppCompatTextView>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/picker_year"
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="-10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_autocomplete_border_manager"
-                    android:gravity="center">
-
-                </androidx.appcompat.widget.AppCompatTextView>
-
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSearchByDate"
-                android:layout_width="50dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="-3dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:insetLeft="0dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                app:backgroundTint="#00BCD4"
-                app:icon="@drawable/ic_manage_search_24"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -133,46 +80,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toTopOf="@id/layout1"
+            app:layout_constraintBottom_toTopOf="@id/bottombar"
             app:layout_constraintTop_toBottomOf="@id/layoutbig"
             app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="9dp" />
-
-        <LinearLayout
-            android:id="@+id/layout1"
-            android:layout_width="408dp"
-            android:layout_height="51dp"
-            android:layout_marginBottom="@dimen/_80sdp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycleview_ql">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Doanh thu"
-                android:textColor="@color/orange_color_dark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtdoanhthu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="0"
-                android:textColor="@android:color/background_dark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/bottombar"
@@ -180,7 +91,7 @@
             android:layout_height="@dimen/_80sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout1">
+            app:layout_constraintTop_toBottomOf="@+id/recycleview_ql">
 
             <com.google.android.material.bottomappbar.BottomAppBar
                 android:id="@+id/appbar"

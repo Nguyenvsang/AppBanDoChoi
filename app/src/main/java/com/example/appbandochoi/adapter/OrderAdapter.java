@@ -1,6 +1,8 @@
 package com.example.appbandochoi.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,9 +101,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                     status = "Đang chờ thanh toán";
                     break;
                 case 1:
-                    status = "Đang vận chuyển";
+                    status = "Đang chờ xác nhận";
                     break;
                 case 2:
+                    status = "Đã xác nhận. Đang chờ vận chuyển.";
+                    break;
+                case 3:
+                    status = "Đang vận chuyển";
+                    break;
+                case 4:
                     status = "Đã nhận";
                     break;
                 default:
@@ -141,8 +149,24 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             btnhuybodon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    updateOrderStatus(order.getOrderID(), 3, position);
-                    Toast.makeText(context, "Đã huỷ đơn hàng. Mong được phục vụ quý khách lần sau!", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Thông báo");
+                    builder.setMessage("Bạn có chắc chắn muốn huỷ đơn hàng này?");
+                    builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            updateOrderStatus(order.getOrderID(), 5, position);
+                            Toast.makeText(context, "Đã huỷ đơn hàng. Mong được phục vụ quý khách lần sau!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.setNegativeButton("Huỷ bỏ", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
         }

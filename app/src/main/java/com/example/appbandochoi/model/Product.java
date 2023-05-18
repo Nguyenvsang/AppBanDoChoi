@@ -21,6 +21,7 @@ public class Product extends BaseObservable implements Serializable {
     private int quantity;
     private long price;
     private String images;
+    private boolean status;
 
     @Bindable
     public int getProductID() {
@@ -80,5 +81,26 @@ public class Product extends BaseObservable implements Serializable {
     public void setImages(String images) {
         this.images = images;
         notifyPropertyChanged(BR.images);
+    }
+
+    @Bindable
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+        notifyPropertyChanged(BR.images);
+    }
+
+    @Override
+    public String toString() {
+        return "Product ID: " + productID +
+                "\nProduct Name: " + productName +
+                "\nDescription: " + description +
+                "\nQuantity: " + quantity +
+                "\nPrice: " + price +
+                "\nImages: " + images +
+                "\nStatus: " + status;
     }
 }

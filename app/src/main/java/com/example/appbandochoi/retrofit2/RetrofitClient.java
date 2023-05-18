@@ -22,19 +22,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static Retrofit retrofit;
 
-
     public static Retrofit getRetrofit(){
-        // Creates the json object which will manage the information received
-        GsonBuilder builder = new GsonBuilder();
-
-        // Register an adapter to manage the date types as long values
-        builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
-            public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-                return new Date(json.getAsJsonPrimitive().getAsLong());
-            }
-        });
-
-        Gson gson = builder.create();
+//        // Creates the json object which will manage the information received
+//        GsonBuilder builder = new GsonBuilder();
+//
+//        // Register an adapter to manage the date types as long values
+//        builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+//            public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+//                return new Date(json.getAsJsonPrimitive().getAsLong());
+//            }
+//        });
+//
+//        Gson gson = builder.create();
 
         OkHttpClient clientSetup = new OkHttpClient.Builder()
                 .connectTimeout(5, TimeUnit.MINUTES)

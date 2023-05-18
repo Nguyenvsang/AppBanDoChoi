@@ -135,7 +135,8 @@ public class GioHangActivity extends AppCompatActivity implements CartItemAdapte
                                 product.getString("description"),
                                 product.getInt("quantity"),
                                 product.getLong("price"),
-                                product.getString("images"));
+                                product.getString("images"),
+                                product.getBoolean("status"));
                         thisCartItem.setProduct(thisProduct);
                         cartItemList.add(thisCartItem);
 

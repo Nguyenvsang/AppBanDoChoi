@@ -156,7 +156,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
         void itemClick(CartItem cartItem);
     }
 
-    public void updateCart (CartItem cartItemModel, int quantity) {
+    public void updateCart(CartItem cartItemModel, int quantity) {
         // Create requestbody
         Map<String, Object> newMap = new HashMap<>();
         newMap.put("cartItemID", cartItemModel.getCartItemID());
@@ -174,7 +174,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                     cart = new JSONObject(responseBody);
                     JSONArray cartItems = cart.getJSONArray("cartItems");
                     // Reset cartItemList
-                     cartItemList.clear();
+                    cartItemList.clear();
                     // Lấy danh sách cart
                     for (int i = 0; i < cartItems.length(); i++) {
                         JSONObject cartItem = cartItems.getJSONObject(i);
@@ -190,7 +190,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                                 product.getString("description"),
                                 product.getInt("quantity"),
                                 product.getLong("price"),
-                                product.getString("images"));
+                                product.getString("images"),
+                                product.getBoolean("status"));
                         thisCartItem.setProduct(thisProduct);
                         cartItemList.add(thisCartItem);
                         notifyDataSetChanged();
@@ -212,7 +213,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
         });
     }
 
-    public void deleteCartItem (int cartItemID) {
+    public void deleteCartItem(int cartItemID) {
         apiService = RetrofitClient.getRetrofit().create(APIService.class);
         apiService.deleteCartItem(cartItemID).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -239,7 +240,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
                                 product.getString("description"),
                                 product.getInt("quantity"),
                                 product.getLong("price"),
-                                product.getString("images"));
+                                product.getString("images"),
+                                product.getBoolean("status"));
                         thisCartItem.setProduct(thisProduct);
                         cartItemList.add(thisCartItem);
                         notifyDataSetChanged();

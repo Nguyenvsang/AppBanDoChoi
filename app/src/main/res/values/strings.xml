@@ -16,9 +16,11 @@
 
     <string-array name="filter">
         <item>Tất cả</item>
-        <item>Chờ thanh toán</item>
+        <item>Đang chờ thanh toán</item>
+        <item>Đang chờ xác nhận</item>
+        <item>Đang chờ vận chuyển</item>
         <item>Đang vận chuyển</item>
-        <item>Đã nhận hàng</item>
+        <item>Đã nhận</item>
         <item>Đã huỷ</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->

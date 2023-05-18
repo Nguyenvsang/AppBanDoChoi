@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewHolder"
+            type="com.example.appbandochoi.adapter.ProductManagementAdapter.MyViewHolder" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_margin="5dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <ImageView
+                    android:id="@+id/itemdcg_image"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:bitmapSrc="@{viewHolder.images}" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:id="@+id/itemdcg_ten"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:gravity="center"
+                        android:text="@{viewHolder.productName}"
+                        android:textColor="@color/design_dark_default_color_shadow_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/itemdcg_gia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="@{viewHolder.price.concat(` VNĐ`)}"
+                        android:textColor="@color/orange_color_dark"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/itemdcg_mota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <RadioGroup
+                    android:id="@+id/rdGroupProductStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rdBan"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="Bán"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/_30sdp"/>
+
+                    <RadioButton
+                        android:id="@+id/rdNgungBan"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="Ngừng bán"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_30sdp"/>
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edtCapNhatSoLuong"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_110sdp"
+                        android:layout_weight="1"
+                        android:imeOptions="actionSearch"
+                        android:inputType="number|numberSigned"
+                        android:text=""
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:windowSoftInputMode="adjustPan" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCapNhatSoLuongSanPham"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="@dimen/_90sdp"
+                        android:background="@drawable/bg_autocomplete_border_manager"
+                        android:elevation="4dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        android:textSize="12sp"
+                        app:backgroundTint="#00BCD4"
+                        app:cornerRadius="40dp"
+                        android:layout_weight="1"
+                        app:icon="@drawable/baseline_change_circle_24"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        app:iconTint="@color/highlight"
+                        android:layout_marginBottom="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

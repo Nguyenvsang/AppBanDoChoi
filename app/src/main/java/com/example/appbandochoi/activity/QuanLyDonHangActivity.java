@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.appbandochoi.R;
 import com.example.appbandochoi.adapter.OrderAdapter;
+import com.example.appbandochoi.adapter.OrderManagementAdapter;
 import com.example.appbandochoi.databinding.ActivityQuanLyDonHangBinding;
 import com.example.appbandochoi.databinding.ActivityXemDonBinding;
 import com.example.appbandochoi.fragment.MonthYearPickerDialog;
@@ -41,25 +42,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class QuanLyDonHangActivity extends AppCompatActivity
-        implements OrderAdapter.OnItemClickListener, DatePickerDialog.OnDateSetListener, MonthYearPickerDialog.OnMonthYearSetListener, View.OnClickListener {
-
+        implements OrderManagementAdapter.OnItemClickListener {
     private APIService apiService;
     private ActivityQuanLyDonHangBinding binding;
-    private OrderAdapter orderAdapter;
+    private OrderManagementAdapter orderManagementAdapter;
     private List<Order> orderList;
     private Context context;
     private AutoCompleteTextView autoCompleteFilter;
-    private int month, year;
-    MonthYearPickerDialog pd = new MonthYearPickerDialog();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
 
-        pd.setListener(this, this, this);
-
-        orderAdapter = new OrderAdapter(orderList, context);
+        orderManagementAdapter = new OrderManagementAdapter(orderList, context);
         getOrderDesc();
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quan_ly_don_hang);
@@ -80,44 +76,25 @@ public class QuanLyDonHangActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
-                // Have filtered by Date
-                if (binding.pickerMonth.getText().toString() == "0" || binding.pickerYear.getText().toString() == "0") {
-                    // Compare the selected item with each item to determine which one was clicked
-                    if (selectedItem.equals("Chờ thanh toán")) {
-                        getOrderByStatus(1);
-                    } else if (selectedItem.equals("Đang vận chuyển")) {
-                        getOrderByStatus(2);
-                    } else if (selectedItem.equals("Đã nhận hàng")) {
-                        getOrderByStatus(3);
-                    } else if (selectedItem.equals("Đã huỷ")) {
-                        getOrderByStatus(4);
-                    } else {
-                        getOrderByStatus(0);
-                    }
-                } else {// In constrast
-                    int month = Integer.parseInt(binding.pickerMonth.getText().toString());
-                    int year = Integer.parseInt(binding.pickerYear.getText().toString());
-                    if (selectedItem.equals("Chờ thanh toán")) {
-                        getOrderByStatusAndDate(1, month, year);
-                    } else if (selectedItem.equals("Đang vận chuyển")) {
-                        getOrderByStatusAndDate(2, month, year);
-                    } else if (selectedItem.equals("Đã nhận hàng")) {
-                        getOrderByStatusAndDate(3, month, year);
-                    } else if (selectedItem.equals("Đã huỷ")) {
-                        getOrderByStatusAndDate(4, month, year);
-                    } else {
-                        getOrderByStatusAndDate(0, month, year);
-                    }
+                // Filter
+                if (selectedItem.equals("Đang chờ thanh toán")) {
+                    getOrderByStatus(0);
+                } else if (selectedItem.equals("Đang chờ xác nhận")) {
+                    getOrderByStatus(1);
+                } else if (selectedItem.equals("Đang chờ vận chuyển")) {
+                    getOrderByStatus(2);
+                } else if (selectedItem.equals("Đang vận chuyển")) {
+                    getOrderByStatus(3);
+                } else if (selectedItem.equals("Đã nhận")) {
+                    getOrderByStatus(4);
+                } else if (selectedItem.equals("Đã huỷ")) {
+                    getOrderByStatus(5);
+                }else if (selectedItem.equals("Tất cả")){
+                    getOrderDesc();
                 }
+
             }
         });
-
-        binding.pickerMonth.setText(String.valueOf(month));
-        binding.pickerYear.setText(String.valueOf(year));
-
-        binding.pickerMonth.setOnClickListener(this);
-        binding.pickerYear.setOnClickListener(this);
-        binding.btnSearchByDate.setOnClickListener(this);
     }
 
     public void getOrderDesc() {
@@ -127,11 +104,11 @@ public class QuanLyDonHangActivity extends AppCompatActivity
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 if (response.isSuccessful()) {
                     orderList = response.body();
-                    orderAdapter = new OrderAdapter(orderList, context);
+                    orderManagementAdapter = new OrderManagementAdapter(orderList, context);
                     binding.recycleviewQl.setLayoutManager(new LinearLayoutManager(QuanLyDonHangActivity.this));
-                    binding.recycleviewQl.setAdapter(orderAdapter);
-                    orderAdapter.notifyDataSetChanged();
-                    orderAdapter.setOnItemClickListener((OrderAdapter.OnItemClickListener) QuanLyDonHangActivity.this);
+                    binding.recycleviewQl.setAdapter(orderManagementAdapter);
+                    orderManagementAdapter.notifyDataSetChanged();
+                    orderManagementAdapter.setOnItemClickListener ((OrderManagementAdapter.OnItemClickListener) QuanLyDonHangActivity.this);
                 } else
                     Toast.makeText(QuanLyDonHangActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
             }
@@ -151,35 +128,11 @@ public class QuanLyDonHangActivity extends AppCompatActivity
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 if (response.isSuccessful()) {
                     orderList = response.body();
-                    orderAdapter = new OrderAdapter(orderList, context);
+                    orderManagementAdapter = new OrderManagementAdapter(orderList, context);
                     binding.recycleviewQl.setLayoutManager(new LinearLayoutManager(QuanLyDonHangActivity.this));
-                    binding.recycleviewQl.setAdapter(orderAdapter);
-                    orderAdapter.notifyDataSetChanged();
-                    orderAdapter.setOnItemClickListener((OrderAdapter.OnItemClickListener) QuanLyDonHangActivity.this);
-                } else
-                    Toast.makeText(QuanLyDonHangActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<List<Order>> call, Throwable t) {
-                Toast.makeText(QuanLyDonHangActivity.this, "Gọi API thất bại", Toast.LENGTH_SHORT).show();
-                System.out.println(t.toString());
-            }
-        });
-    }
-
-    public void getOrderByStatusAndDate(int status, int month, int year) {
-        apiService = RetrofitClient.getRetrofit().create(APIService.class);
-        apiService.getOrderByStatusAndDate(status, month, year).enqueue(new Callback<List<Order>>() {
-            @Override
-            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
-                if (response.isSuccessful()) {
-                    orderList = response.body();
-                    orderAdapter = new OrderAdapter(orderList, context);
-                    binding.recycleviewQl.setLayoutManager(new LinearLayoutManager(QuanLyDonHangActivity.this));
-                    binding.recycleviewQl.setAdapter(orderAdapter);
-                    orderAdapter.notifyDataSetChanged();
-                    orderAdapter.setOnItemClickListener((OrderAdapter.OnItemClickListener) QuanLyDonHangActivity.this);
+                    binding.recycleviewQl.setAdapter(orderManagementAdapter);
+                    orderManagementAdapter.notifyDataSetChanged();
+                    orderManagementAdapter.setOnItemClickListener((OrderManagementAdapter.OnItemClickListener) QuanLyDonHangActivity.this);
                 } else
                     Toast.makeText(QuanLyDonHangActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
             }
@@ -199,34 +152,5 @@ public class QuanLyDonHangActivity extends AppCompatActivity
         bundle.putSerializable("order", order);
         intent.putExtras(bundle);
         startActivity(intent);
-    }
-
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-    }
-
-    @Override
-    public void onMonthYearSet(int selectedMonth, int selectedYear) {
-        month = selectedMonth;
-        year = selectedYear;
-
-        binding.pickerMonth.setText(String.valueOf(month));
-        binding.pickerYear.setText(String.valueOf(year));
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.equals(binding.pickerMonth) || v.equals(binding.pickerYear)) {
-            // Filter by date
-            pd.show(getSupportFragmentManager(), "MonthYearPickerDialog");
-        }
-        if (v.equals(binding.btnSearchByDate)) {
-            int month = Integer.parseInt(binding.pickerMonth.getText().toString());
-            int year = Integer.parseInt(binding.pickerYear.getText().toString());
-            // Lấy tất cả
-            getOrderByStatusAndDate(0, month, year);
-        }
     }
 }
