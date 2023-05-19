@@ -30,14 +30,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tvName, tvGender, tvBirthday, tvAddress, tvEmail, tvUsername, tvPhone, tvRole;
     ImageView imgProfile;
     FloatingActionButton btnCart;
     private User user;
     private APIService apiService;
     private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
-    private ImageView imgBack, imgUpdateProfile, imgLogout;
+    private ImageView imgBack, imgUpdateProfile, imgLogout, imgManage;
+    User storedUser = null;
+
     public void anhXa() {
         tvName = findViewById(R.id.textViewName);
         tvGender = findViewById(R.id.textViewGenderProfile);
@@ -56,6 +58,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         imgBack = findViewById(R.id.imgBack);
         imgUpdateProfile = findViewById(R.id.imgUpdateProfile);
         imgLogout = findViewById(R.id.imgLogout);
+        imgManage = findViewById(R.id.imgManage);
     }
 
     @Override
@@ -69,9 +72,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if(bundle == null) {
+        if (bundle == null) {
             if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-                User storedUser = null;
                 try {
                     storedUser = SharedPrefManager.getInstance(this).getUser();
                 } catch (ParseException e) {
@@ -92,6 +94,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             displayUser();
         }
 
+        // Show manage icon
+        if (user != null && user.isRole())
+            imgManage.setVisibility(View.VISIBLE);
+        else
+            imgManage.setVisibility(View.GONE);
         // Click action
         linearTrangchu.setOnClickListener(this);
         linearSanpham.setOnClickListener(this);
@@ -209,6 +216,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             });
             AlertDialog dialog = builder.create();
             dialog.show();
+        }
+        if (view.equals(imgManage)) {
+            if (user.isRole()) {
+                finish();
+                startActivity(new Intent(this, ProfileActivity.class));
+            } else {
+                Toast.makeText(ProfileActivity.this, "Vui lòng đăng nhập vào tài khoản quản lý!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

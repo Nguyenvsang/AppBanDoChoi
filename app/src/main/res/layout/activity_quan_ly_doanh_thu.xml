@@ -31,12 +31,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="Đơn hàng và doanh thu"
+                android:text="Doanh thu"
                 android:textColor="@color/design_dark_default_color_shadow_dark"
                 android:textSize="23dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="10dp" />
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout

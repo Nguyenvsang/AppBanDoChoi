@@ -7,12 +7,14 @@
     android:background="#f5f5f5"
     tools:context=".activity.ProfileActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toobar"
         android:layout_width="match_parent"
         android:layout_height="68dp"
         android:background="#e7ee9f"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,8 +23,18 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/background_white_light_1"
             android:src="@drawable/ic_baseline_arrow_back_24" />
+
+        <ImageView
+            android:id="@+id/imgManage"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/background_white_light_1"
+            android:src="@drawable/baseline_apps_24"
+            tools:layout_editor_absoluteX="66dp"
+            tools:layout_editor_absoluteY="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +69,6 @@
             android:src="@drawable/ic_baseline_edit_24" />
 
     </androidx.appcompat.widget.Toolbar>
-
 
     <ScrollView
         android:layout_width="0dp"
@@ -127,17 +138,6 @@
                         app:layout_constraintEnd_toEndOf="@+id/textViewName"
                         app:layout_constraintStart_toStartOf="@+id/textViewName"
                         app:layout_constraintTop_toBottomOf="@+id/textViewName" />
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/circles" />
 
                     <LinearLayout
                         android:id="@+id/te"
@@ -212,6 +212,13 @@
                                 android:textColor="#5b5b5b"
                                 android:textSize="16sp"
                                 android:textStyle="italic" />
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="0dp"
+                                android:scaleType="centerCrop"
+                                app:srcCompat="@drawable/circles" />
                         </LinearLayout>
 
                         <View
