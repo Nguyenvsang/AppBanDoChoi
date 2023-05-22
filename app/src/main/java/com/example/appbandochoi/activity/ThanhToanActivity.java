@@ -157,15 +157,19 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void placeOrder(int userID, int status) {
+        String receiverName = binding.edtten.getText().toString();
+        String phone = binding.edtsodienthoai.getText().toString();
+        String address = binding.edtdiachi.getText().toString();
+
         Map<String, Object> orderModel = new HashMap<>();
         orderModel.put("userID", userID);
         orderModel.put("status", status);
-        orderModel.put("receiverName", binding.edtten.getText().toString());
-        orderModel.put("phone", binding.edtsodienthoai.getText().toString());
-        orderModel.put("address", binding.edtdiachi.getText().toString());
-        System.out.println(binding.edtdiachi.getText().toString());
+        orderModel.put("receiverName", receiverName);
+        orderModel.put("phone", phone);
+        orderModel.put("address", address);
+
         Gson gson = new Gson();
-        String json = gson.toJson(gson);
+        String json = gson.toJson(orderModel);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
         apiService = RetrofitClient.getRetrofit().create(APIService.class);
         apiService.placeOrder(userID, requestBody).enqueue(new Callback<Order>() {

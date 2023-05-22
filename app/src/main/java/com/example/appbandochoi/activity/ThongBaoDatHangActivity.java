@@ -25,7 +25,6 @@ public class ThongBaoDatHangActivity extends AppCompatActivity implements View.O
         // Mapping
         anhXa();
         // Click action
-        imgBack.setOnClickListener(this);
         btnReturnhome.setOnClickListener(this);
         btnReturnorder.setOnClickListener(this);
 
@@ -39,7 +38,6 @@ public class ThongBaoDatHangActivity extends AppCompatActivity implements View.O
 
     public void anhXa() {
         textViewThongBao = findViewById(R.id.textViewThongBao);
-        imgBack = findViewById(R.id.imgBack);
         btnReturnhome = findViewById(R.id.btnReturnHome);
         btnReturnorder = findViewById(R.id.btnGoToOrder);
     }

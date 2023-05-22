@@ -29,7 +29,7 @@
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Tài khoản"
+            android:text="Cập nhật ảnh đại diện"
             android:textColor="@color/design_dark_default_color_shadow_dark"
             android:textSize="23dp"
             android:textStyle="bold"
