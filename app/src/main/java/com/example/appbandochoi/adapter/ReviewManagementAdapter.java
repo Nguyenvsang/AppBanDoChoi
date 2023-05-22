@@ -1,56 +1,23 @@
 package com.example.appbandochoi.adapter;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ObservableField;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandochoi.R;
-import com.example.appbandochoi.activity.ThanhToanActivity;
 import com.example.appbandochoi.asynctask.ConvertImageFromURLTask;
-import com.example.appbandochoi.asynctask.GetOrderItemByReviewTask;
-import com.example.appbandochoi.asynctask.GetUserByReviewTask;
 import com.example.appbandochoi.constants.Constants;
-import com.example.appbandochoi.databinding.ItemChitietDonhangBinding;
-import com.example.appbandochoi.databinding.ItemDanhgiaBinding;
 import com.example.appbandochoi.databinding.ItemQuanLyDanhGiaBinding;
-import com.example.appbandochoi.databinding.ItemSanphamBinding;
-import com.example.appbandochoi.model.CartItem;
-import com.example.appbandochoi.model.FullOrderItem;
-import com.example.appbandochoi.model.Order;
-import com.example.appbandochoi.model.OrderItem;
-import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.model.Review;
-import com.example.appbandochoi.model.User;
-import com.example.appbandochoi.retrofit2.APIService;
-import com.example.appbandochoi.retrofit2.RetrofitClient;
-import com.example.appbandochoi.utils.DateUtil;
 import com.example.appbandochoi.utils.ShortDateUtil;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ReviewManagementAdapter extends RecyclerView.Adapter<ReviewManagementAdapter.MyViewHolder> {
     private List<Review> reviewList;

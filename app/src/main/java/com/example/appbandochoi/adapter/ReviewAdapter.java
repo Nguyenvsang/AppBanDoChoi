@@ -12,27 +12,14 @@ import androidx.databinding.ObservableField;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandochoi.R;
-import com.example.appbandochoi.activity.ThanhToanActivity;
-import com.example.appbandochoi.asynctask.GetOrderItemByReviewTask;
-import com.example.appbandochoi.asynctask.GetUserByReviewTask;
-import com.example.appbandochoi.constants.Constants;
 import com.example.appbandochoi.databinding.ItemDanhgiaBinding;
-import com.example.appbandochoi.databinding.ItemSanphamBinding;
-import com.example.appbandochoi.model.CartItem;
 import com.example.appbandochoi.model.OrderItem;
-import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.model.Review;
 import com.example.appbandochoi.model.User;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
-import com.example.appbandochoi.utils.DateUtil;
 import com.example.appbandochoi.utils.ShortDateUtil;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

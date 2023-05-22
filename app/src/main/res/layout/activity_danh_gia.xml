@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DangNhapActivity">
 
-    <data>
-        <variable
-            name="viewHolder"
-            type="com.example.appbandochoi.adapter.ReviewAdapter.MyViewHolder" />
-    </data>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toobar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#e7ee9f"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/background_white_light_1"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Đánh giá sản phẩm"
+            android:textColor="@color/design_dark_default_color_shadow_dark"
+            android:textSize="23dp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:elevation="8dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        app:layout_constraintTop_toBottomOf="@id/toobar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,91 +50,90 @@
             android:orientation="vertical"
             android:weightSum="10">
 
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:layout_weight="5"
-                android:weightSum="10">
+                android:layout_marginBottom="10dp"
+                android:text="Vui lòng chọn mức độ hài lòng"
+                android:textSize="@dimen/_16sdp" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6"
-                    android:orientation="vertical"
-                    android:weightSum="10">
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="2"
+                android:numStars="5"
+                android:rating="@{Integer.parseInt(viewHolder.star)}"
+                android:stepSize="1" />
 
-                    <TextView
-                        android:id="@+id/txtreviewername"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="@{viewHolder.reviewerName == null ? `Ẩn danh` : viewHolder.reviewerName}"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/cardview_dark_background"
-                        android:textSize="16sp" />
-
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_marginTop="5dip"
-                        android:layout_marginBottom="5dip"
-                        android:layout_marginLeft="5dip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:numStars="5"
-                        android:stepSize="1"
-                        android:rating="@{Integer.parseInt(viewHolder.star)}" />
-
-                    <TextView
-                        android:id="@+id/txtsoluong"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="@{`Số lượng: ` + viewHolder.quantity}"
-                        android:textColor="@color/cardview_dark_background"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/txtngaydanhgia"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="@{viewHolder.reviewDate}"
-                        android:textColor="@color/cardview_dark_background"
-                        android:textSize="16sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:orientation="vertical"
-                    android:weightSum="10">
-                    <ImageView
-                        android:id="@+id/imgdanhgia"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@{viewHolder.images}" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:layout_weight="5">
+                android:layout_marginBottom="10dp"
+                android:text="Vui lòng nhập đánh giá (tối đa 255 từ)"
+                android:textSize="@dimen/_16sdp" />
 
-                <TextView
-                    android:id="@+id/txtdanhgia"
-                    android:layout_width="match_parent"
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_email"
+                android:drawablePadding="5dp"
+                android:hint="Nhận xét"
+                android:inputType="text"
+                android:scrollHorizontally="false"
+                android:singleLine="false"
+                android:layout_marginBottom="20sp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Vui lòng chọn ảnh đánh giá"
+                android:textSize="@dimen/_16sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:weightSum="4">
+
+                <ImageView
+                    android:id="@+id/imgReview"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:text="@{viewHolder.comment}"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:layout_weight="3"
+                    android:layout_gravity="center"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUploadReviewImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:background="@drawable/background_yellow_light"
+                    android:gravity="center"
+                    app:backgroundTint="@color/green_color_dark"
+                    app:icon="@drawable/baseline_cloud_upload_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-</layout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/botron_button"
+        android:gravity="center"
+        android:text="Gửi đánh giá"
+        android:textColor="@color/highlight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

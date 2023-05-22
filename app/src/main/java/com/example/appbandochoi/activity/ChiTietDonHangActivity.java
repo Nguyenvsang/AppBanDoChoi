@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,16 +47,18 @@ public class ChiTietDonHangActivity extends AppCompatActivity implements OrderIt
     private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
     private FloatingActionButton btnCart;
     private ImageView imgBack;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         order = (Order) bundle.getSerializable("order");
 
-        orderItemAdapter = new OrderItemAdapter(orderItemList);
+        orderItemAdapter = new OrderItemAdapter(orderItemList, context);
 
         getOrderItemList(order.getOrderID());
 
@@ -89,7 +92,7 @@ public class ChiTietDonHangActivity extends AppCompatActivity implements OrderIt
             public void onResponse(Call<List<FullOrderItem>> call, Response<List<FullOrderItem>> response) {
                 if (response.isSuccessful()) {
                     orderItemList = response.body();
-                    orderItemAdapter = new OrderItemAdapter(orderItemList);
+                    orderItemAdapter = new OrderItemAdapter(orderItemList, context);
                     binding.recycleviewMathang.setLayoutManager(new LinearLayoutManager(ChiTietDonHangActivity.this));
                     binding.recycleviewMathang.setAdapter(orderItemAdapter);
                     orderItemAdapter.notifyDataSetChanged();
@@ -108,6 +111,11 @@ public class ChiTietDonHangActivity extends AppCompatActivity implements OrderIt
 
     @Override
     public void itemClick(FullOrderItem orderItem) {
+        Intent intent = new Intent(this, DanhGiaActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("orderItem", orderItem);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

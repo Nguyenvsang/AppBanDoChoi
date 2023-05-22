@@ -1,35 +1,28 @@
 package com.example.appbandochoi.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.example.appbandochoi.R;
 import com.example.appbandochoi.adapter.ProductAdapter;
-import com.example.appbandochoi.asynctask.GetProductListTask;
 import com.example.appbandochoi.databinding.ActivityDanhSachSpBinding;
-import com.example.appbandochoi.databinding.ItemSanphamBinding;
 import com.example.appbandochoi.model.Category;
 import com.example.appbandochoi.model.Product;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.json.JSONObject;
 
 import java.util.List;
 

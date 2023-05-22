@@ -1,5 +1,7 @@
 package com.example.appbandochoi.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.databinding.ObservableField;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandochoi.R;
+import com.example.appbandochoi.activity.DanhGiaActivity;
 import com.example.appbandochoi.databinding.ItemChitietDonhangBinding;
 import com.example.appbandochoi.model.FullOrderItem;
 import com.example.appbandochoi.utils.ShortDateUtil;
@@ -23,11 +26,12 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
     private List<FullOrderItem> orderItemList;
     private OrderItemAdapter.OnItemClickListener onItemClickListener;
     private CardView cardViewReview;
+    private Context context;
 
-    public OrderItemAdapter(List<FullOrderItem> orderItemList) {
+    public OrderItemAdapter(List<FullOrderItem> orderItemList, Context context) {
         this.orderItemList = orderItemList;
+        this.context = context;
     }
-
 
     @NonNull
     @Override
@@ -81,32 +85,33 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
                 itemChitietDonhangBinding.setViewHolder(this);
             }
 
-            this.orderItem = orderItem;
+            Button btnReview = itemChitietDonhangBinding.getRoot().findViewById(R.id.btnReview);
 
-//            GetProductByOrderItemTask productTask = new GetProductByOrderItemTask(productImages, productName);
-//            productTask.execute(orderItem.getOrderItemID());
-//
-//            GetReviewByOrderItemTask reviewTask = new GetReviewByOrderItemTask(reviewImages, star, reviewDate, comment, reviewID, isNull);
-//            reviewTask.execute(orderItem.getOrderItemID());
-//            System.out.println(reviewID);
+            this.orderItem = orderItem;
 
             price.set(orderItem.getQuantity() + "   X   " + orderItem.getPrice() + " VNĐ");
             productImages.set(orderItem.getProductImage());
             productName.set(orderItem.getProductName());
-            if (orderItem.getCreatedAt() == null)
+            if (orderItem.getCreatedAt() == null) {
                 cardViewReview.setVisibility(View.GONE);
-            else {
+                btnReview.setVisibility(View.VISIBLE);
+            } else {
                 Timestamp date = orderItem.getUpdatedAt() == null ? orderItem.getCreatedAt() : orderItem.getUpdatedAt();
                 reviewDate.set(new ShortDateUtil().parseShortDate(date));
                 reviewImages.set(orderItem.getReviewImage());
                 comment.set(orderItem.getComment() == null ? "Không có đánh giá!" : orderItem.getComment());
                 star.set(String.valueOf(orderItem.getStar()));
                 reviewerName.set(orderItem.getFirstname() + "***");
+                btnReview.setVisibility(View.GONE);
             }
 
-//                GetUserByReviewTask userTask = new GetUserByReviewTask(reviewerName);
-//                userTask.execute(reviewID);
-
+            btnReview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DanhGiaActivity.class);
+                    context.startActivity(intent);
+                }
+            });
         }
 
 

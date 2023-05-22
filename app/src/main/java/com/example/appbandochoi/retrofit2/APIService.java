@@ -161,4 +161,9 @@ public interface APIService {
 
     @GET("order/byorderitem")
     Call<Order> getOrderByOrderItem(@Query("orderItemID") int orderItemID);
+
+    @Multipart
+    @PUT("review/create")
+    Call<Review> reviewOrderItem(@Part RequestBody orderItemID, @Part RequestBody star,
+            @Part RequestBody comment, @Part MultipartBody.Part images);
 }
