@@ -57,7 +57,7 @@ public class DanhGiaActivity extends AppCompatActivity implements View.OnClickLi
     EditText editTextComment;
     private Uri mUri;
     private User storedUser;
-    Review review;
+    private FullOrderItem orderItem;
     private APIService apiService;
     private ProgressDialog mProgressDialog;
     public static final int MY_REQUEST_CODE = 100;
@@ -85,7 +85,7 @@ public class DanhGiaActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void anhXa() {
-        btnChoose = findViewById(R.id.btnChooseImage);
+        btnChoose = findViewById(R.id.btnUploadReviewImage);
         btnSubmit = findViewById(R.id.btnSubmit);
         imgBack = findViewById(R.id.imgBack);
         imgReview = findViewById(R.id.imgReview);
@@ -147,7 +147,7 @@ public class DanhGiaActivity extends AppCompatActivity implements View.OnClickLi
                 }
             });
 
-    public Review review() {
+    public void review() {
         mProgressDialog.show();
         // Check logged in
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
@@ -161,9 +161,9 @@ public class DanhGiaActivity extends AppCompatActivity implements View.OnClickLi
         // Get order item
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        FullOrderItem orderItem = (FullOrderItem) bundle.getSerializable("orderItem");
+        orderItem = (FullOrderItem) bundle.getSerializable("orderItem");
         // Validate
-        if (ratingBar.getRating() == ratingBar.getNumStars()) {
+        if (ratingBar.getRating() == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Rating bar")
                     .setMessage("Vui lòng chọn mức độ hài lòng.")
@@ -179,20 +179,24 @@ public class DanhGiaActivity extends AppCompatActivity implements View.OnClickLi
         RequestBody orderItemID = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(orderItem.getOrderItemID()));
         RequestBody star = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(ratingBar.getRating()));
         RequestBody comment = RequestBody.create(MediaType.parse("multipart/form-data"), editTextComment.getText().toString());
+        System.out.println(orderItem.getOrderItemID());
+        System.out.println(ratingBar.getRating());
+        System.out.println(editTextComment.getText().toString());
+        System.out.println(mUri);
         // create RequestBody instance from file
         String IMAGE_PATH = RealPathUtil.getRealPath(this, mUri);
         Log.e("Image path: ", IMAGE_PATH);
         File file = new File(IMAGE_PATH);
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file); // MultipartBody. Part is used to send also the actual file name
         MultipartBody.Part partProfileImage =
-                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+                MultipartBody.Part.createFormData("images", file.getName(), requestFile);
         //gọi Retrofit
 
         APIService.apiService.reviewOrderItem(orderItemID, star, comment, partProfileImage).enqueue(new Callback<Review>() {
             @Override
             public void onResponse(Call<Review> call, Response<Review> response) {
                 mProgressDialog.dismiss();
-                review = response.body();
+                Review review = response.body();
                 if (review == null) {
                     Toast.makeText(DanhGiaActivity.this, "Đánh giá thất bại", Toast.LENGTH_SHORT).show();
                 } else if (review != null) {
@@ -211,13 +215,12 @@ public class DanhGiaActivity extends AppCompatActivity implements View.OnClickLi
                 t.printStackTrace();
             }
         });
-        return review;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_image);
+        setContentView(R.layout.activity_danh_gia);
 
         // Mapping
         anhXa();
@@ -240,10 +243,10 @@ public class DanhGiaActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 if (mUri != null) {
-                    Review review = review();
+                    review();
                     // Get order by order item from review
                     apiService = RetrofitClient.getRetrofit().create(APIService.class);
-                    apiService.getOrderByOrderItem(review.getOrderItem().getOrderItemID()).enqueue(new Callback<Order>() {
+                    apiService.getOrderByOrderItem(orderItem.getOrderItemID()).enqueue(new Callback<Order>() {
                         @Override
                         public void onResponse(Call<Order> call, Response<Order> response) {
                             if (response.isSuccessful()) {

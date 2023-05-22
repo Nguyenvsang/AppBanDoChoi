@@ -43,6 +43,8 @@ public class NguoiQuanLyActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nguoi_quan_ly);
 
+        anhXa();
+
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             try {
                 user = SharedPrefManager.getInstance(this).getUser();
@@ -57,12 +59,18 @@ public class NguoiQuanLyActivity extends AppCompatActivity implements View.OnCli
             finish();
         }
 
-        anhXa();
+        imgDanhMuc.setOnClickListener(NguoiQuanLyActivity.this);
+        imgSanPham.setOnClickListener(NguoiQuanLyActivity.this);
+        imgDonHang.setOnClickListener(NguoiQuanLyActivity.this);
+        imgDoanhThu.setOnClickListener(NguoiQuanLyActivity.this);
+        imgDanhGia.setOnClickListener(NguoiQuanLyActivity.this);
+        imgKhachHang.setOnClickListener(NguoiQuanLyActivity.this);
+        imgBack.setOnClickListener(NguoiQuanLyActivity.this);
     }
 
     @Override
     public void onClick(View v) {
-        if (user.isRole()) {
+        if (!user.isRole()) {
             if (v.equals(imgDanhMuc)) {
 
             }

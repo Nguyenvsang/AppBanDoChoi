@@ -235,7 +235,7 @@ public class QuanLySanPhamActivity extends AppCompatActivity implements ProductM
         }
         if (view.equals(imgBack)) {
             finish();
-            startActivity(new Intent(this, HomeActivity.class));
+            startActivity(new Intent(this, NguoiQuanLyActivity.class));
         }
     }
 }

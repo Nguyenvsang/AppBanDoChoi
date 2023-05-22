@@ -38,7 +38,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private APIService apiService;
     private LinearLayout linearTrangchu, linearSanpham, linearDonhang, linearTaikhoan;
     private ImageView imgBack, imgUpdateProfile, imgLogout, imgManage;
-    User storedUser = null;
+    User storedUser;
 
     public void anhXa() {
         tvName = findViewById(R.id.textViewName);
@@ -93,12 +93,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             user = (User) bundle.getSerializable("user");
             displayUser();
         }
-
-        // Show manage icon
-        if (user != null && user.isRole())
-            imgManage.setVisibility(View.VISIBLE);
-        else
-            imgManage.setVisibility(View.GONE);
         // Click action
         linearTrangchu.setOnClickListener(this);
         linearSanpham.setOnClickListener(this);
@@ -106,9 +100,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         linearTaikhoan.setOnClickListener(this);
         btnCart.setOnClickListener(this);
         imgBack.setOnClickListener(this);
-        imgProfile.setOnClickListener(ProfileActivity.this);
-        imgUpdateProfile.setOnClickListener(ProfileActivity.this);
-        imgLogout.setOnClickListener(ProfileActivity.this);
+        imgProfile.setOnClickListener(this);
+        imgUpdateProfile.setOnClickListener(this);
+        imgLogout.setOnClickListener(this);
+        imgManage.setOnClickListener(this);
     }
 
     public User getUser(int userID) {
@@ -160,6 +155,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 image = user.getImage();
         }
         Glide.with(getApplicationContext()).load(user.getImage() == null ? R.drawable.profile : image).into(imgProfile);
+
+        // Show manage icon
+        if (!user.isRole())
+            imgManage.setVisibility(View.VISIBLE);
+        else
+            imgManage.setVisibility(View.GONE);
     }
 
     @Override
@@ -218,9 +219,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             dialog.show();
         }
         if (view.equals(imgManage)) {
-            if (user.isRole()) {
+            if (!user.isRole()) {
                 finish();
-                startActivity(new Intent(this, ProfileActivity.class));
+                startActivity(new Intent(this, NguoiQuanLyActivity.class));
             } else {
                 Toast.makeText(ProfileActivity.this, "Vui lòng đăng nhập vào tài khoản quản lý!", Toast.LENGTH_SHORT).show();
             }

@@ -43,4 +43,7 @@ public class FullOrderItem implements Serializable {
     private int userID;
 
     private String firstname;
+
+    // Order
+    private boolean completed; // check if order is completed
 }

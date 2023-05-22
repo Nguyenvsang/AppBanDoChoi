@@ -3,6 +3,7 @@ package com.example.appbandochoi.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandochoi.R;
+import com.example.appbandochoi.activity.DanhGiaActivity;
 import com.example.appbandochoi.activity.XemDonActivity;
 import com.example.appbandochoi.databinding.ItemDonhangBinding;
 import com.example.appbandochoi.model.Order;
@@ -136,15 +138,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                 btnthanhtoanlai.setVisibility(View.VISIBLE);
                 linearLayoutDonhang.setVisibility(View.VISIBLE);
             } else if (order.getStatus() == 1 || order.getStatus() == 2) {
-                btnhuybodon.setVisibility(View.GONE);
-                btnthanhtoanlai.setVisibility(View.VISIBLE);
+                btnhuybodon.setVisibility(View.VISIBLE);
+                btnthanhtoanlai.setVisibility(View.GONE);
                 linearLayoutDonhang.setVisibility(View.VISIBLE);
             } else {
                 btnhuybodon.setVisibility(View.GONE);
                 btnthanhtoanlai.setVisibility(View.GONE);
                 linearLayoutDonhang.setVisibility(View.GONE);
             }
-
             // Click event
             btnthanhtoanlai.setOnClickListener(new View.OnClickListener() {
                 @Override

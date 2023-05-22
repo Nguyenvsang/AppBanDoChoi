@@ -95,7 +95,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
             images.set(review.getImages());
             comment.set(review.getComment());
             star.set(String.valueOf(review.getStar()));
-            quantity.set(String.valueOf(orderItem.getQuantity()));
+            quantity.set(String.valueOf(review.getOrderItem().getQuantity()));
         }
         public void onClick(View v) {
             this.onItemClickListener.itemClick(review);
@@ -110,46 +110,46 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
         void itemClick(Review review);
     }
 
-    public void getUserByReview(int reviewID) {
-        apiService = RetrofitClient.getRetrofit().create(APIService.class);
-        apiService.getUserByReview(reviewID).enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()) {
-                    user = response.body();
-                } else {
-                    int statusCode = response.code();
-                    System.out.println(String.valueOf(statusCode));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.e("ERROR", t.toString());
-                System.out.println("Gọi API U thất bại!");
-            }
-        });
-    }
-
-    public void getOrderItemByReview(int reviewID) {
-        apiService = RetrofitClient.getRetrofit().create(APIService.class);
-        apiService.getOrderItemByReview(reviewID).enqueue(new Callback<OrderItem>() {
-            @Override
-            public void onResponse(Call<OrderItem> call, Response<OrderItem> response) {
-                if (response.isSuccessful()) {
-                    orderItem = response.body();
-                } else {
-                    int statusCode = response.code();
-                    System.out.println(String.valueOf(statusCode));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<OrderItem> call, Throwable t) {
-                Log.e("ERROR", t.toString());
-                System.out.println("Gọi API OI thất bại!");
-            }
-        });
-    }
+//    public void getUserByReview(int reviewID) {
+//        apiService = RetrofitClient.getRetrofit().create(APIService.class);
+//        apiService.getUserByReview(reviewID).enqueue(new Callback<User>() {
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//                if (response.isSuccessful()) {
+//                    user = response.body();
+//                } else {
+//                    int statusCode = response.code();
+//                    System.out.println(String.valueOf(statusCode));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                Log.e("ERROR", t.toString());
+//                System.out.println("Gọi API U thất bại!");
+//            }
+//        });
+//    }
+//
+//    public void getOrderItemByReview(int reviewID) {
+//        apiService = RetrofitClient.getRetrofit().create(APIService.class);
+//        apiService.getOrderItemByReview(reviewID).enqueue(new Callback<OrderItem>() {
+//            @Override
+//            public void onResponse(Call<OrderItem> call, Response<OrderItem> response) {
+//                if (response.isSuccessful()) {
+//                    orderItem = response.body();
+//                } else {
+//                    int statusCode = response.code();
+//                    System.out.println(String.valueOf(statusCode));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<OrderItem> call, Throwable t) {
+//                Log.e("ERROR", t.toString());
+//                System.out.println("Gọi API OI thất bại!");
+//            }
+//        });
+//    }
 
 }

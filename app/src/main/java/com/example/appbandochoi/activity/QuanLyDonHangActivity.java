@@ -41,8 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QuanLyDonHangActivity extends AppCompatActivity
-        implements OrderManagementAdapter.OnItemClickListener {
+public class QuanLyDonHangActivity extends AppCompatActivity implements OrderManagementAdapter.OnItemClickListener, View.OnClickListener {
     private APIService apiService;
     private ActivityQuanLyDonHangBinding binding;
     private OrderManagementAdapter orderManagementAdapter;
@@ -60,6 +59,14 @@ public class QuanLyDonHangActivity extends AppCompatActivity
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quan_ly_don_hang);
         binding.setOrder(this);
+
+        // Click action
+        binding.linearTrangchu.setOnClickListener(this);
+        binding.linearSanpham.setOnClickListener(this);
+        binding.linearDonhang.setOnClickListener(this);
+        binding.linearTaikhoan.setOnClickListener(this);
+        binding.btnCart.setOnClickListener(this);
+        binding.imgBack.setOnClickListener(this);
 
         // Filter options
         String[] sorts = getResources().getStringArray(R.array.filter);
@@ -152,5 +159,33 @@ public class QuanLyDonHangActivity extends AppCompatActivity
         bundle.putSerializable("order", order);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.equals(binding.linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(binding.linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(binding.linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(binding.linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(binding.btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(binding.imgBack)) {
+            finish();
+            startActivity(new Intent(this, NguoiQuanLyActivity.class));
+        }
     }
 }

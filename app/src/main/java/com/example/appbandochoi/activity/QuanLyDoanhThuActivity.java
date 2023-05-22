@@ -29,7 +29,6 @@ import retrofit2.Response;
 
 public class QuanLyDoanhThuActivity extends AppCompatActivity
         implements RevenueManagementAdapter.OnItemClickListener, DatePickerDialog.OnDateSetListener, MonthYearPickerDialog.OnMonthYearSetListener, View.OnClickListener {
-
     private APIService apiService;
     private ActivityQuanLyDoanhThuBinding binding;
     private RevenueManagementAdapter revenueManagementAdapter;
@@ -50,6 +49,14 @@ public class QuanLyDoanhThuActivity extends AppCompatActivity
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quan_ly_doanh_thu);
         binding.setRevenue(this);
+
+        // Click action
+        binding.linearTrangchu.setOnClickListener(this);
+        binding.linearSanpham.setOnClickListener(this);
+        binding.linearDonhang.setOnClickListener(this);
+        binding.linearTaikhoan.setOnClickListener(this);
+        binding.btnCart.setOnClickListener(this);
+        binding.imgBack.setOnClickListener(this);
 
         binding.pickerMonth.setText(String.valueOf(month));
         binding.pickerYear.setText(String.valueOf(year));
@@ -113,16 +120,40 @@ public class QuanLyDoanhThuActivity extends AppCompatActivity
     }
 
     @Override
-    public void onClick(View v) {
-        if (v.equals(binding.pickerMonth) || v.equals(binding.pickerYear)) {
+    public void onClick(View view) {
+        if (view.equals(binding.pickerMonth) || view.equals(binding.pickerYear)) {
             // Filter by date
             pd.show(getSupportFragmentManager(), "MonthYearPickerDialog");
         }
-        if (v.equals(binding.btnSearchByDate)) {
+        if (view.equals(binding.btnSearchByDate)) {
             int month = Integer.parseInt(binding.pickerMonth.getText().toString());
             int year = Integer.parseInt(binding.pickerYear.getText().toString());
             // Lấy tất cả
             getRevenueByProduct(month, year);
+        }
+        if (view.equals(binding.linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(binding.linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(binding.linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(binding.linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(binding.btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(binding.imgBack)) {
+            finish();
+            startActivity(new Intent(this, NguoiQuanLyActivity.class));
         }
     }
 

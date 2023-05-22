@@ -141,7 +141,6 @@ public class DanhSachSPActivity extends AppCompatActivity implements ProductAdap
                     binding.recycleviewSp.setAdapter(productAdapter);
                     productAdapter.notifyDataSetChanged();
                     productAdapter.setOnItemClickListener((ProductAdapter.OnItemClickListener) DanhSachSPActivity.this);
-                    System.out.println(productList.size());
                 } else
                     Toast.makeText(DanhSachSPActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
             }

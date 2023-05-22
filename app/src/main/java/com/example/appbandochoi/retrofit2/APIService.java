@@ -163,7 +163,7 @@ public interface APIService {
     Call<Order> getOrderByOrderItem(@Query("orderItemID") int orderItemID);
 
     @Multipart
-    @PUT("review/create")
-    Call<Review> reviewOrderItem(@Part RequestBody orderItemID, @Part RequestBody star,
-            @Part RequestBody comment, @Part MultipartBody.Part images);
+    @POST("review/create")
+    Call<Review> reviewOrderItem(@Part("orderItemID") RequestBody orderItemID, @Part("star") RequestBody star,
+            @Part("comment") RequestBody comment, @Part MultipartBody.Part images);
 }

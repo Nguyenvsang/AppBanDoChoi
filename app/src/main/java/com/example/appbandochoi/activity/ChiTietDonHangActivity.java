@@ -111,11 +111,6 @@ public class ChiTietDonHangActivity extends AppCompatActivity implements OrderIt
 
     @Override
     public void itemClick(FullOrderItem orderItem) {
-        Intent intent = new Intent(this, DanhGiaActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("orderItem", orderItem);
-        intent.putExtras(bundle);
-        startActivity(intent);
     }
 
     @Override

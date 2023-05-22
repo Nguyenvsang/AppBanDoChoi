@@ -41,7 +41,7 @@ public class IntroActivity extends AppCompatActivity {
                 } catch (Exception ex) {
 
                 } finally {
-                    Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }

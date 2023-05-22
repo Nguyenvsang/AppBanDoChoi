@@ -2,6 +2,7 @@ package com.example.appbandochoi.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
     private OrderItemAdapter.OnItemClickListener onItemClickListener;
     private CardView cardViewReview;
     private Context context;
+    private Button btndanhgia;
 
     public OrderItemAdapter(List<FullOrderItem> orderItemList, Context context) {
         this.orderItemList = orderItemList;
@@ -78,6 +80,7 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
             itemView.getRoot().setOnClickListener(this);
 
             cardViewReview = itemView.getRoot().findViewById(R.id.cardViewReview);
+            btndanhgia = itemView.getRoot().findViewById(R.id.btnReview);
         }
 
         public void setBinding(FullOrderItem orderItem, int position) {
@@ -94,7 +97,6 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
             productName.set(orderItem.getProductName());
             if (orderItem.getCreatedAt() == null) {
                 cardViewReview.setVisibility(View.GONE);
-                btnReview.setVisibility(View.VISIBLE);
             } else {
                 Timestamp date = orderItem.getUpdatedAt() == null ? orderItem.getCreatedAt() : orderItem.getUpdatedAt();
                 reviewDate.set(new ShortDateUtil().parseShortDate(date));
@@ -102,16 +104,24 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.MyVi
                 comment.set(orderItem.getComment() == null ? "Không có đánh giá!" : orderItem.getComment());
                 star.set(String.valueOf(orderItem.getStar()));
                 reviewerName.set(orderItem.getFirstname() + "***");
-                btnReview.setVisibility(View.GONE);
             }
 
-            btnReview.setOnClickListener(new View.OnClickListener() {
+            if (orderItem.isCompleted() && orderItem.getCreatedAt() == null)
+                btndanhgia.setVisibility(View.VISIBLE);
+            else
+                btndanhgia.setVisibility(View.GONE);
+
+            btndanhgia.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DanhGiaActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("orderItem", orderItem);
+                    intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
             });
+
         }
 
 

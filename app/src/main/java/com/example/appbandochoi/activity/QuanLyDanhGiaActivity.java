@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.appbandochoi.R;
@@ -20,6 +23,7 @@ import com.example.appbandochoi.model.Order;
 import com.example.appbandochoi.model.Review;
 import com.example.appbandochoi.retrofit2.APIService;
 import com.example.appbandochoi.retrofit2.RetrofitClient;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -27,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QuanLyDanhGiaActivity extends AppCompatActivity implements ReviewManagementAdapter.OnItemClickListener {
+public class QuanLyDanhGiaActivity extends AppCompatActivity implements ReviewManagementAdapter.OnItemClickListener, View.OnClickListener {
     private APIService apiService;
     private ActivityQuanLyDanhGiaBinding binding;
     private ReviewManagementAdapter reviewManagementAdapter;
@@ -38,12 +42,20 @@ public class QuanLyDanhGiaActivity extends AppCompatActivity implements ReviewMa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         reviewManagementAdapter = new ReviewManagementAdapter(reviewList);
         getReviewDesc();
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quan_ly_danh_gia);
         binding.setReview(this);
+
+        // Click action
+        binding.linearTrangchu.setOnClickListener(this);
+        binding.linearSanpham.setOnClickListener(this);
+        binding.linearDonhang.setOnClickListener(this);
+        binding.linearTaikhoan.setOnClickListener(this);
+        binding.btnCart.setOnClickListener(this);
+        binding.imgBack.setOnClickListener(this);
 
         // Filter options
         String[] filters = getResources().getStringArray(R.array.review);
@@ -152,5 +164,33 @@ public class QuanLyDanhGiaActivity extends AppCompatActivity implements ReviewMa
                 Toast.makeText(QuanLyDanhGiaActivity.this, "Gọi API thất bại", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.equals(binding.linearTrangchu)) {
+            finish();
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        if (view.equals(binding.linearSanpham)) {
+            finish();
+            startActivity(new Intent(this, DanhSachSPActivity.class));
+        }
+        if (view.equals(binding.linearDonhang)) {
+            finish();
+            startActivity(new Intent(this, XemDonActivity.class));
+        }
+        if (view.equals(binding.linearTaikhoan)) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+        if (view.equals(binding.btnCart)) {
+            finish();
+            startActivity(new Intent(this, GioHangActivity.class));
+        }
+        if (view.equals(binding.imgBack)) {
+            finish();
+            startActivity(new Intent(this, NguoiQuanLyActivity.class));
+        }
     }
 }
